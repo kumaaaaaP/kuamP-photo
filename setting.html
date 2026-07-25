@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>管理画面 | くまP撮影記録</title>
+<style>
+  :root{
+    --navy:#1f3652; --navy-deep:#152539; --link:#1a5faa;
+    --paper:#f6f7f9; --line:#dde2e8; --ink:#222831; --radius:6px;
+    --ok:#1a7a4c; --err:#b3261e;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:"Hiragino Sans","Noto Sans JP",system-ui,sans-serif;background:var(--paper);color:var(--ink);}
+  header{background:linear-gradient(180deg,var(--navy),var(--navy-deep));color:#fff;padding:16px 20px;}
+  header h1{margin:0;font-size:1.15rem;letter-spacing:.05em;}
+  header p{margin:.2em 0 0;font-size:.8rem;color:#b9cbe0;}
+  main{max-width:760px;margin:0 auto;padding:20px 16px 80px;}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin-bottom:18px;}
+  h2{font-size:1.05rem;margin:0 0 .8em;color:var(--navy);border-left:4px solid var(--link);padding-left:.5em;}
+  label{display:block;font-size:.85rem;font-weight:600;margin:.9em 0 .3em;color:#334;}
+  label .note{font-weight:400;color:#778;font-size:.8em;display:block;margin-top:.1em;}
+  input[type=text],input[type=password],input[type=number],textarea,select{
+    width:100%;padding:.55em .7em;border:1px solid var(--line);border-radius:var(--radius);
+    font-size:.95rem;font-family:inherit;background:#fff;
+  }
+  textarea{min-height:5em;resize:vertical;}
+  button{
+    background:var(--link);color:#fff;border:none;border-radius:var(--radius);
+    padding:.6em 1.1em;font-size:.9rem;font-weight:700;cursor:pointer;margin-top:.8em;
+  }
+  button.secondary{background:#5b6b7d;}
+  button.danger{background:var(--err);}
+  button:disabled{opacity:.5;cursor:not-allowed;}
+  button:hover:not(:disabled){filter:brightness(1.08);}
+  .row{display:flex;gap:.6em;flex-wrap:wrap;}
+  .row > *{flex:1;min-width:140px;}
+  .msg{margin-top:.8em;font-size:.88rem;padding:.6em .8em;border-radius:var(--radius);display:none;}
+  .msg.ok{display:block;background:#e6f4ec;color:var(--ok);}
+  .msg.err{display:block;background:#fbe9e7;color:var(--err);}
+  .tabs{display:flex;flex-wrap:wrap;gap:.4em;margin-bottom:16px;}
+  .tabs button{margin:0;background:#fff;color:var(--navy);border:1px solid var(--line);}
+  .tabs button.active{background:var(--link);color:#fff;border-color:var(--link);}
+  .hidden{display:none !important;}
+  .group-box{border:1px dashed var(--line);border-radius:var(--radius);padding:12px;margin-top:.8em;}
+  .thumb-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:.6em;}
+  .thumb-list div{width:90px;font-size:.72rem;text-align:center;color:#556;}
+  .thumb-list img{width:90px;height:60px;object-fit:cover;border-radius:4px;border:1px solid var(--line);}
+  .small{font-size:.8rem;color:#778;}
+  .lock-screen{max-width:360px;margin:80px auto;text-align:center;}
+  .lock-screen input{text-align:center;letter-spacing:.3em;font-size:1.2rem;}
+  code{background:#eef2f6;padding:.1em .35em;border-radius:4px;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>くまP撮影記録 — 管理画面</h1>
+  <p>setting.html / データは GitHub リポジトリに直接コミットされ、GitHub Actions がページを自動生成します</p>
+</header>
+
+<main>
+
+  <!-- ===== パスワード画面 ===== -->
+  <section id="lockScreen" class="lock-screen">
+    <div class="card">
+      <h2>パスワード</h2>
+      <input type="password" id="pwInput" placeholder="パスワード" maxlength="20">
+      <button id="pwBtn" style="width:100%">開く</button>
+      <div id="pwMsg" class="msg err"></div>
+    </div>
+  </section>
+
+  <!-- ===== 本体（パスワード通過後に表示） ===== -->
+  <div id="app" class="hidden">
+
+    <!-- GitHub 接続設定 -->
+    <div class="card" id="configCard">
+      <h2>GitHub 接続設定</h2>
+      <p class="small">この管理画面は入力内容を直接 GitHub リポジトリへコミットします。<br>
+      Personal Access Token（<code>repo</code> スコープ）が必要です。トークンはこの端末のブラウザ内にのみ保存され、外部には送信されません（GitHub API 以外への通信はありません）。</p>
+      <div class="row">
+        <div><label>オーナー名<input type="text" id="cfgOwner" placeholder="例: kumaP"></label></div>
+        <div><label>リポジトリ名<input type="text" id="cfgRepo" placeholder="例: kumaP-photo"></label></div>
+      </div>
+      <label>ブランチ<input type="text" id="cfgBranch" value="main"></label>
+      <label>Personal Access Token<input type="password" id="cfgToken" placeholder="ghp_..."></label>
+      <button id="cfgSaveBtn">保存して接続確認</button>
+      <button class="secondary" id="cfgClearBtn" type="button">保存内容を消去</button>
+      <div id="cfgMsg" class="msg"></div>
+    </div>
+
+    <div id="mainTabs" class="hidden">
+      <div class="tabs">
+        <button data-tab="photo" class="active">画像追加</button>
+        <button data-tab="train">編成ページ追加</button>
+        <button data-tab="type">形式ページ追加</button>
+        <button data-tab="company">会社ページ追加</button>
+        <button data-tab="edit">編集</button>
+      </div>
+
+      <!-- ===== 画像追加 ===== -->
+      <div class="card tabpane" id="tab-photo">
+        <h2>画像追加（既存の編成ページへ）</h2>
+        <label>対象の編成
+          <select id="photoTrainSelect"><option value="">読み込み中...</option></select>
+          <span class="note">既に作成済みの編成ページのみ選択できます</span>
+        </label>
+        <label>画像ファイル（複数選択可・自動で WebP に変換されます）
+          <input type="file" id="photoFiles" accept="image/*" multiple>
+        </label>
+        <div class="row">
+          <label>撮影日（今回アップロード分に共通適用）<input type="text" id="photoDate" placeholder="例: 2026年5月24日"></label>
+          <label>列車番号<input type="text" id="photoNumber" placeholder="例: 791T"></label>
+        </div>
+        <div class="row">
+          <label>種別・行先<input type="text" id="photoDestination" placeholder="例: 普通 網干行き"></label>
+          <label>撮影地<input type="text" id="photoLocation" placeholder="例: 南草津"></label>
+        </div>
+        <div id="photoPreview" class="thumb-list"></div>
+        <button id="photoUploadBtn">アップロードして追加</button>
+        <div id="photoMsg" class="msg"></div>
+      </div>
+
+      <!-- ===== 編成ページ追加 ===== -->
+      <div class="card tabpane hidden" id="tab-train">
+        <h2>編成ページ追加</h2>
+        <div class="row">
+          <label>会社<select id="trainCompany"></select></label>
+          <label>形式ID<input type="text" id="trainType" placeholder="例: 223"></label>
+        </div>
+        <div class="row">
+          <label>所属ID<input type="text" id="trainAffId" placeholder="例: aboshi"></label>
+          <label>所属名<input type="text" id="trainAffName" placeholder="例: 網干総合車両所"></label>
+        </div>
+        <label>編成番号<input type="text" id="trainNumber" placeholder="例: J4"></label>
+        <label><input type="checkbox" id="trainNoFormation" style="width:auto;display:inline-block;margin-right:.4em;">編成表なし（機関車・貨車など）</label>
+        <label>編成の方向表示（任意）
+          <input type="text" id="trainDirection" placeholder="例: ←上郡，播州赤穂　　　長浜→">
+        </label>
+        <label>編成表（1行1両、「車両種別,車両番号」の形式・上から編成順）
+          <textarea id="trainFormation" placeholder="クハ222,2063&#10;サハ223,2149&#10;モハ223,2030"></textarea>
+        </label>
+        <label>車歴（1行1件、「イベント,日付,備考」の形式。備考は省略可）
+          <textarea id="trainHistory" placeholder="網干新製配置,2004年5月25日,（近車）"></textarea>
+        </label>
+        <label>写真（この場では未登録でもOK。後から「画像追加」で追加できます）
+          <input type="file" id="trainPhotoFiles" accept="image/*" multiple>
+        </label>
+        <div class="row">
+          <label>撮影日（今回アップロード分に共通適用）<input type="text" id="trainPhotoDate" placeholder="例: 2026年5月24日"></label>
+          <label>列車番号<input type="text" id="trainPhotoNumber" placeholder="例: 791T"></label>
+        </div>
+        <div class="row">
+          <label>種別・行先<input type="text" id="trainPhotoDestination" placeholder="例: 普通 網干行き"></label>
+          <label>撮影地<input type="text" id="trainPhotoLocation" placeholder="例: 南草津"></label>
+        </div>
+        <div id="trainPhotoPreview" class="thumb-list"></div>
+        <button id="trainSaveBtn">編成ページを作成</button>
+        <div id="trainMsg" class="msg"></div>
+      </div>
+
+      <!-- ===== 形式ページ追加 ===== -->
+      <div class="card tabpane hidden" id="tab-type">
+        <h2>形式ページ追加</h2>
+        <div class="row">
+          <label>会社<select id="typeCompany"></select></label>
+          <label>形式ID<input type="text" id="typeId" placeholder="例: 223"></label>
+        </div>
+        <label>形式名<input type="text" id="typeName" placeholder="例: 223系"></label>
+        <label>説明（任意）<textarea id="typeDesc"></textarea></label>
+        <h3 class="small" style="margin-top:1.2em;">所属ごとの編成一覧</h3>
+        <div id="typeAffiliations"></div>
+        <button type="button" class="secondary" id="typeAddAffBtn">＋ 所属を追加</button>
+        <button id="typeSaveBtn">形式ページを作成</button>
+        <div id="typeMsg" class="msg"></div>
+      </div>
+
+      <!-- ===== 会社ページ追加 ===== -->
+      <div class="card tabpane hidden" id="tab-company">
+        <h2>会社ページ追加</h2>
+        <div class="row">
+          <label>会社ID（英数字・半角ハイフン）<input type="text" id="companyId" placeholder="例: jr-west"></label>
+          <label>会社名<input type="text" id="companyName" placeholder="例: JR西日本"></label>
+        </div>
+        <button id="companySaveBtn">会社を追加</button>
+        <div id="companyMsg" class="msg"></div>
+      </div>
+
+      <!-- ===== 編集 ===== -->
+      <div class="card tabpane hidden" id="tab-edit">
+        <h2>編集</h2>
+        <p class="small">既存の会社・形式・編成ページのデータ（JSON）を直接編集して保存します。保存すると GitHub Actions が自動でページを再生成します。</p>
+        <label>編集対象
+          <select id="editTarget"><option value="">読み込み中...</option></select>
+        </label>
+        <textarea id="editJson" style="min-height:16em;font-family:monospace;font-size:.85rem;"></textarea>
+        <button id="editSaveBtn">保存する</button>
+        <div id="editMsg" class="msg"></div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<script>
+/* ============================================================
+   くまP撮影記録 — 管理画面ロジック
+   ============================================================ */
+const APP_PASSWORD = "652127";
+
+// ---------- ローカル保存キー ----------
+const LS = {
+  owner: "kumaP_owner",
+  repo: "kumaP_repo",
+  branch: "kumaP_branch",
+  token: "kumaP_token",
+};
+
+// ---------- パスワードゲート ----------
+document.getElementById("pwBtn").addEventListener("click", tryUnlock);
+document.getElementById("pwInput").addEventListener("keydown", e => { if (e.key === "Enter") tryUnlock(); });
+
+function tryUnlock() {
+  const v = document.getElementById("pwInput").value;
+  if (v === APP_PASSWORD) {
+    document.getElementById("lockScreen").classList.add("hidden");
+    document.getElementById("app").classList.remove("hidden");
+    sessionStorage.setItem("kumaP_unlocked", "1");
+    initConfig();
+  } else {
+    const m = document.getElementById("pwMsg");
+    m.textContent = "パスワードが違います。";
+    m.style.display = "block";
+  }
+}
+if (sessionStorage.getItem("kumaP_unlocked") === "1") {
+  document.getElementById("lockScreen").classList.add("hidden");
+  document.getElementById("app").classList.remove("hidden");
+  initConfig();
+}
+
+// ---------- GitHub API ヘルパー ----------
+function ghConf() {
+  return {
+    owner: localStorage.getItem(LS.owner) || "",
+    repo: localStorage.getItem(LS.repo) || "",
+    branch: localStorage.getItem(LS.branch) || "main",
+    token: localStorage.getItem(LS.token) || "",
+  };
+}
+function ghReady() {
+  const c = ghConf();
+  return !!(c.owner && c.repo && c.token);
+}
+function ghHeaders() {
+  const c = ghConf();
+  return {
+    "Authorization": "token " + c.token,
+    "Accept": "application/vnd.github+json",
+  };
+}
+function ghUrl(path) {
+  const c = ghConf();
+  return `https://api.github.com/repos/${encodeURIComponent(c.owner)}/${encodeURIComponent(c.repo)}/contents/${path}`;
+}
+// 既存ファイル取得。無ければ null。ディレクトリなら配列を返す。
+async function ghGet(path) {
+  const c = ghConf();
+  const res = await fetch(ghUrl(path) + `?ref=${encodeURIComponent(c.branch)}`, { headers: ghHeaders() });
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error(`GitHub取得エラー (${res.status}): ${await res.text()}`);
+  return await res.json();
+}
+async function ghGetJSON(path) {
+  const data = await ghGet(path);
+  if (!data) return { json: null, sha: null };
+  const text = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ""))));
+  return { json: JSON.parse(text), sha: data.sha };
+}
+async function ghPutJSON(path, obj, message, sha) {
+  const c = ghConf();
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(obj, null, 2))));
+  const body = { message, content, branch: c.branch };
+  if (sha) body.sha = sha;
+  const res = await fetch(ghUrl(path), {
+    method: "PUT",
+    headers: { ...ghHeaders(), "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) throw new Error(`GitHub保存エラー (${res.status}): ${await res.text()}`);
+  return await res.json();
+}
+async function ghPutBinaryBase64(path, base64, message) {
+  const c = ghConf();
+  const body = { message, content: base64, branch: c.branch };
+  const res = await fetch(ghUrl(path), {
+    method: "PUT",
+    headers: { ...ghHeaders(), "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) throw new Error(`GitHub画像保存エラー (${res.status}): ${await res.text()}`);
+  return await res.json();
+}
+async function ghListDir(path) {
+  const data = await ghGet(path);
+  if (!data) return [];
+  return Array.isArray(data) ? data : [];
+}
+
+// ---------- WebP 変換 ----------
+function fileToWebp(file, maxWidth = 1600, quality = 0.85) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    const reader = new FileReader();
+    reader.onload = () => { img.src = reader.result; };
+    reader.onerror = reject;
+    img.onload = () => {
+      const scale = Math.min(1, maxWidth / img.width);
+      const w = Math.round(img.width * scale);
+      const h = Math.round(img.height * scale);
+      const canvas = document.createElement("canvas");
+      canvas.width = w; canvas.height = h;
+      canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+      canvas.toBlob(blob => {
+        if (!blob) return reject(new Error("WebP変換に失敗しました"));
+        const fr = new FileReader();
+        fr.onload = () => resolve({ base64: fr.result.split(",")[1], blobUrl: URL.createObjectURL(blob) });
+        fr.onerror = reject;
+        fr.readAsDataURL(blob);
+      }, "image/webp", quality);
+    };
+    img.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+// ---------- 編成番号レンジ展開: "W1〜W5,W7,W10〜W16" → [W1..W5,W7,W10..W16] ----------
+function expandTrainRange(input) {
+  const parts = input.split(/[,、，\n]/).map(s => s.trim()).filter(Boolean);
+  const result = [];
+  for (const part of parts) {
+    const m = part.match(/^([^\d]*)(\d+)\s*[〜~～\-ー]\s*[^\d]*(\d+)$/);
+    if (m) {
+      const prefix = m[1];
+      const start = parseInt(m[2], 10);
+      const end = parseInt(m[3], 10);
+      for (let n = start; n <= end; n++) result.push(prefix + n);
+    } else if (part) {
+      result.push(part);
+    }
+  }
+  return result;
+}
+
+// ---------- 設定画面 ----------
+function initConfig() {
+  const c = ghConf();
+  document.getElementById("cfgOwner").value = c.owner;
+  document.getElementById("cfgRepo").value = c.repo;
+  document.getElementById("cfgBranch").value = c.branch;
+  document.getElementById("cfgToken").value = c.token;
+  if (ghReady()) checkConnectionAndBoot();
+}
+document.getElementById("cfgSaveBtn").addEventListener("click", async () => {
+  localStorage.setItem(LS.owner, document.getElementById("cfgOwner").value.trim());
+  localStorage.setItem(LS.repo, document.getElementById("cfgRepo").value.trim());
+  localStorage.setItem(LS.branch, document.getElementById("cfgBranch").value.trim() || "main");
+  localStorage.setItem(LS.token, document.getElementById("cfgToken").value.trim());
+  await checkConnectionAndBoot();
+});
+document.getElementById("cfgClearBtn").addEventListener("click", () => {
+  Object.values(LS).forEach(k => localStorage.removeItem(k));
+  document.getElementById("cfgOwner").value = "";
+  document.getElementById("cfgRepo").value = "";
+  document.getElementById("cfgToken").value = "";
+  document.getElementById("mainTabs").classList.add("hidden");
+  showMsg("cfgMsg", "保存内容を消去しました。", "ok");
+});
+async function checkConnectionAndBoot() {
+  const msg = document.getElementById("cfgMsg");
+  if (!ghReady()) { showMsg("cfgMsg", "オーナー名・リポジトリ名・トークンを入力してください。", "err"); return; }
+  try {
+    const c = ghConf();
+    const res = await fetch(`https://api.github.com/repos/${c.owner}/${c.repo}`, { headers: ghHeaders() });
+    if (!res.ok) throw new Error(`接続できませんでした (${res.status})`);
+    showMsg("cfgMsg", `接続確認OK: ${c.owner}/${c.repo}`, "ok");
+    document.getElementById("mainTabs").classList.remove("hidden");
+    await bootData();
+  } catch (e) {
+    showMsg("cfgMsg", "接続エラー: " + e.message, "err");
+  }
+}
+function showMsg(id, text, kind) {
+  const el = document.getElementById(id);
+  el.textContent = text;
+  el.className = "msg " + kind;
+}
+
+// ---------- タブ切り替え ----------
+document.querySelectorAll(".tabs button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tabs button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    document.querySelectorAll(".tabpane").forEach(p => p.classList.add("hidden"));
+    document.getElementById("tab-" + btn.dataset.tab).classList.remove("hidden");
+  });
+});
+
+// ---------- 起動時データ読み込み ----------
+let siteData = null;
+async function bootData() {
+  const { json } = await ghGetJSON("data/site.json");
+  siteData = json || { siteName: "くまP撮影記録", companies: [] };
+  fillCompanySelects();
+  await fillPhotoTrainSelect();
+  await fillEditSelect();
+}
+function fillCompanySelects() {
+  const opts = siteData.companies.map(c => `<option value="${c.id}">${c.name}</option>`).join("");
+  document.getElementById("trainCompany").innerHTML = opts || "<option value=''>（会社未登録）</option>";
+  document.getElementById("typeCompany").innerHTML = opts || "<option value=''>（会社未登録）</option>";
+}
+
+// ================= 画像追加タブ =================
+async function fillPhotoTrainSelect() {
+  const sel = document.getElementById("photoTrainSelect");
+  sel.innerHTML = "<option value=''>読み込み中...</option>";
+  const files = await ghListDir("data/trains");
+  if (!files.length) { sel.innerHTML = "<option value=''>（編成ページがまだありません）</option>"; return; }
+  sel.innerHTML = files
+    .filter(f => f.name.endsWith(".json"))
+    .map(f => `<option value="${f.name}">${f.name.replace(/\.json$/, "")}</option>`)
+    .join("");
+}
+let photoPending = []; // {name, base64, blobUrl}
+document.getElementById("photoFiles").addEventListener("change", async (e) => {
+  photoPending = [];
+  const preview = document.getElementById("photoPreview");
+  preview.innerHTML = "変換中...";
+  const files = Array.from(e.target.files);
+  for (const f of files) {
+    const { base64, blobUrl } = await fileToWebp(f);
+    photoPending.push({ name: f.name, base64, blobUrl });
+  }
+  preview.innerHTML = photoPending.map(p => `<div><img src="${p.blobUrl}"><br>${p.name}</div>`).join("");
+});
+document.getElementById("photoUploadBtn").addEventListener("click", async () => {
+  const sel = document.getElementById("photoTrainSelect");
+  const fname = sel.value;
+  if (!fname) return showMsg("photoMsg", "対象の編成を選択してください。", "err");
+  if (!photoPending.length) return showMsg("photoMsg", "画像を選択してください。", "err");
+  try {
+    showMsg("photoMsg", "アップロード中...", "ok");
+    const path = "data/trains/" + fname;
+    const { json: train, sha } = await ghGetJSON(path);
+    if (!train) throw new Error("編成データが見つかりません。");
+    train.photos = train.photos || [];
+    const baseIdx = train.photos.length;
+    const meta = {
+      date: document.getElementById("photoDate").value.trim(),
+      trainNumber: document.getElementById("photoNumber").value.trim(),
+      destination: document.getElementById("photoDestination").value.trim(),
+      location: document.getElementById("photoLocation").value.trim(),
+    };
+    const captionInputs = [];
+    for (let i = 0; i < photoPending.length; i++) {
+      const p = photoPending[i];
+      const idx = baseIdx + i + 1;
+      const imgPath = `image/${train.type}/${train.number}/${idx}.webp`;
+      await ghPutBinaryBase64(imgPath, p.base64, `画像追加: ${train.type}-${train.number} #${idx}`);
+      train.photos.push({ src: imgPath, ...meta });
+      captionInputs.push(imgPath);
+    }
+    await ghPutJSON(path, train, `画像追加: ${train.type}-${train.number}`, sha);
+    // ホームの最新更新画像にも反映
+    await appendLatest(train, captionInputs);
+    showMsg("photoMsg", `アップロード完了。GitHub Actions がページを再生成します（数十秒〜数分）。`, "ok");
+    document.getElementById("photoFiles").value = "";
+    document.getElementById("photoPreview").innerHTML = "";
+    photoPending = [];
+  } catch (e) {
+    showMsg("photoMsg", "エラー: " + e.message, "err");
+  }
+});
+async function appendLatest(train, newPaths) {
+  const { json, sha } = await ghGetJSON("data/latest.json");
+  const latest = json || [];
+  const today = new Date().toISOString().slice(0, 10);
+  for (const src of newPaths) {
+    latest.unshift({ src, caption: `${train.typeName || train.type}${train.number}編成`, type: train.type, number: train.number, company: train.company, date: today });
+  }
+  await ghPutJSON("data/latest.json", latest.slice(0, 50), "最新更新画像を更新", sha);
+}
+
+// ================= 編成ページ追加タブ =================
+let trainPhotoPending = [];
+document.getElementById("trainPhotoFiles").addEventListener("change", async (e) => {
+  trainPhotoPending = [];
+  const preview = document.getElementById("trainPhotoPreview");
+  preview.innerHTML = "変換中...";
+  for (const f of Array.from(e.target.files)) {
+    const { base64, blobUrl } = await fileToWebp(f);
+    trainPhotoPending.push({ name: f.name, base64, blobUrl });
+  }
+  preview.innerHTML = trainPhotoPending.map(p => `<div><img src="${p.blobUrl}"><br>${p.name}</div>`).join("");
+});
+document.getElementById("trainSaveBtn").addEventListener("click", async () => {
+  const company = document.getElementById("trainCompany").value;
+  const typeId = document.getElementById("trainType").value.trim();
+  const affId = document.getElementById("trainAffId").value.trim();
+  const affName = document.getElementById("trainAffName").value.trim();
+  const number = document.getElementById("trainNumber").value.trim();
+  const noFormation = document.getElementById("trainNoFormation").checked;
+  const direction = document.getElementById("trainDirection").value.trim();
+  const formationRaw = document.getElementById("trainFormation").value.trim();
+  const historyRaw = document.getElementById("trainHistory").value.trim();
+
+  if (!company || !typeId || !affId || !number) {
+    return showMsg("trainMsg", "会社・形式ID・所属ID・編成番号は必須です。", "err");
+  }
+  try {
+    showMsg("trainMsg", "保存中...", "ok");
+    const { json: typeData } = await ghGetJSON(`data/types/${typeId}.json`);
+    const typeName = typeData ? typeData.name : typeId;
+    const companyName = (siteData.companies.find(c => c.id === company) || {}).name || company;
+
+    let formation = null;
+    if (!noFormation && formationRaw) {
+      const cars = formationRaw.split("\n").map(l => l.trim()).filter(Boolean).map(l => {
+        const [carType, carNumber] = l.split(",").map(s => (s || "").trim());
+        return { type: carType || "", number: carNumber || "" };
+      });
+      formation = { direction, cars };
+    }
+    const history = historyRaw
+      ? historyRaw.split("\n").map(l => l.trim()).filter(Boolean).map(l => {
+          const [event, date, note] = l.split(",").map(s => (s || "").trim());
+          return { event: event || "", date: date || "", note: note || "" };
+        })
+      : [];
+
+    const photoMeta = {
+      date: document.getElementById("trainPhotoDate").value.trim(),
+      trainNumber: document.getElementById("trainPhotoNumber").value.trim(),
+      destination: document.getElementById("trainPhotoDestination").value.trim(),
+      location: document.getElementById("trainPhotoLocation").value.trim(),
+    };
+    const photos = [];
+    for (let i = 0; i < trainPhotoPending.length; i++) {
+      const p = trainPhotoPending[i];
+      const imgPath = `image/${typeId}/${number}/${i + 1}.webp`;
+      await ghPutBinaryBase64(imgPath, p.base64, `画像追加: ${typeId}-${number} #${i + 1}`);
+      photos.push({ src: imgPath, ...photoMeta });
+    }
+
+    const trainObj = {
+      type: typeId, typeName, company, companyName,
+      affiliation: affId, affiliationName: affName,
+      number, formation, history, photos,
+    };
+    const path = `data/trains/${typeId}-${number}.json`;
+    const existing = await ghGetJSON(path);
+    await ghPutJSON(path, trainObj, `編成ページ追加: ${typeId}-${number}`, existing.sha);
+
+    // 形式データの所属グループに、この編成番号がまだ無ければ追加する
+    if (typeData) {
+      await ensureTrainInType(typeId, typeData, affId, affName, number);
+    }
+
+    showMsg("trainMsg", "編成ページを作成しました。GitHub Actions がページを再生成します。", "ok");
+  } catch (e) {
+    showMsg("trainMsg", "エラー: " + e.message, "err");
+  }
+});
+async function ensureTrainInType(typeId, typeData, affId, affName, number) {
+  let aff = typeData.affiliations.find(a => a.id === affId);
+  if (!aff) {
+    aff = { id: affId, name: affName || affId, groups: [{ label: "編成", trains: [] }] };
+    typeData.affiliations.push(aff);
+  }
+  if (!aff.groups.length) aff.groups.push({ label: "編成", trains: [] });
+  const allTrains = aff.groups.flatMap(g => g.trains);
+  if (!allTrains.find(t => t.number === number)) {
+    aff.groups[0].trains.push({ number, active: true });
+    const { sha } = await ghGetJSON(`data/types/${typeId}.json`);
+    await ghPutJSON(`data/types/${typeId}.json`, typeData, `編成番号追加: ${typeId} ${number}`, sha);
+  }
+}
+
+// ================= 形式ページ追加タブ =================
+let affRowCount = 0;
+function addAffiliationRow() {
+  affRowCount++;
+  const id = "aff" + affRowCount;
+  const div = document.createElement("div");
+  div.className = "group-box";
+  div.dataset.rowId = id;
+  div.innerHTML = `
+    <div class="row">
+      <label>所属ID<input type="text" class="aff-id" placeholder="例: aboshi"></label>
+      <label>所属名<input type="text" class="aff-name" placeholder="例: 網干総合車両所"></label>
+    </div>
+    <label>編成グループ名<input type="text" class="grp-label" placeholder="例: J編成"></label>
+    <label>編成番号（レンジ指定可）
+      <input type="text" class="grp-trains" placeholder="例: J1〜J5,J7,J10〜J16">
+      <span class="note">「〜」または「~」でレンジ展開されます。すべて現存扱いで登録されます（非現存にする場合は後で「編集」タブから active:false に変更してください）</span>
+    </label>
+    <button type="button" class="secondary" onclick="this.parentElement.remove()">この所属を削除</button>
+  `;
+  document.getElementById("typeAffiliations").appendChild(div);
+}
+document.getElementById("typeAddAffBtn").addEventListener("click", addAffiliationRow);
+addAffiliationRow(); // 初期状態で1つ表示
+
+document.getElementById("typeSaveBtn").addEventListener("click", async () => {
+  const company = document.getElementById("typeCompany").value;
+  const id = document.getElementById("typeId").value.trim();
+  const name = document.getElementById("typeName").value.trim();
+  const description = document.getElementById("typeDesc").value.trim();
+  if (!company || !id || !name) return showMsg("typeMsg", "会社・形式ID・形式名は必須です。", "err");
+
+  const affiliations = [];
+  document.querySelectorAll("#typeAffiliations .group-box").forEach(box => {
+    const affId = box.querySelector(".aff-id").value.trim();
+    const affName = box.querySelector(".aff-name").value.trim();
+    const grpLabel = box.querySelector(".grp-label").value.trim() || "編成";
+    const grpTrainsRaw = box.querySelector(".grp-trains").value.trim();
+    if (!affId) return;
+    const numbers = expandTrainRange(grpTrainsRaw);
+    affiliations.push({
+      id: affId, name: affName || affId,
+      groups: [{ label: grpLabel, trains: numbers.map(n => ({ number: n, active: true })) }],
+    });
+  });
+
+  try {
+    const typeObj = { id, name, company, description, affiliations };
+    const path = `data/types/${id}.json`;
+    const existing = await ghGetJSON(path);
+    await ghPutJSON(path, typeObj, `形式ページ追加: ${id}`, existing.sha);
+    showMsg("typeMsg", "形式ページを作成しました。GitHub Actions がページを再生成します。", "ok");
+  } catch (e) {
+    showMsg("typeMsg", "エラー: " + e.message, "err");
+  }
+});
+
+// ================= 会社ページ追加タブ =================
+document.getElementById("companySaveBtn").addEventListener("click", async () => {
+  const id = document.getElementById("companyId").value.trim();
+  const name = document.getElementById("companyName").value.trim();
+  if (!id || !name) return showMsg("companyMsg", "会社ID・会社名は必須です。", "err");
+  try {
+    const { json, sha } = await ghGetJSON("data/site.json");
+    const site = json || { siteName: "くまP撮影記録", companies: [] };
+    if (site.companies.find(c => c.id === id)) {
+      return showMsg("companyMsg", "同じIDの会社が既に存在します。", "err");
+    }
+    site.companies.push({ id, name });
+    await ghPutJSON("data/site.json", site, `会社ページ追加: ${name}`, sha);
+    siteData = site;
+    fillCompanySelects();
+    showMsg("companyMsg", "会社を追加しました。GitHub Actions がページを再生成します。", "ok");
+    document.getElementById("companyId").value = "";
+    document.getElementById("companyName").value = "";
+  } catch (e) {
+    showMsg("companyMsg", "エラー: " + e.message, "err");
+  }
+});
+
+// ================= 編集タブ =================
+async function fillEditSelect() {
+  const sel = document.getElementById("editTarget");
+  sel.innerHTML = "<option value=''>選択してください</option>";
+  const group = (label, items) => {
+    if (!items.length) return "";
+    return `<optgroup label="${label}">${items.join("")}</optgroup>`;
+  };
+  const companyOpts = siteData.companies.map(c => `<option value="data/site.json::company::${c.id}">${c.name}</option>`);
+  const typeFiles = await ghListDir("data/types");
+  const typeOpts = typeFiles.filter(f => f.name.endsWith(".json")).map(f => `<option value="data/types/${f.name}">${f.name.replace(/\.json$/, "")}</option>`);
+  const trainFiles = await ghListDir("data/trains");
+  const trainOpts = trainFiles.filter(f => f.name.endsWith(".json")).map(f => `<option value="data/trains/${f.name}">${f.name.replace(/\.json$/, "")}</option>`);
+  sel.innerHTML += group("会社 (site.json内)", companyOpts) + group("形式ページ", typeOpts) + group("編成ページ", trainOpts);
+}
+document.getElementById("editTarget").addEventListener("change", async (e) => {
+  const val = e.target.value;
+  const box = document.getElementById("editJson");
+  box.value = "";
+  if (!val) return;
+  if (val.startsWith("data/site.json::company::")) {
+    const id = val.split("::")[2];
+    const { json } = await ghGetJSON("data/site.json");
+    const c = (json.companies || []).find(x => x.id === id);
+    box.value = JSON.stringify(c, null, 2);
+    box.dataset.mode = "company"; box.dataset.companyId = id;
+  } else {
+    const { json } = await ghGetJSON(val);
+    box.value = JSON.stringify(json, null, 2);
+    box.dataset.mode = "raw"; box.dataset.path = val;
+  }
+});
+document.getElementById("editSaveBtn").addEventListener("click", async () => {
+  const sel = document.getElementById("editTarget");
+  const box = document.getElementById("editJson");
+  if (!sel.value) return showMsg("editMsg", "編集対象を選択してください。", "err");
+  let parsed;
+  try { parsed = JSON.parse(box.value); }
+  catch (e) { return showMsg("editMsg", "JSONの形式が正しくありません: " + e.message, "err"); }
+  try {
+    if (box.dataset.mode === "company") {
+      const { json, sha } = await ghGetJSON("data/site.json");
+      const idx = json.companies.findIndex(c => c.id === box.dataset.companyId);
+      if (idx === -1) throw new Error("会社が見つかりません。");
+      json.companies[idx] = parsed;
+      await ghPutJSON("data/site.json", json, `編集: 会社 ${box.dataset.companyId}`, sha);
+      siteData = json;
+      fillCompanySelects();
+    } else {
+      const { sha } = await ghGetJSON(box.dataset.path);
+      await ghPutJSON(box.dataset.path, parsed, `編集: ${box.dataset.path}`, sha);
+    }
+    showMsg("editMsg", "保存しました。GitHub Actions がページを再生成します。", "ok");
+  } catch (e) {
+    showMsg("editMsg", "エラー: " + e.message, "err");
+  }
+});
+</script>
+</body>
+</html>
