@@ -54,5 +54,14 @@
       "note": ""
     }
   ],
-  "photos": []
+  "photos": [
+    {
+      "src": "image/223/V28/1.webp",
+      "date": "2026年6月26日",
+      "trainNumber": "710M",
+      "destination": "普通 河瀬行き",
+      "location": "南草津",
+      "note": "大雨に伴う行先変更（米原行き→河瀬行き）<br>約8分遅れ"
+    }
+  ]
 }
