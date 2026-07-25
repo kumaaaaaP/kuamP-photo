@@ -1,0 +1,211 @@
+/* ==========================================================
+   くまP撮影記録 — 共通スタイル
+   （添付いただいた編成ページのデザインをベースに統一）
+   ========================================================== */
+:root{
+  --blue:#0066cc;
+  --page-bg:#f5f5f5;
+  --card-bg:#fff;
+  --ink:#333;
+  --line:#ccc;
+  --line-soft:#ddd;
+  --tag-bg:rgb(255,255,153);
+  --tag-border:#ffa500;
+  --shot-bg:#e6f0ff;
+  --retired-bg:#e5e5e5;
+  --shadow:0 2px 8px rgba(0,0,0,.08);
+  --max:1400px;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--page-bg);
+  color:var(--ink);
+  font-family:"Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;
+  line-height:1.6;
+}
+a{color:var(--blue);text-decoration:none;}
+a:hover{text-decoration:underline;}
+img{max-width:100%;display:block;}
+
+/* ---------- ヘッダー ---------- */
+.site-header{
+  background:var(--blue);
+  color:#fff;
+  padding:18px 20px;
+}
+.site-header h1{margin:0;font-size:28px;}
+.site-header a{color:#fff;text-decoration:none;}
+
+/* ---------- 本文コンテナ（白カード＋影） ---------- */
+.page-container{
+  max-width:var(--max);
+  margin:20px auto;
+  background:var(--card-bg);
+  padding:20px;
+  box-shadow:var(--shadow);
+}
+.page-title{margin-top:0;margin-bottom:20px;font-size:24px;}
+
+/* ---------- パンくず ---------- */
+.breadcrumb{
+  font-size:14px;
+  margin-bottom:20px;
+  color:#666;
+}
+.breadcrumb a{color:var(--blue);}
+.breadcrumb .sep{margin:0 4px;color:#999;}
+.bottom-breadcrumb{
+  margin-top:25px;
+  padding-top:15px;
+  border-top:1px solid var(--line-soft);
+  margin-bottom:0;
+}
+
+/* ---------- 黄色タグ見出し（編成 / 車歴イベント / グループ名など） ---------- */
+.tag-label{
+  background-color:var(--tag-bg);
+  font-weight:bold;
+  padding:3px 8px 3px 10px;
+  display:inline-block;
+  margin-bottom:5px;
+  border-left:6px solid var(--tag-border);
+  border-top-right-radius:4px;
+  border-bottom-right-radius:4px;
+  font-size:125%;
+}
+
+.section-block{margin-bottom:20px;}
+.direction-label{font-size:13px;color:#666;margin-bottom:5px;}
+
+/* ---------- 編成表 ---------- */
+.formation-table{
+  width:100%;
+  border-collapse:collapse;
+  margin:10px 0;
+  table-layout:fixed;
+}
+.formation-table th{
+  background:#f2f2f2;
+  font-size:13px;
+  padding:8px 2px;
+  border:1px solid var(--line);
+}
+.formation-table td{
+  padding:8px 2px;
+  border:1px solid var(--line);
+  font-size:15px;
+  text-align:center;
+}
+.no-formation-note{color:#778;font-size:.9rem;}
+
+/* ---------- 車歴 ---------- */
+.history-entry{margin-bottom:16px;}
+.history-entry .history-detail{margin-top:2px;}
+
+/* ---------- 写真一覧 ---------- */
+.photo-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:24px;
+  margin-top:20px;
+}
+.photo-table{
+  width:100%;
+  border-collapse:collapse;
+  border:1px solid var(--line);
+  background:#fff;
+}
+.image-wrapper{text-align:center;padding:10px !important;}
+.image-wrapper img{width:100%;height:auto;display:block;border-radius:4px;}
+.photo-table th{
+  background:#f2f2f2;
+  color:#333;
+  width:110px;
+  padding:10px;
+  text-align:left;
+  font-size:14px;
+  border:1px solid var(--line);
+}
+.photo-table td{
+  padding:10px;
+  border:1px solid var(--line);
+  font-size:15px;
+}
+@media (min-width:700px){ .photo-grid{grid-template-columns:repeat(2,minmax(0,1fr));} }
+@media (min-width:1100px){ .photo-grid{grid-template-columns:repeat(3,minmax(0,1fr));} }
+@media (min-width:1600px){ .photo-grid{grid-template-columns:repeat(4,minmax(0,1fr));} }
+
+/* ---------- 会社一覧・所属・形式一覧 ---------- */
+.company-list{display:flex;flex-direction:column;gap:10px;}
+.company-card{
+  display:block;
+  padding:14px 16px;
+  background:#fafafa;
+  border:1px solid var(--line-soft);
+  border-radius:4px;
+  color:var(--blue);
+  font-weight:bold;
+  font-size:18px;
+}
+.company-card:hover{background:#f0f6ff;text-decoration:none;}
+
+.affiliation-block{margin-bottom:22px;}
+.type-links{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 0;padding:0;list-style:none;}
+.type-links li a{
+  display:inline-block;
+  padding:8px 14px;
+  background:#fafafa;
+  border:1px solid var(--line-soft);
+  border-radius:4px;
+  color:var(--blue);
+  font-weight:bold;
+}
+.type-links li a:hover{border-color:var(--blue);text-decoration:none;background:#f0f6ff;}
+
+/* ---------- 編成ボタン（横並び・折り返し） ---------- */
+.train-group{margin-bottom:16px;}
+.train-buttons{display:flex;flex-wrap:wrap;gap:8px;}
+.train-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:3.2em;
+  padding:8px 10px;
+  border-radius:4px;
+  border:1px solid var(--line-soft);
+  font-weight:bold;
+  font-size:.92rem;
+}
+.train-btn.shot{background:var(--shot-bg);color:var(--blue);border-color:#b7d3f7;}
+.train-btn.unshot{background:#fff;color:#222;}
+.train-btn.retired{background:var(--retired-bg);color:#222;border-color:#ccc;}
+a.train-btn.shot:hover{text-decoration:none;background:#d6e7fd;}
+span.train-btn{cursor:default;}
+
+.legend{display:flex;flex-wrap:wrap;gap:1.2em;margin-top:16px;font-size:.85rem;color:#666;}
+.legend .swatch{
+  display:inline-block;width:.9em;height:.9em;border-radius:3px;margin-right:.4em;
+  vertical-align:middle;border:1px solid rgba(0,0,0,.15);
+}
+
+/* ---------- 最新更新画像（ホーム） ---------- */
+.latest-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:14px;
+}
+.latest-grid figure{
+  margin:0;background:#fafafa;border:1px solid var(--line-soft);border-radius:4px;overflow:hidden;
+}
+.latest-grid img{width:100%;aspect-ratio:4/3;object-fit:cover;}
+.latest-grid figcaption{padding:8px 10px;font-size:.82rem;color:#666;}
+
+footer.site-footer{
+  padding:14px 20px 30px;
+  color:#888;
+  font-size:.8rem;
+  max-width:var(--max);
+  margin:0 auto;
+}
