@@ -263,7 +263,7 @@ function photosHtml(photos) {
       if (p.trainNumber) rows.push(`<tr><th>列車番号</th><td>${esc(p.trainNumber)}</td></tr>`);
       if (p.destination) rows.push(`<tr><th>種別・行先</th><td>${esc(p.destination)}</td></tr>`);
       if (p.location) rows.push(`<tr><th>撮影地</th><td>${esc(p.location)}</td></tr>`);
-      if (p.caption && !p.destination) rows.push(`<tr><th>メモ</th><td>${esc(p.caption)}</td></tr>`);
+      if (p.note) rows.push(`<tr><th>備考</th><td>${esc(p.note)}</td></tr>`);
       return `<table class="photo-table">
 <tbody>
 <tr><td colspan="2" class="image-wrapper">
