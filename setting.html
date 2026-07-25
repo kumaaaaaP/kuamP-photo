@@ -117,6 +117,7 @@
           <label>種別・行先<input type="text" id="photoDestination" placeholder="例: 普通 網干行き"></label>
           <label>撮影地<input type="text" id="photoLocation" placeholder="例: 南草津"></label>
         </div>
+        <label>備考<input type="text" id="photoNote" placeholder="例: 網干出場試運転"></label>
         <div id="photoPreview" class="thumb-list"></div>
         <button id="photoUploadBtn">アップロードして追加</button>
         <div id="photoMsg" class="msg"></div>
@@ -155,6 +156,7 @@
           <label>種別・行先<input type="text" id="trainPhotoDestination" placeholder="例: 普通 網干行き"></label>
           <label>撮影地<input type="text" id="trainPhotoLocation" placeholder="例: 南草津"></label>
         </div>
+        <label>備考<input type="text" id="trainPhotoNote" placeholder="例: 網干出場試運転"></label>
         <div id="trainPhotoPreview" class="thumb-list"></div>
         <button id="trainSaveBtn">編成ページを作成</button>
         <div id="trainMsg" class="msg"></div>
@@ -462,6 +464,7 @@ document.getElementById("photoUploadBtn").addEventListener("click", async () => 
       trainNumber: document.getElementById("photoNumber").value.trim(),
       destination: document.getElementById("photoDestination").value.trim(),
       location: document.getElementById("photoLocation").value.trim(),
+      note: document.getElementById("photoNote").value.trim(),
     };
     const captionInputs = [];
     for (let i = 0; i < photoPending.length; i++) {
@@ -545,6 +548,7 @@ document.getElementById("trainSaveBtn").addEventListener("click", async () => {
       trainNumber: document.getElementById("trainPhotoNumber").value.trim(),
       destination: document.getElementById("trainPhotoDestination").value.trim(),
       location: document.getElementById("trainPhotoLocation").value.trim(),
+      note: document.getElementById("trainPhotoNote").value.trim(),
     };
     const photos = [];
     for (let i = 0; i < trainPhotoPending.length; i++) {
