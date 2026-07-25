@@ -1,0 +1,73 @@
+{
+  "id": "DD51",
+  "name": "DD51",
+  "company": "jr-west",
+  "description": "",
+  "affiliations": [
+    {
+      "id": "miyahara",
+      "name": "宮原",
+      "groups": [
+        {
+          "label": "500番台",
+          "trains": [
+            {
+              "number": "1109",
+              "active": true
+            },
+            {
+              "number": "1183",
+              "active": true
+            },
+            {
+              "number": "1191",
+              "active": true
+            },
+            {
+              "number": "1192",
+              "active": true
+            },
+            {
+              "number": "1193",
+              "active": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shimonoseki",
+      "name": "下関",
+      "groups": [
+        {
+          "label": "500番台",
+          "trains": [
+            {
+              "number": "1043",
+              "active": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "yonago",
+      "name": "米子",
+      "groups": [
+        {
+          "label": "500番台",
+          "trains": [
+            {
+              "number": "1179",
+              "active": true
+            },
+            {
+              "number": "1186",
+              "active": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
