@@ -1,0 +1,37 @@
+{
+  "id": "223",
+  "name": "223系",
+  "company": "jr-west",
+  "description": "JR西日本の直流近郊形電車。",
+  "affiliations": [
+    {
+      "id": "aboshi",
+      "name": "網干総合車両所",
+      "groups": [
+        {
+          "label": "J編成",
+          "trains": [
+            { "number": "J1", "active": true },
+            { "number": "J2", "active": true },
+            { "number": "J3", "active": true },
+            { "number": "J4", "active": true },
+            { "number": "J5", "active": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyoto",
+      "name": "吹田総合車両所京都支所",
+      "groups": [
+        {
+          "label": "W編成",
+          "trains": [
+            { "number": "W1", "active": true },
+            { "number": "W2", "active": true }
+          ]
+        }
+      ]
+    }
+  ]
+}
