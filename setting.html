@@ -135,6 +135,10 @@
           <label>所属名<input type="text" id="trainAffName" placeholder="例: 網干総合車両所"></label>
         </div>
         <label>編成番号<input type="text" id="trainNumber" placeholder="例: J4"></label>
+        <label>表示名（任意）
+          <input type="text" id="trainTitle" placeholder="例: EF65 1128（下関） / 阪急1300系1301F">
+          <span class="note">空欄の場合は「形式名＋番号＋編成（所属）」で自動生成されます。機関車など定型に合わないものはここに直接入力してください。</span>
+        </label>
         <label><input type="checkbox" id="trainNoFormation" style="width:auto;display:inline-block;margin-right:.4em;">編成表なし（機関車・貨車など）</label>
         <label>編成の方向表示（任意）
           <input type="text" id="trainDirection" placeholder="例: ←上郡，播州赤穂　　　長浜→">
@@ -558,10 +562,12 @@ document.getElementById("trainSaveBtn").addEventListener("click", async () => {
       photos.push({ src: imgPath, ...photoMeta });
     }
 
+    const title = document.getElementById("trainTitle").value.trim();
     const trainObj = {
       type: typeId, typeName, company, companyName,
       affiliation: affId, affiliationName: affName,
       number, formation, history, photos,
+      ...(title ? { title } : {}),
     };
     const path = `data/trains/${typeId}-${number}.json`;
     const existing = await ghGetJSON(path);
