@@ -1,0 +1,58 @@
+{
+  "type": "223",
+  "typeName": "223系",
+  "company": "jr-west",
+  "companyName": "JR西日本",
+  "affiliation": "aboshi",
+  "affiliationName": "網干",
+  "number": "V28",
+  "formation": {
+    "direction": "←上郡，播州赤穂　　　敦賀，柘植→",
+    "cars": [
+      {
+        "type": "クハ222",
+        "number": "2038"
+      },
+      {
+        "type": "モハ222",
+        "number": "3041"
+      },
+      {
+        "type": "サハ223",
+        "number": "2083"
+      },
+      {
+        "type": "クモハ223",
+        "number": "3038"
+      }
+    ]
+  },
+  "history": [
+    {
+      "event": "網干新製配置",
+      "date": "2000年2月21日",
+      "note": "（川重）"
+    },
+    {
+      "event": "6000番台化",
+      "date": "2008年10月2日",
+      "note": ""
+    },
+    {
+      "event": "2000番台復帰",
+      "date": "2012年3月12日",
+      "note": ""
+    },
+    {
+      "event": "6000番台化",
+      "date": "2021年3月10日",
+      "note": ""
+    },
+    {
+      "event": "2000番台復帰",
+      "date": "2021年9月28日",
+      "note": ""
+    }
+  ],
+  "photos": []
+}
