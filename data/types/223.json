@@ -6,10 +6,176 @@
   "affiliations": [
     {
       "id": "aboshi",
-      "name": "網干",
+      "name": "網干総合車両所本所",
       "groups": [
         {
-          "label": "J編成",
+          "label": "1000番台8両W編成",
+          "trains": [
+            {
+              "number": "W1",
+              "active": true
+            },
+            {
+              "number": "W2",
+              "active": true
+            },
+            {
+              "number": "W3",
+              "active": true
+            },
+            {
+              "number": "W4",
+              "active": true
+            },
+            {
+              "number": "W5",
+              "active": true
+            },
+            {
+              "number": "W6",
+              "active": true
+            },
+            {
+              "number": "W7",
+              "active": true
+            },
+            {
+              "number": "W8",
+              "active": true
+            },
+            {
+              "number": "W9",
+              "active": true
+            }
+          ]
+        },
+        {
+          "label": "2000番台8両W編成",
+          "trains": [
+            {
+              "number": "W10",
+              "active": true
+            },
+            {
+              "number": "W11",
+              "active": true
+            },
+            {
+              "number": "W12",
+              "active": true
+            },
+            {
+              "number": "W13",
+              "active": true
+            },
+            {
+              "number": "W14",
+              "active": true
+            },
+            {
+              "number": "W15",
+              "active": true
+            },
+            {
+              "number": "W16",
+              "active": true
+            },
+            {
+              "number": "W17",
+              "active": true
+            },
+            {
+              "number": "W18",
+              "active": true
+            },
+            {
+              "number": "W19",
+              "active": true
+            },
+            {
+              "number": "W20",
+              "active": true
+            },
+            {
+              "number": "W21",
+              "active": true
+            },
+            {
+              "number": "W22",
+              "active": true
+            },
+            {
+              "number": "W23",
+              "active": true
+            },
+            {
+              "number": "W24",
+              "active": true
+            },
+            {
+              "number": "W25",
+              "active": true
+            },
+            {
+              "number": "W26",
+              "active": true
+            },
+            {
+              "number": "W27",
+              "active": true
+            },
+            {
+              "number": "W28",
+              "active": true
+            },
+            {
+              "number": "W29",
+              "active": true
+            },
+            {
+              "number": "W30",
+              "active": true
+            },
+            {
+              "number": "W31",
+              "active": true
+            },
+            {
+              "number": "W32",
+              "active": true
+            },
+            {
+              "number": "W33",
+              "active": true
+            },
+            {
+              "number": "W34",
+              "active": true
+            },
+            {
+              "number": "W35",
+              "active": true
+            },
+            {
+              "number": "W36",
+              "active": true
+            },
+            {
+              "number": "W37",
+              "active": true
+            },
+            {
+              "number": "W38",
+              "active": true
+            },
+            {
+              "number": "W39",
+              "active": true
+            }
+          ]
+        },
+        {
+          "label": "2000番台6両J編成",
           "trains": [
             {
               "number": "J1",
@@ -29,6 +195,311 @@
             },
             {
               "number": "J5",
+              "active": true
+            },
+            {
+              "number": "J6",
+              "active": true
+            },
+            {
+              "number": "J7",
+              "active": true
+            },
+            {
+              "number": "J8",
+              "active": true
+            },
+            {
+              "number": "J9",
+              "active": true
+            },
+            {
+              "number": "J10",
+              "active": true
+            },
+            {
+              "number": "J11",
+              "active": true
+            },
+            {
+              "number": "J12",
+              "active": true
+            },
+            {
+              "number": "J13",
+              "active": true
+            },
+            {
+              "number": "J14",
+              "active": true
+            }
+          ]
+        },
+        {
+          "label": "1000/2000番台4両V編成",
+          "trains": [
+            {
+              "number": "V1",
+              "active": true
+            },
+            {
+              "number": "V2",
+              "active": true
+            },
+            {
+              "number": "V3",
+              "active": true
+            },
+            {
+              "number": "V4",
+              "active": true
+            },
+            {
+              "number": "V5",
+              "active": true
+            },
+            {
+              "number": "V6",
+              "active": true
+            },
+            {
+              "number": "V7",
+              "active": true
+            },
+            {
+              "number": "V8",
+              "active": true
+            },
+            {
+              "number": "V9",
+              "active": true
+            },
+            {
+              "number": "V10",
+              "active": true
+            },
+            {
+              "number": "V11",
+              "active": true
+            },
+            {
+              "number": "V12",
+              "active": true
+            },
+            {
+              "number": "V13",
+              "active": true
+            },
+            {
+              "number": "V14",
+              "active": true
+            },
+            {
+              "number": "V15",
+              "active": true
+            },
+            {
+              "number": "V16",
+              "active": true
+            },
+            {
+              "number": "V17",
+              "active": true
+            },
+            {
+              "number": "V18",
+              "active": true
+            },
+            {
+              "number": "V19",
+              "active": true
+            },
+            {
+              "number": "V20",
+              "active": true
+            },
+            {
+              "number": "V21",
+              "active": true
+            },
+            {
+              "number": "V22",
+              "active": true
+            },
+            {
+              "number": "V23",
+              "active": true
+            },
+            {
+              "number": "V24",
+              "active": true
+            },
+            {
+              "number": "V25",
+              "active": true
+            },
+            {
+              "number": "V26",
+              "active": true
+            },
+            {
+              "number": "V27",
+              "active": true
+            },
+            {
+              "number": "V28",
+              "active": true
+            },
+            {
+              "number": "V29",
+              "active": true
+            },
+            {
+              "number": "V30",
+              "active": true
+            },
+            {
+              "number": "V31",
+              "active": true
+            },
+            {
+              "number": "V32",
+              "active": true
+            },
+            {
+              "number": "V33",
+              "active": true
+            },
+            {
+              "number": "V34",
+              "active": true
+            },
+            {
+              "number": "V35",
+              "active": true
+            },
+            {
+              "number": "V36",
+              "active": true
+            },
+            {
+              "number": "V37",
+              "active": true
+            },
+            {
+              "number": "V38",
+              "active": true
+            },
+            {
+              "number": "V39",
+              "active": true
+            },
+            {
+              "number": "V40",
+              "active": true
+            },
+            {
+              "number": "V41",
+              "active": true
+            },
+            {
+              "number": "V42",
+              "active": true
+            },
+            {
+              "number": "V43",
+              "active": true
+            },
+            {
+              "number": "V44",
+              "active": true
+            },
+            {
+              "number": "V45",
+              "active": true
+            },
+            {
+              "number": "V46",
+              "active": true
+            },
+            {
+              "number": "V47",
+              "active": true
+            },
+            {
+              "number": "V48",
+              "active": true
+            },
+            {
+              "number": "V49",
+              "active": true
+            },
+            {
+              "number": "V50",
+              "active": true
+            },
+            {
+              "number": "V51",
+              "active": true
+            },
+            {
+              "number": "V52",
+              "active": true
+            },
+            {
+              "number": "V53",
+              "active": true
+            },
+            {
+              "number": "V54",
+              "active": true
+            },
+            {
+              "number": "V55",
+              "active": false
+            },
+            {
+              "number": "V56",
+              "active": false
+            },
+            {
+              "number": "V57",
+              "active": false
+            },
+            {
+              "number": "V58",
+              "active": false
+            },
+            {
+              "number": "V59",
+              "active": true
+            },
+            {
+              "number": "V60",
+              "active": true
+            },
+            {
+              "number": "V61",
+              "active": true
+            },
+            {
+              "number": "V62",
+              "active": true
+            },
+            {
+              "number": "V63",
+              "active": true
+            },
+            {
+              "number": "V64",
+              "active": false
+            },
+            {
+              "number": "V65",
+              "active": false
+            },
+            {
+              "number": "V66",
               "active": false
             }
           ]
@@ -40,14 +511,117 @@
       "name": "京都",
       "groups": [
         {
-          "label": "W編成",
+          "label": "2500番台4両RS編成",
           "trains": [
             {
-              "number": "W1",
+              "number": "RS51",
               "active": true
             },
             {
-              "number": "W2",
+              "number": "RS52",
+              "active": true
+            },
+            {
+              "number": "RS53",
+              "active": true
+            },
+            {
+              "number": "RS54",
+              "active": true
+            },
+            {
+              "number": "RS55",
+              "active": true
+            },
+            {
+              "number": "RS56",
+              "active": true
+            },
+            {
+              "number": "RS57",
+              "active": true
+            },
+            {
+              "number": "RS58",
+              "active": true
+            }
+          ]
+        },
+        {
+          "label": "6000番台6両P編成",
+          "trains": [
+            {
+              "number": "P01",
+              "active": true
+            },
+            {
+              "number": "P02",
+              "active": true
+            }
+          ]
+        },
+        {
+          "label": "6000番台4両R編成",
+          "trains": [
+            {
+              "number": "R01",
+              "active": true
+            },
+            {
+              "number": "R02",
+              "active": true
+            },
+            {
+              "number": "R03",
+              "active": true
+            },
+            {
+              "number": "R04",
+              "active": true
+            },
+            {
+              "number": "R05",
+              "active": true
+            }
+          ]
+        },
+        {
+          "label": "6000番台4両R編成（Wパンタ）",
+          "trains": [
+            {
+              "number": "R201",
+              "active": true
+            },
+            {
+              "number": "R202",
+              "active": true
+            },
+            {
+              "number": "R203",
+              "active": true
+            },
+            {
+              "number": "R204",
+              "active": true
+            },
+            {
+              "number": "R205",
+              "active": true
+            },
+            {
+              "number": "R206",
+              "active": true
+            },
+            {
+              "number": "R207",
+              "active": true
+            },
+            {
+              "number": "R208",
+              "active": true
+            },
+            {
+              "number": "R209",
               "active": true
             }
           ]
