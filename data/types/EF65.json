@@ -1,0 +1,59 @@
+{
+  "id": "EF65",
+  "name": "EF65",
+  "company": "jr-west",
+  "description": "",
+  "affiliations": [
+    {
+      "id": "shimonoseki",
+      "name": "下関",
+      "groups": [
+        {
+          "label": "1000番台",
+          "trains": [
+            {
+              "number": "1120",
+              "active": true
+            },
+            {
+              "number": "1124",
+              "active": true
+            },
+            {
+              "number": "1126",
+              "active": true
+            },
+            {
+              "number": "1128",
+              "active": true
+            },
+            {
+              "number": "1130",
+              "active": true
+            },
+            {
+              "number": "1131",
+              "active": true
+            },
+            {
+              "number": "1132",
+              "active": true
+            },
+            {
+              "number": "1133",
+              "active": true
+            },
+            {
+              "number": "1134",
+              "active": true
+            },
+            {
+              "number": "1135",
+              "active": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
