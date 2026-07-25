@@ -6,29 +6,50 @@
   "affiliations": [
     {
       "id": "aboshi",
-      "name": "網干総合車両所",
+      "name": "網干",
       "groups": [
         {
           "label": "J編成",
           "trains": [
-            { "number": "J1", "active": true },
-            { "number": "J2", "active": true },
-            { "number": "J3", "active": true },
-            { "number": "J4", "active": true },
-            { "number": "J5", "active": false }
+            {
+              "number": "J1",
+              "active": true
+            },
+            {
+              "number": "J2",
+              "active": true
+            },
+            {
+              "number": "J3",
+              "active": true
+            },
+            {
+              "number": "J4",
+              "active": true
+            },
+            {
+              "number": "J5",
+              "active": false
+            }
           ]
         }
       ]
     },
     {
       "id": "kyoto",
-      "name": "吹田総合車両所京都支所",
+      "name": "京都",
       "groups": [
         {
           "label": "W編成",
           "trains": [
-            { "number": "W1", "active": true },
-            { "number": "W2", "active": true }
+            {
+              "number": "W1",
+              "active": true
+            },
+            {
+              "number": "W2",
+              "active": true
+            }
           ]
         }
       ]
