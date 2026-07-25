@@ -1,0 +1,7 @@
+{
+  "siteName": "くまP撮影記録",
+  "companies": [
+    { "id": "jr-west", "name": "JR西日本" },
+    { "id": "jr-east", "name": "JR東日本" }
+  ]
+}
