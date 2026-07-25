@@ -1,0 +1,39 @@
+{
+  "type": "223",
+  "typeName": "223系",
+  "company": "jr-west",
+  "companyName": "JR西日本",
+  "affiliation": "aboshi",
+  "affiliationName": "網干",
+  "number": "J4",
+  "formation": {
+    "direction": "←上郡，播州赤穂　　　長浜→",
+    "cars": [
+      { "type": "クハ222", "number": "2063" },
+      { "type": "サハ223", "number": "2149" },
+      { "type": "モハ223", "number": "2030" },
+      { "type": "サハ223", "number": "2148" },
+      { "type": "サハ223", "number": "2147" },
+      { "type": "クモハ223", "number": "2064" }
+    ]
+  },
+  "history": [
+    { "event": "網干新製配置", "date": "2004年5月25日", "note": "（近車）" }
+  ],
+  "photos": [
+    {
+      "src": "image/223/J4/1.webp",
+      "date": "2026年5月24日",
+      "trainNumber": "791T",
+      "destination": "普通 網干行き",
+      "location": "南草津"
+    },
+    {
+      "src": "image/223/J4/2.webp",
+      "date": "2026年5月24日",
+      "trainNumber": "791T",
+      "destination": "普通 網干行き",
+      "location": "南草津"
+    }
+  ]
+}
