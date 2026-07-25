@@ -494,8 +494,9 @@ async function appendLatest(train, newPaths) {
   const { json, sha } = await ghGetJSON("data/latest.json");
   const latest = json || [];
   const today = new Date().toISOString().slice(0, 10);
+  const caption = train.title || `${train.typeName || train.type}${train.number}編成`;
   for (const src of newPaths) {
-    latest.unshift({ src, caption: `${train.typeName || train.type}${train.number}編成`, type: train.type, number: train.number, company: train.company, date: today });
+    latest.unshift({ src, caption, type: train.type, number: train.number, company: train.company, date: today });
   }
   await ghPutJSON("data/latest.json", latest.slice(0, 50), "最新更新画像を更新", sha);
 }
