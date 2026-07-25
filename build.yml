@@ -1,0 +1,69 @@
+name: サイト生成 (build & deploy)
+
+# setting.html から data/ や image/ に変更がコミットされる度に自動実行される。
+# 手動実行 (workflow_dispatch) も可能。
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/**"
+      - "image/**"
+      - "scripts/**"
+      - "assets/**"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: リポジトリを取得
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Node.js セットアップ
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # scripts/generate.js は fs / path のみを使う標準機能だけの
+      # スクリプトなので npm install は不要。
+      - name: ページ生成 (scripts/generate.js)
+        run: node scripts/generate.js
+
+      - name: 生成物をコミット
+        run: |
+          git config user.name "kumaP-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A -- '*.html'
+          if git diff --cached --quiet; then
+            echo "変更なし。コミットをスキップします。"
+          else
+            git commit -m "chore: 自動生成 (generate.js)"
+            git push
+          fi
+
+      - name: Pages 用に成果物をアップロード
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: GitHub Pages へデプロイ
+        id: deployment
+        uses: actions/deploy-pages@v4
