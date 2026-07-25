@@ -292,7 +292,12 @@ function buildTrainPages() {
       (typeData && (typeData.affiliations.find((a) => a.id === tr.affiliation) || {}).name) ||
       tr.affiliation;
 
-    const pageTitle = `${typeName}${esc(tr.number)}編成（${affName}）`;
+    // tr.title が指定されていればそれをそのまま使う（EF65 1128（下関）、阪急1300系1301F など自由記述）
+    // 無指定の場合のみ、従来通り「形式名＋番号＋編成（所属）」の定型で組み立てる
+    const pageTitle = tr.title
+      ? esc(tr.title)
+      : `${typeName}${esc(tr.number)}編成（${affName}）`;
+
 
     const body = `
 <h2 class="page-title">${pageTitle}</h2>
