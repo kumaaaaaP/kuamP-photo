@@ -1,0 +1,24 @@
+{
+  "type": "EF66",
+  "typeName": "EF66",
+  "company": "jr-freight",
+  "companyName": "JR貨物",
+  "affiliation": "suita",
+  "affiliationName": "吹田",
+  "number": "130",
+  "formation": null,
+  "history": [
+    {
+      "event": "岡山新製配置",
+      "date": "1991年9月28日",
+      "note": "（川重・東洋）"
+    },
+    {
+      "event": "吹田転属",
+      "date": "1996年3月16日",
+      "note": ""
+    }
+  ],
+  "photos": [],
+  "title": "EF66 130（吹田）"
+}
