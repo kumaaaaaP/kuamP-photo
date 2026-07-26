@@ -181,8 +181,12 @@ ${blocks || "<p>まだ形式が登録されていません。</p>"}
 function buildTypePages() {
   for (const t of types) {
     const cName = companyName(t.company);
+        const affTabs = (t.affiliations || [])
+      .map((aff, i) => `<button type="button" class="aff-tab-btn${i === 0 ? " active" : ""}" data-target="aff-${esc(aff.id)}">${esc(aff.name)}</button>`)
+      .join("\n    ");
+
     const affiliationBlocks = (t.affiliations || [])
-      .map((aff) => {
+      .map((aff, i) => {
         const groupBlocks = (aff.groups || [])
           .map((g) => {
             const buttons = (g.trains || []).map((tr) => trainButton(t.id, tr)).join("\n      ");
@@ -194,7 +198,7 @@ function buildTypePages() {
   </div>`;
           })
           .join("\n");
-        return `<div class="affiliation-block">
+        return `<div class="affiliation-block tab-panel" id="aff-${esc(aff.id)}"${i === 0 ? "" : " hidden"}>
   <h3>${esc(aff.name)}</h3>
   ${groupBlocks}
 </div>`;
@@ -204,12 +208,24 @@ function buildTypePages() {
     const body = `
 <h2 class="page-title">${esc(t.name)}</h2>
 ${t.description ? `<p>${esc(t.description)}</p>` : ""}
+${t.affiliations && t.affiliations.length ? `<div class="aff-tabs">\n    ${affTabs}\n  </div>` : ""}
 ${affiliationBlocks || "<p>まだ編成が登録されていません。</p>"}
+
 <div class="legend">
   <span><span class="swatch" style="background:#e6f0ff;border-color:#b7d3f7"></span>撮影済み</span>
   <span><span class="swatch" style="background:#fff"></span>未撮影</span>
   <span><span class="swatch" style="background:#e5e5e5"></span>非現存</span>
 </div>
+<script>
+document.querySelectorAll(".aff-tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".aff-tab-btn").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".tab-panel").forEach(p => p.hidden = true);
+    btn.classList.add("active");
+    document.getElementById(btn.dataset.target).hidden = false;
+  });
+});
+</script>
 `;
     writeFile(`${t.id}.html`, layout({
       title: t.name, depth: 0,
