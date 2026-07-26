@@ -1,12 +1,16 @@
 {
   "id": "EF65",
   "name": "EF65",
-  "company": "jr-west",
+  "companies": [
+    "jr-west",
+    "jr-freight"
+  ],
   "description": "",
   "affiliations": [
     {
       "id": "shimonoseki",
       "name": "下関",
+      "company": "jr-west",
       "groups": [
         {
           "label": "1000番台",
@@ -49,6 +53,82 @@
             },
             {
               "number": "1135",
+              "active": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shin-tsurumi",
+      "name": "新鶴見",
+      "company": "jr-freight",
+      "groups": [
+        {
+          "label": "2000番台",
+          "trains": [
+            {
+              "number": "2066",
+              "active": true
+            },
+            {
+              "number": "2070",
+              "active": true
+            },
+            {
+              "number": "2080",
+              "active": true
+            },
+            {
+              "number": "2081",
+              "active": true
+            },
+            {
+              "number": "2083",
+              "active": true
+            },
+            {
+              "number": "2084",
+              "active": true
+            },
+            {
+              "number": "2085",
+              "active": true
+            },
+            {
+              "number": "2086",
+              "active": true
+            },
+            {
+              "number": "2087",
+              "active": true
+            },
+            {
+              "number": "2088",
+              "active": true
+            },
+            {
+              "number": "2089",
+              "active": true
+            },
+            {
+              "number": "2090",
+              "active": true
+            },
+            {
+              "number": "2092",
+              "active": true
+            },
+            {
+              "number": "2096",
+              "active": true
+            },
+            {
+              "number": "2097",
+              "active": true
+            },
+            {
+              "number": "2101",
               "active": true
             }
           ]
