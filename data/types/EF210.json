@@ -1,0 +1,94 @@
+{
+  "id": "EF210",
+  "name": "EF210",
+  "companies": [
+    "jr-freight"
+  ],
+  "description": "",
+  "affiliations": [
+    {
+      "id": "okayama",
+      "name": "岡山",
+      "company": "jr-freight",
+      "groups": [
+        {
+          "label": "0番台",
+          "trains": [
+            {
+              "number": "1",
+              "active": true
+            },
+            {
+              "number": "2",
+              "active": true
+            },
+            {
+              "number": "3",
+              "active": true
+            },
+            {
+              "number": "4",
+              "active": true
+            },
+            {
+              "number": "5",
+              "active": true
+            },
+            {
+              "number": "6",
+              "active": true
+            },
+            {
+              "number": "7",
+              "active": true
+            },
+            {
+              "number": "8",
+              "active": true
+            },
+            {
+              "number": "9",
+              "active": true
+            },
+            {
+              "number": "10",
+              "active": true
+            },
+            {
+              "number": "11",
+              "active": true
+            },
+            {
+              "number": "12",
+              "active": true
+            },
+            {
+              "number": "13",
+              "active": true
+            },
+            {
+              "number": "14",
+              "active": true
+            },
+            {
+              "number": "15",
+              "active": true
+            },
+            {
+              "number": "16",
+              "active": true
+            },
+            {
+              "number": "17",
+              "active": true
+            },
+            {
+              "number": "18",
+              "active": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
