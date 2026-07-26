@@ -268,12 +268,26 @@ function historyHtml(history) {
     .join("\n");
 }
 
+// "2026年5月24日" のような文字列を比較可能な数値 (20260524) に変換する。
+// 日付が無い/解釈できない写真は末尾に回す。
+function parseDateForSort(str) {
+  if (!str) return Infinity;
+  const m = String(str).match(/(\d{4}).*?(\d{1,2}).*?(\d{1,2})/);
+  if (!m) return Infinity;
+  const [, y, mo, d] = m;
+  return Number(y) * 10000 + Number(mo).toString().padStart(2, "0") * 100 + Number(d);
+}
+
 function photosHtml(photos) {
   if (!Array.isArray(photos) || !photos.length) {
     return `<p class="no-formation-note">写真はまだ登録されていません。</p>`;
   }
-  const cells = photos
+  const sortedPhotos = [...photos].sort(
+    (a, b) => parseDateForSort(a.date) - parseDateForSort(b.date)
+  );
+  const cells = sortedPhotos
     .map((p) => {
+
       const rows = [];
       if (p.date) rows.push(`<tr><th>撮影日</th><td>${esc(p.date)}</td></tr>`);
       if (p.trainNumber) rows.push(`<tr><th>列車番号</th><td>${esc(p.trainNumber)}</td></tr>`);
