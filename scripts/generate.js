@@ -65,6 +65,17 @@ function companyName(id) {
   return c ? c.name : id;
 }
 
+// 形式が属する会社ID一覧を返す（companies配列 / company単数 どちらの形式にも対応）
+function typeCompanies(t) {
+  if (Array.isArray(t.companies) && t.companies.length) return t.companies;
+  if (t.company) return [t.company];
+  return [];
+}
+// 所属(affiliation)が属する会社IDを返す（affiliation側にcompanyが無ければ形式側の値にフォールバック）
+function affCompany(t, aff) {
+  return aff.company || t.company || typeCompanies(t)[0];
+}
+
 // ---------- 共通レイアウト ----------
 function layout({ title, depth, breadcrumb, body }) {
   const pre = assetPrefix(depth);
@@ -148,10 +159,11 @@ function buildHome() {
 // ---------- 会社ページ ----------
 function buildCompanyPages() {
   for (const c of site.companies) {
-    const companyTypes = types.filter((t) => t.company === c.id);
+    const companyTypes = types.filter((t) => typeCompanies(t).includes(c.id));
     const byAffiliation = new Map();
     for (const t of companyTypes) {
       for (const aff of t.affiliations || []) {
+        if (affCompany(t, aff) !== c.id) continue; // その会社の所属だけを表示
         if (!byAffiliation.has(aff.id)) byAffiliation.set(aff.id, { name: aff.name, types: [] });
         byAffiliation.get(aff.id).types.push({ id: t.id, name: t.name });
       }
@@ -180,8 +192,17 @@ ${blocks || "<p>まだ形式が登録されていません。</p>"}
 // ---------- 形式ページ ----------
 function buildTypePages() {
   for (const t of types) {
-    const cName = companyName(t.company);
-        const affTabs = (t.affiliations || [])
+    const companies = typeCompanies(t).map((id) => ({ id, name: companyName(id) }));
+    const primaryCompany = companies[0] || { id: "", name: "" };
+    const multiCompany = companies.length > 1;
+
+    const companyLine = multiCompany
+      ? `<p style="font-size:.85rem;color:#666;">所属会社: ${companies
+          .map((c) => `<a href="${esc(c.id)}.html">${esc(c.name)}</a>`)
+          .join(" / ")}</p>`
+      : "";
+
+    const affTabs = (t.affiliations || [])
       .map((aff, i) => `<button type="button" class="aff-tab-btn${i === 0 ? " active" : ""}" data-target="aff-${esc(aff.id)}">${esc(aff.name)}</button>`)
       .join("\n    ");
 
@@ -198,8 +219,11 @@ function buildTypePages() {
   </div>`;
           })
           .join("\n");
+        const affHeading = multiCompany
+          ? `${esc(aff.name)}（${esc(companyName(affCompany(t, aff)))}）`
+          : esc(aff.name);
         return `<div class="affiliation-block tab-panel" id="aff-${esc(aff.id)}"${i === 0 ? "" : " hidden"}>
-  <h3>${esc(aff.name)}</h3>
+  <h3>${affHeading}</h3>
   ${groupBlocks}
 </div>`;
       })
@@ -207,6 +231,7 @@ function buildTypePages() {
 
     const body = `
 <h2 class="page-title">${esc(t.name)}</h2>
+${companyLine}
 ${t.description ? `<p>${esc(t.description)}</p>` : ""}
 ${t.affiliations && t.affiliations.length ? `<div class="aff-tabs">\n    ${affTabs}\n  </div>` : ""}
 ${affiliationBlocks || "<p>まだ編成が登録されていません。</p>"}
@@ -231,7 +256,7 @@ document.querySelectorAll(".aff-tab-btn").forEach(btn => {
       title: t.name, depth: 0,
       breadcrumb: [
         { label: "ホーム", href: "index.html" },
-        { label: cName, href: `${t.company}.html` },
+        { label: primaryCompany.name, href: `${primaryCompany.id}.html` },
         { label: t.name },
       ],
       body,
