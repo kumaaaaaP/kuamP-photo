@@ -164,6 +164,21 @@ img{max-width:100%;display:block;}
 }
 .type-links li a:hover{border-color:var(--blue);text-decoration:none;background:#f0f6ff;}
 
+/* ---------- 所属タブ（形式ページ） ---------- */
+.aff-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0;}
+.aff-tab-btn{
+  padding:8px 16px;
+  background:#fafafa;
+  border:1px solid var(--line-soft);
+  border-radius:4px 4px 0 0;
+  font-weight:bold;
+  color:#555;
+  cursor:pointer;
+  font-size:.95rem;
+}
+.aff-tab-btn.active{background:var(--blue);color:#fff;border-color:var(--blue);}
+.tab-panel[hidden]{display:none;}
+
 /* ---------- 編成ボタン（横並び・折り返し） ---------- */
 .train-group{margin-bottom:16px;}
 .train-buttons{display:flex;flex-wrap:wrap;gap:8px;}
