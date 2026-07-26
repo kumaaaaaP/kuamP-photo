@@ -9,7 +9,6 @@
     {
       "id": "okayama",
       "name": "岡山",
-      "company": "jr-freight",
       "groups": [
         {
           "label": "0番台",
@@ -84,6 +83,652 @@
             },
             {
               "number": "18",
+              "active": true
+            }
+          ]
+        },
+        {
+          "label": "100番台",
+          "trains": [
+            {
+              "number": "101",
+              "active": true
+            },
+            {
+              "number": "102",
+              "active": true
+            },
+            {
+              "number": "126",
+              "active": true
+            },
+            {
+              "number": "127",
+              "active": true
+            },
+            {
+              "number": "128",
+              "active": true
+            },
+            {
+              "number": "129",
+              "active": true
+            },
+            {
+              "number": "130",
+              "active": true
+            },
+            {
+              "number": "131",
+              "active": true
+            },
+            {
+              "number": "137",
+              "active": true
+            },
+            {
+              "number": "138",
+              "active": true
+            },
+            {
+              "number": "147",
+              "active": true
+            },
+            {
+              "number": "148",
+              "active": true
+            },
+            {
+              "number": "153",
+              "active": true
+            }
+          ]
+        },
+        {
+          "label": "900番台",
+          "trains": [
+            {
+              "number": "901",
+              "active": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "suita",
+      "name": "吹田",
+      "groups": [
+        {
+          "label": "100番台",
+          "trains": [
+            {
+              "number": "139",
+              "active": true
+            },
+            {
+              "number": "140",
+              "active": true
+            },
+            {
+              "number": "141",
+              "active": true
+            },
+            {
+              "number": "144",
+              "active": true
+            },
+            {
+              "number": "145",
+              "active": true
+            },
+            {
+              "number": "146",
+              "active": true
+            },
+            {
+              "number": "149",
+              "active": true
+            },
+            {
+              "number": "154",
+              "active": true
+            },
+            {
+              "number": "156",
+              "active": true
+            },
+            {
+              "number": "157",
+              "active": true
+            },
+            {
+              "number": "158",
+              "active": true
+            },
+            {
+              "number": "159",
+              "active": true
+            },
+            {
+              "number": "160",
+              "active": true
+            },
+            {
+              "number": "165",
+              "active": true
+            },
+            {
+              "number": "166",
+              "active": true
+            },
+            {
+              "number": "167",
+              "active": true
+            },
+            {
+              "number": "168",
+              "active": true
+            },
+            {
+              "number": "169",
+              "active": true
+            }
+          ]
+        },
+        {
+          "label": "300番台",
+          "trains": [
+            {
+              "number": "301",
+              "active": true
+            },
+            {
+              "number": "302",
+              "active": true
+            },
+            {
+              "number": "303",
+              "active": true
+            },
+            {
+              "number": "304",
+              "active": true
+            },
+            {
+              "number": "305",
+              "active": true
+            },
+            {
+              "number": "306",
+              "active": true
+            },
+            {
+              "number": "307",
+              "active": true
+            },
+            {
+              "number": "308",
+              "active": true
+            },
+            {
+              "number": "309",
+              "active": true
+            },
+            {
+              "number": "310",
+              "active": true
+            },
+            {
+              "number": "311",
+              "active": true
+            },
+            {
+              "number": "312",
+              "active": true
+            },
+            {
+              "number": "313",
+              "active": true
+            },
+            {
+              "number": "314",
+              "active": true
+            },
+            {
+              "number": "315",
+              "active": true
+            },
+            {
+              "number": "316",
+              "active": true
+            },
+            {
+              "number": "317",
+              "active": true
+            },
+            {
+              "number": "318",
+              "active": true
+            },
+            {
+              "number": "319",
+              "active": true
+            },
+            {
+              "number": "320",
+              "active": true
+            },
+            {
+              "number": "321",
+              "active": true
+            },
+            {
+              "number": "322",
+              "active": true
+            },
+            {
+              "number": "323",
+              "active": true
+            },
+            {
+              "number": "324",
+              "active": true
+            },
+            {
+              "number": "325",
+              "active": true
+            },
+            {
+              "number": "326",
+              "active": true
+            },
+            {
+              "number": "327",
+              "active": true
+            },
+            {
+              "number": "328",
+              "active": true
+            },
+            {
+              "number": "329",
+              "active": true
+            },
+            {
+              "number": "330",
+              "active": true
+            },
+            {
+              "number": "331",
+              "active": true
+            },
+            {
+              "number": "332",
+              "active": true
+            },
+            {
+              "number": "333",
+              "active": true
+            },
+            {
+              "number": "334",
+              "active": true
+            },
+            {
+              "number": "335",
+              "active": true
+            },
+            {
+              "number": "336",
+              "active": true
+            },
+            {
+              "number": "337",
+              "active": true
+            },
+            {
+              "number": "338",
+              "active": true
+            },
+            {
+              "number": "339",
+              "active": true
+            },
+            {
+              "number": "340",
+              "active": true
+            },
+            {
+              "number": "341",
+              "active": true
+            },
+            {
+              "number": "342",
+              "active": true
+            },
+            {
+              "number": "343",
+              "active": true
+            },
+            {
+              "number": "349",
+              "active": true
+            },
+            {
+              "number": "350",
+              "active": true
+            },
+            {
+              "number": "351",
+              "active": true
+            },
+            {
+              "number": "352",
+              "active": true
+            },
+            {
+              "number": "353",
+              "active": true
+            },
+            {
+              "number": "354",
+              "active": true
+            },
+            {
+              "number": "355",
+              "active": true
+            },
+            {
+              "number": "356",
+              "active": true
+            },
+            {
+              "number": "365",
+              "active": true
+            },
+            {
+              "number": "366",
+              "active": true
+            },
+            {
+              "number": "367",
+              "active": true
+            },
+            {
+              "number": "368",
+              "active": true
+            },
+            {
+              "number": "369",
+              "active": true
+            },
+            {
+              "number": "370",
+              "active": true
+            },
+            {
+              "number": "371",
+              "active": true
+            },
+            {
+              "number": "372",
+              "active": true
+            },
+            {
+              "number": "373",
+              "active": true
+            },
+            {
+              "number": "374",
+              "active": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shintsurumi",
+      "name": "新鶴見",
+      "groups": [
+        {
+          "label": "100番台",
+          "trains": [
+            {
+              "number": "103",
+              "active": true
+            },
+            {
+              "number": "104",
+              "active": true
+            },
+            {
+              "number": "105",
+              "active": true
+            },
+            {
+              "number": "106",
+              "active": true
+            },
+            {
+              "number": "107",
+              "active": true
+            },
+            {
+              "number": "108",
+              "active": true
+            },
+            {
+              "number": "109",
+              "active": true
+            },
+            {
+              "number": "110",
+              "active": true
+            },
+            {
+              "number": "111",
+              "active": true
+            },
+            {
+              "number": "112",
+              "active": true
+            },
+            {
+              "number": "113",
+              "active": true
+            },
+            {
+              "number": "114",
+              "active": true
+            },
+            {
+              "number": "115",
+              "active": true
+            },
+            {
+              "number": "116",
+              "active": true
+            },
+            {
+              "number": "117",
+              "active": true
+            },
+            {
+              "number": "118",
+              "active": true
+            },
+            {
+              "number": "119",
+              "active": true
+            },
+            {
+              "number": "120",
+              "active": true
+            },
+            {
+              "number": "121",
+              "active": true
+            },
+            {
+              "number": "122",
+              "active": true
+            },
+            {
+              "number": "123",
+              "active": true
+            },
+            {
+              "number": "124",
+              "active": true
+            },
+            {
+              "number": "125",
+              "active": true
+            },
+            {
+              "number": "132",
+              "active": true
+            },
+            {
+              "number": "133",
+              "active": true
+            },
+            {
+              "number": "134",
+              "active": true
+            },
+            {
+              "number": "135",
+              "active": true
+            },
+            {
+              "number": "136",
+              "active": true
+            },
+            {
+              "number": "142",
+              "active": true
+            },
+            {
+              "number": "143",
+              "active": true
+            },
+            {
+              "number": "150",
+              "active": true
+            },
+            {
+              "number": "151",
+              "active": true
+            },
+            {
+              "number": "152",
+              "active": true
+            },
+            {
+              "number": "155",
+              "active": true
+            },
+            {
+              "number": "161",
+              "active": true
+            },
+            {
+              "number": "162",
+              "active": true
+            },
+            {
+              "number": "163",
+              "active": true
+            },
+            {
+              "number": "164",
+              "active": true
+            },
+            {
+              "number": "170",
+              "active": true
+            },
+            {
+              "number": "171",
+              "active": true
+            },
+            {
+              "number": "172",
+              "active": true
+            },
+            {
+              "number": "173",
+              "active": true
+            }
+          ]
+        },
+        {
+          "label": "300番台",
+          "trains": [
+            {
+              "number": "344",
+              "active": true
+            },
+            {
+              "number": "345",
+              "active": true
+            },
+            {
+              "number": "346",
+              "active": true
+            },
+            {
+              "number": "347",
+              "active": true
+            },
+            {
+              "number": "348",
+              "active": true
+            },
+            {
+              "number": "357",
+              "active": true
+            },
+            {
+              "number": "358",
+              "active": true
+            },
+            {
+              "number": "359",
+              "active": true
+            },
+            {
+              "number": "360",
+              "active": true
+            },
+            {
+              "number": "361",
+              "active": true
+            },
+            {
+              "number": "362",
+              "active": true
+            },
+            {
+              "number": "363",
+              "active": true
+            },
+            {
+              "number": "364",
+              "active": true
+            },
+            {
+              "number": "375",
+              "active": true
+            },
+            {
+              "number": "376",
+              "active": true
+            },
+            {
+              "number": "377",
               "active": true
             }
           ]
