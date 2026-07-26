@@ -15,7 +15,11 @@
 
 <h2 class="page-title">223系</h2>
 <p>JR西日本の直流近郊形電車。</p>
-<div class="affiliation-block">
+<div class="aff-tabs">
+    <button type="button" class="aff-tab-btn active" data-target="aff-aboshi">網干</button>
+    <button type="button" class="aff-tab-btn" data-target="aff-kyoto">京都</button>
+  </div>
+<div class="affiliation-block tab-panel" id="aff-aboshi">
   <h3>網干</h3>
   <div class="train-group">
     <span class="tag-label">1000番台8両W編成</span>
@@ -157,7 +161,7 @@
     </div>
   </div>
 </div>
-<div class="affiliation-block">
+<div class="affiliation-block tab-panel" id="aff-kyoto" hidden>
   <h3>京都</h3>
   <div class="train-group">
     <span class="tag-label">2500番台4両RS編成</span>
@@ -204,11 +208,22 @@
     </div>
   </div>
 </div>
+
 <div class="legend">
   <span><span class="swatch" style="background:#e6f0ff;border-color:#b7d3f7"></span>撮影済み</span>
   <span><span class="swatch" style="background:#fff"></span>未撮影</span>
   <span><span class="swatch" style="background:#e5e5e5"></span>非現存</span>
 </div>
+<script>
+document.querySelectorAll(".aff-tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".aff-tab-btn").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".tab-panel").forEach(p => p.hidden = true);
+    btn.classList.add("active");
+    document.getElementById(btn.dataset.target).hidden = false;
+  });
+});
+</script>
 
 <nav class="breadcrumb bottom-breadcrumb"><a href="index.html">ホーム</a><span class="sep">&gt;</span><a href="jr-west.html">JR西日本</a><span class="sep">&gt;</span><strong>223系</strong></nav>
 </div>
