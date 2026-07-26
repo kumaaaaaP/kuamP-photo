@@ -1,0 +1,70 @@
+{
+  "id": "EF66",
+  "name": "EF66",
+  "companies": [
+    "jr-freight"
+  ],
+  "description": "",
+  "affiliations": [
+    {
+      "id": "suita",
+      "name": "吹田",
+      "company": "jr-freight",
+      "groups": [
+        {
+          "label": "100番台",
+          "trains": [
+            {
+              "number": "119",
+              "active": true
+            },
+            {
+              "number": "121",
+              "active": true
+            },
+            {
+              "number": "122",
+              "active": true
+            },
+            {
+              "number": "123",
+              "active": true
+            },
+            {
+              "number": "124",
+              "active": true
+            },
+            {
+              "number": "125",
+              "active": true
+            },
+            {
+              "number": "126",
+              "active": true
+            },
+            {
+              "number": "127",
+              "active": true
+            },
+            {
+              "number": "128",
+              "active": true
+            },
+            {
+              "number": "129",
+              "active": true
+            },
+            {
+              "number": "130",
+              "active": true
+            },
+            {
+              "number": "131",
+              "active": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
