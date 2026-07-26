@@ -650,10 +650,10 @@ function addAffiliationRow() {
       <label>会社<select class="aff-company"></select></label>
       <label>所属ID<input type="text" class="aff-id" placeholder="例: aboshi"></label>
     </div>
-    <label>所属名<input type="text" class="aff-name" placeholder="例: 網干総合車両所"></label>
+    <label>所属名<input type="text" class="aff-name" placeholder="例: 網干"></label>
     <label>編成グループ名<input type="text" class="grp-label" placeholder="例: J編成"></label>
     <label>編成番号（レンジ指定可）
-      <input type="text" class="grp-trains" placeholder="例: J1〜J5,J7,J10〜J16">
+      <input type="text" class="grp-trains" placeholder="例: J1〜J5,J7,J10〜J14">
       <span class="note">「〜」または「~」でレンジ展開されます。すべて現存扱いで登録されます（非現存にする場合は後で「編集」タブから active:false に変更してください）</span>
     </label>
     <button type="button" class="secondary" onclick="this.parentElement.remove()">この所属を削除</button>
