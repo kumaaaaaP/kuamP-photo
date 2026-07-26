@@ -162,12 +162,12 @@
         <div class="row">
           <label>撮影日（今回アップロード分に共通適用）
             <div class="row" style="gap:.4em;">
-              <input type="number" id="photoDateY" placeholder="年" min="1900" max="2200" style="flex:1.3;">
-              <input type="number" id="photoDateM" placeholder="月" min="1" max="12" style="flex:1;">
-              <input type="number" id="photoDateD" placeholder="日" min="1" max="31" style="flex:1;">
+              <input type="number" id="trainPhotoDateY" placeholder="年" min="1900" max="2200" style="flex:1.3;">
+              <input type="number" id="trainPhotoDateM" placeholder="月" min="1" max="12" style="flex:1;">
+              <input type="number" id="trainPhotoDateD" placeholder="日" min="1" max="31" style="flex:1;">
             </div>
           </label>
-          <label>列車番号<input type="text" id="photoNumber" placeholder="例: 791T"></label>
+          <label>列車番号<input type="text" id="trainPhotoNumber" placeholder="例: 791T"></label>
         </div>
         <div class="row">
           <label>種別・行先<input type="text" id="trainPhotoDestination" placeholder="例: 普通 網干行き"></label>
@@ -182,13 +182,11 @@
       <!-- ===== 形式ページ追加 ===== -->
       <div class="card tabpane hidden" id="tab-type">
         <h2>形式ページ追加</h2>
-        <div class="row">
-          <label>会社<select id="typeCompany"></select></label>
-          <label>形式ID<input type="text" id="typeId" placeholder="例: 223"></label>
-        </div>
+        <label>形式ID<input type="text" id="typeId" placeholder="例: 223"></label>
         <label>形式名<input type="text" id="typeName" placeholder="例: 223系"></label>
         <label>説明（任意）<textarea id="typeDesc"></textarea></label>
         <h3 class="small" style="margin-top:1.2em;">所属ごとの編成一覧</h3>
+        <p class="small">複数の会社にまたがる形式（例: 205系）も、所属ごとに会社を指定することで同じ形式ページにまとめられます。</p>
         <div id="typeAffiliations"></div>
         <button type="button" class="secondary" id="typeAddAffBtn">＋ 所属を追加</button>
         <button id="typeSaveBtn">形式ページを作成</button>
@@ -363,7 +361,7 @@ function buildDateString(yId, mId, dId) {
   if (!y || !m || !d) return "";
   return `${y}年${m}月${d}日`;
 }
-  
+
 // ---------- 編成番号レンジ展開: "W1〜W5,W7,W10〜W16" → [W1..W5,W7,W10..W16] ----------
 function expandTrainRange(input) {
   const parts = input.split(/[,、，\n]/).map(s => s.trim()).filter(Boolean);
@@ -407,7 +405,6 @@ document.getElementById("cfgClearBtn").addEventListener("click", () => {
   showMsg("cfgMsg", "保存内容を消去しました。", "ok");
 });
 async function checkConnectionAndBoot() {
-  const msg = document.getElementById("cfgMsg");
   if (!ghReady()) { showMsg("cfgMsg", "オーナー名・リポジトリ名・トークンを入力してください。", "err"); return; }
   try {
     const c = ghConf();
@@ -442,13 +439,16 @@ async function bootData() {
   const { json } = await ghGetJSON("data/site.json");
   siteData = json || { siteName: "くまP撮影記録", companies: [] };
   fillCompanySelects();
+  // 会社データ読み込み後に、形式ページ追加タブの所属行を1つ用意する
+  document.getElementById("typeAffiliations").innerHTML = "";
+  affRowCount = 0;
+  addAffiliationRow();
   await fillPhotoTrainSelect();
   await fillEditSelect();
 }
 function fillCompanySelects() {
   const opts = siteData.companies.map(c => `<option value="${c.id}">${c.name}</option>`).join("");
   document.getElementById("trainCompany").innerHTML = opts || "<option value=''>（会社未登録）</option>";
-  document.getElementById("typeCompany").innerHTML = opts || "<option value=''>（会社未登録）</option>";
 }
 
 // ================= 画像追加タブ =================
@@ -610,7 +610,7 @@ document.getElementById("trainSaveBtn").addEventListener("click", async () => {
 
     // 形式データの所属グループに、この編成番号がまだ無ければ追加する
     if (typeData) {
-      await ensureTrainInType(typeId, typeData, affId, affName, number);
+      await ensureTrainInType(typeId, typeData, affId, affName, company, number);
     }
 
     showMsg("trainMsg", "編成ページを作成しました。GitHub Actions がページを再生成します。", "ok");
@@ -618,11 +618,15 @@ document.getElementById("trainSaveBtn").addEventListener("click", async () => {
     showMsg("trainMsg", "エラー: " + e.message, "err");
   }
 });
-async function ensureTrainInType(typeId, typeData, affId, affName, number) {
+async function ensureTrainInType(typeId, typeData, affId, affName, company, number) {
   let aff = typeData.affiliations.find(a => a.id === affId);
   if (!aff) {
-    aff = { id: affId, name: affName || affId, groups: [{ label: "編成", trains: [] }] };
+    aff = { id: affId, name: affName || affId, company, groups: [{ label: "編成", trains: [] }] };
     typeData.affiliations.push(aff);
+    // 新しい会社の所属が増えた場合、type側の companies にも反映する
+    const base = typeData.companies || (typeData.company ? [typeData.company] : []);
+    typeData.companies = [...new Set([...base, company])];
+    delete typeData.company; // 単数形式が残っていれば掃除
   }
   if (!aff.groups.length) aff.groups.push({ label: "編成", trains: [] });
   const allTrains = aff.groups.flatMap(g => g.trains);
@@ -643,9 +647,10 @@ function addAffiliationRow() {
   div.dataset.rowId = id;
   div.innerHTML = `
     <div class="row">
+      <label>会社<select class="aff-company"></select></label>
       <label>所属ID<input type="text" class="aff-id" placeholder="例: aboshi"></label>
-      <label>所属名<input type="text" class="aff-name" placeholder="例: 網干総合車両所"></label>
     </div>
+    <label>所属名<input type="text" class="aff-name" placeholder="例: 網干総合車両所"></label>
     <label>編成グループ名<input type="text" class="grp-label" placeholder="例: J編成"></label>
     <label>編成番号（レンジ指定可）
       <input type="text" class="grp-trains" placeholder="例: J1〜J5,J7,J10〜J16">
@@ -653,34 +658,40 @@ function addAffiliationRow() {
     </label>
     <button type="button" class="secondary" onclick="this.parentElement.remove()">この所属を削除</button>
   `;
+  div.querySelector(".aff-company").innerHTML =
+    (siteData ? siteData.companies : []).map(c => `<option value="${c.id}">${c.name}</option>`).join("")
+    || "<option value=''>（会社未登録）</option>";
   document.getElementById("typeAffiliations").appendChild(div);
 }
 document.getElementById("typeAddAffBtn").addEventListener("click", addAffiliationRow);
-addAffiliationRow(); // 初期状態で1つ表示
+// ※ siteData 読み込み前は会社の選択肢が作れないため、初期表示は bootData() 内で行う
 
 document.getElementById("typeSaveBtn").addEventListener("click", async () => {
-  const company = document.getElementById("typeCompany").value;
   const id = document.getElementById("typeId").value.trim();
   const name = document.getElementById("typeName").value.trim();
   const description = document.getElementById("typeDesc").value.trim();
-  if (!company || !id || !name) return showMsg("typeMsg", "会社・形式ID・形式名は必須です。", "err");
+  if (!id || !name) return showMsg("typeMsg", "形式ID・形式名は必須です。", "err");
 
   const affiliations = [];
   document.querySelectorAll("#typeAffiliations .group-box").forEach(box => {
+    const affCompanyVal = box.querySelector(".aff-company").value;
     const affId = box.querySelector(".aff-id").value.trim();
     const affName = box.querySelector(".aff-name").value.trim();
     const grpLabel = box.querySelector(".grp-label").value.trim() || "編成";
     const grpTrainsRaw = box.querySelector(".grp-trains").value.trim();
-    if (!affId) return;
+    if (!affId || !affCompanyVal) return;
     const numbers = expandTrainRange(grpTrainsRaw);
     affiliations.push({
-      id: affId, name: affName || affId,
+      id: affId, name: affName || affId, company: affCompanyVal,
       groups: [{ label: grpLabel, trains: numbers.map(n => ({ number: n, active: true })) }],
     });
   });
+  if (!affiliations.length) return showMsg("typeMsg", "所属を1件以上、会社を選んで入力してください。", "err");
+
+  const companies = [...new Set(affiliations.map(a => a.company))];
 
   try {
-    const typeObj = { id, name, company, description, affiliations };
+    const typeObj = { id, name, companies, description, affiliations };
     const path = `data/types/${id}.json`;
     const existing = await ghGetJSON(path);
     await ghPutJSON(path, typeObj, `形式ページ追加: ${id}`, existing.sha);
@@ -705,6 +716,12 @@ document.getElementById("companySaveBtn").addEventListener("click", async () => 
     await ghPutJSON("data/site.json", site, `会社ページ追加: ${name}`, sha);
     siteData = site;
     fillCompanySelects();
+    // 形式ページ追加タブの各所属行の会社選択肢も更新する
+    document.querySelectorAll("#typeAffiliations .aff-company").forEach(sel => {
+      const prev = sel.value;
+      sel.innerHTML = siteData.companies.map(c => `<option value="${c.id}">${c.name}</option>`).join("");
+      if (prev) sel.value = prev;
+    });
     showMsg("companyMsg", "会社を追加しました。GitHub Actions がページを再生成します。", "ok");
     document.getElementById("companyId").value = "";
     document.getElementById("companyName").value = "";
