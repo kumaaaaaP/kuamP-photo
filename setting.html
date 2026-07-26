@@ -103,6 +103,7 @@
       <div class="card tabpane" id="tab-photo">
         <h2>画像追加（既存の編成ページへ）</h2>
         <label>対象の編成
+          <input type="text" id="photoTrainSearch" placeholder="編成番号や形式名で絞り込み（例: J4 / 223）">
           <select id="photoTrainSelect"><option value="">読み込み中...</option></select>
           <span class="note">既に作成済みの編成ページのみ選択できます</span>
         </label>
@@ -210,6 +211,7 @@
         <h2>編集</h2>
         <p class="small">既存の会社・形式・編成ページのデータ（JSON）を直接編集して保存します。保存すると GitHub Actions が自動でページを再生成します。</p>
         <label>編集対象
+          <input type="text" id="editSearch" placeholder="会社名・形式名・編成番号で絞り込み">
           <select id="editTarget"><option value="">読み込み中...</option></select>
         </label>
         <textarea id="editJson" style="min-height:16em;font-family:monospace;font-size:.85rem;"></textarea>
@@ -450,16 +452,27 @@ function fillCompanySelects() {
 }
 
 // ================= 画像追加タブ =================
+let photoTrainFiles = []; // 元の一覧を保持（絞り込みの元データ）
 async function fillPhotoTrainSelect() {
   const sel = document.getElementById("photoTrainSelect");
   sel.innerHTML = "<option value=''>読み込み中...</option>";
   const files = await ghListDir("data/trains");
-  if (!files.length) { sel.innerHTML = "<option value=''>（編成ページがまだありません）</option>"; return; }
-  sel.innerHTML = files
-    .filter(f => f.name.endsWith(".json"))
-    .map(f => `<option value="${f.name}">${f.name.replace(/\.json$/, "")}</option>`)
-    .join("");
+  photoTrainFiles = files.filter(f => f.name.endsWith(".json"));
+  renderPhotoTrainOptions("");
 }
+function renderPhotoTrainOptions(keyword) {
+  const sel = document.getElementById("photoTrainSelect");
+  const kw = keyword.trim().toLowerCase();
+  const matched = photoTrainFiles.filter(f => f.name.toLowerCase().includes(kw));
+  if (!photoTrainFiles.length) { sel.innerHTML = "<option value=''>（編成ページがまだありません）</option>"; return; }
+  sel.innerHTML = matched.length
+    ? matched.map(f => `<option value="${f.name}">${f.name.replace(/\.json$/, "")}</option>`).join("")
+    : "<option value=''>（該当なし）</option>";
+}
+document.getElementById("photoTrainSearch").addEventListener("input", (e) => {
+  renderPhotoTrainOptions(e.target.value);
+});
+
 let photoPending = []; // {name, base64, blobUrl}
 document.getElementById("photoFiles").addEventListener("change", async (e) => {
   photoPending = [];
@@ -701,20 +714,38 @@ document.getElementById("companySaveBtn").addEventListener("click", async () => 
 });
 
 // ================= 編集タブ =================
+let editItems = []; // {label, value, keyword} の元データを保持
 async function fillEditSelect() {
-  const sel = document.getElementById("editTarget");
-  sel.innerHTML = "<option value=''>選択してください</option>";
-  const group = (label, items) => {
-    if (!items.length) return "";
-    return `<optgroup label="${label}">${items.join("")}</optgroup>`;
-  };
-  const companyOpts = siteData.companies.map(c => `<option value="data/site.json::company::${c.id}">${c.name}</option>`);
+  editItems = [];
+  editItems.push(...siteData.companies.map(c => ({
+    group: "会社 (site.json内)", label: c.name, value: `data/site.json::company::${c.id}`, keyword: c.name + " " + c.id,
+  })));
   const typeFiles = await ghListDir("data/types");
-  const typeOpts = typeFiles.filter(f => f.name.endsWith(".json")).map(f => `<option value="data/types/${f.name}">${f.name.replace(/\.json$/, "")}</option>`);
+  editItems.push(...typeFiles.filter(f => f.name.endsWith(".json")).map(f => ({
+    group: "形式ページ", label: f.name.replace(/\.json$/, ""), value: `data/types/${f.name}`, keyword: f.name,
+  })));
   const trainFiles = await ghListDir("data/trains");
-  const trainOpts = trainFiles.filter(f => f.name.endsWith(".json")).map(f => `<option value="data/trains/${f.name}">${f.name.replace(/\.json$/, "")}</option>`);
-  sel.innerHTML += group("会社 (site.json内)", companyOpts) + group("形式ページ", typeOpts) + group("編成ページ", trainOpts);
+  editItems.push(...trainFiles.filter(f => f.name.endsWith(".json")).map(f => ({
+    group: "編成ページ", label: f.name.replace(/\.json$/, ""), value: `data/trains/${f.name}`, keyword: f.name,
+  })));
+  renderEditOptions("");
 }
+function renderEditOptions(keyword) {
+  const sel = document.getElementById("editTarget");
+  const kw = keyword.trim().toLowerCase();
+  const matched = editItems.filter(it => it.keyword.toLowerCase().includes(kw));
+  const groups = {};
+  matched.forEach(it => { (groups[it.group] = groups[it.group] || []).push(it); });
+  let html = "<option value=''>選択してください</option>";
+  for (const [g, items] of Object.entries(groups)) {
+    html += `<optgroup label="${g}">${items.map(it => `<option value="${it.value}">${it.label}</option>`).join("")}</optgroup>`;
+  }
+  sel.innerHTML = html;
+}
+document.getElementById("editSearch").addEventListener("input", (e) => {
+  renderEditOptions(e.target.value);
+});
+
 document.getElementById("editTarget").addEventListener("change", async (e) => {
   const val = e.target.value;
   const box = document.getElementById("editJson");
