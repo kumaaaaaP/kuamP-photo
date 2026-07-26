@@ -19,6 +19,15 @@
       "note": ""
     }
   ],
-  "photos": [],
+  "photos": [
+    {
+      "src": "image/EF66/130/1.webp",
+      "date": "2026年5月24日",
+      "trainNumber": "8865レ",
+      "destination": "",
+      "location": "南草津",
+      "note": "チキ7134+チキ7122 （安治川口駅常備）"
+    }
+  ],
   "title": "EF66 130（吹田）"
 }
