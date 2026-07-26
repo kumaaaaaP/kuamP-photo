@@ -1,5 +1,13 @@
 [
   {
+    "src": "image/EF66/130/1.webp",
+    "caption": "EF66 130（吹田）",
+    "type": "EF66",
+    "number": "130",
+    "company": "jr-freight",
+    "date": "2026-07-26"
+  },
+  {
     "src": "image/223/R204/1.webp",
     "caption": "223系R204編成",
     "type": "223",
