@@ -1,0 +1,24 @@
+{
+  "type": "DD51",
+  "typeName": "DD51",
+  "company": "jr-west",
+  "companyName": "JR西日本",
+  "affiliation": "miyahara",
+  "affiliationName": "宮原",
+  "number": "1109",
+  "formation": null,
+  "history": [
+    {
+      "event": "米子新製配置",
+      "date": "1974年11月8日",
+      "note": "（日立）"
+    },
+    {
+      "event": "宮原転属",
+      "date": "1997年",
+      "note": ""
+    }
+  ],
+  "photos": [],
+  "title": "DD51 1109（宮原）"
+}
