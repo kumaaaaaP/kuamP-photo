@@ -1,0 +1,638 @@
+{
+  "id": "koki200",
+  "name": "コキ200",
+  "companies": [
+    "jr-freight"
+  ],
+  "description": "",
+  "affiliations": [
+    {
+      "id": "containercar",
+      "name": "コンテナ貨車",
+      "company": "jr-freight",
+      "groups": [
+        {
+          "label": "コキ200形",
+          "trains": [
+            {
+              "number": "1",
+              "active": true
+            },
+            {
+              "number": "2",
+              "active": true
+            },
+            {
+              "number": "3",
+              "active": true
+            },
+            {
+              "number": "4",
+              "active": true
+            },
+            {
+              "number": "5",
+              "active": true
+            },
+            {
+              "number": "6",
+              "active": true
+            },
+            {
+              "number": "7",
+              "active": true
+            },
+            {
+              "number": "8",
+              "active": true
+            },
+            {
+              "number": "9",
+              "active": true
+            },
+            {
+              "number": "10",
+              "active": true
+            },
+            {
+              "number": "11",
+              "active": true
+            },
+            {
+              "number": "12",
+              "active": true
+            },
+            {
+              "number": "13",
+              "active": true
+            },
+            {
+              "number": "14",
+              "active": true
+            },
+            {
+              "number": "15",
+              "active": true
+            },
+            {
+              "number": "16",
+              "active": true
+            },
+            {
+              "number": "17",
+              "active": true
+            },
+            {
+              "number": "18",
+              "active": true
+            },
+            {
+              "number": "19",
+              "active": true
+            },
+            {
+              "number": "20",
+              "active": true
+            },
+            {
+              "number": "21",
+              "active": true
+            },
+            {
+              "number": "22",
+              "active": true
+            },
+            {
+              "number": "23",
+              "active": true
+            },
+            {
+              "number": "24",
+              "active": true
+            },
+            {
+              "number": "25",
+              "active": true
+            },
+            {
+              "number": "26",
+              "active": true
+            },
+            {
+              "number": "27",
+              "active": true
+            },
+            {
+              "number": "28",
+              "active": true
+            },
+            {
+              "number": "29",
+              "active": true
+            },
+            {
+              "number": "30",
+              "active": true
+            },
+            {
+              "number": "31",
+              "active": true
+            },
+            {
+              "number": "32",
+              "active": true
+            },
+            {
+              "number": "33",
+              "active": true
+            },
+            {
+              "number": "34",
+              "active": true
+            },
+            {
+              "number": "35",
+              "active": true
+            },
+            {
+              "number": "36",
+              "active": true
+            },
+            {
+              "number": "37",
+              "active": true
+            },
+            {
+              "number": "38",
+              "active": true
+            },
+            {
+              "number": "39",
+              "active": true
+            },
+            {
+              "number": "40",
+              "active": true
+            },
+            {
+              "number": "41",
+              "active": true
+            },
+            {
+              "number": "42",
+              "active": true
+            },
+            {
+              "number": "43",
+              "active": true
+            },
+            {
+              "number": "44",
+              "active": true
+            },
+            {
+              "number": "45",
+              "active": true
+            },
+            {
+              "number": "46",
+              "active": true
+            },
+            {
+              "number": "47",
+              "active": true
+            },
+            {
+              "number": "48",
+              "active": true
+            },
+            {
+              "number": "49",
+              "active": true
+            },
+            {
+              "number": "50",
+              "active": true
+            },
+            {
+              "number": "51",
+              "active": true
+            },
+            {
+              "number": "52",
+              "active": true
+            },
+            {
+              "number": "53",
+              "active": true
+            },
+            {
+              "number": "54",
+              "active": true
+            },
+            {
+              "number": "55",
+              "active": true
+            },
+            {
+              "number": "56",
+              "active": true
+            },
+            {
+              "number": "57",
+              "active": true
+            },
+            {
+              "number": "58",
+              "active": true
+            },
+            {
+              "number": "59",
+              "active": true
+            },
+            {
+              "number": "60",
+              "active": true
+            },
+            {
+              "number": "61",
+              "active": true
+            },
+            {
+              "number": "62",
+              "active": true
+            },
+            {
+              "number": "63",
+              "active": true
+            },
+            {
+              "number": "64",
+              "active": true
+            },
+            {
+              "number": "65",
+              "active": true
+            },
+            {
+              "number": "66",
+              "active": true
+            },
+            {
+              "number": "67",
+              "active": true
+            },
+            {
+              "number": "68",
+              "active": true
+            },
+            {
+              "number": "69",
+              "active": true
+            },
+            {
+              "number": "70",
+              "active": true
+            },
+            {
+              "number": "71",
+              "active": true
+            },
+            {
+              "number": "72",
+              "active": true
+            },
+            {
+              "number": "73",
+              "active": true
+            },
+            {
+              "number": "74",
+              "active": true
+            },
+            {
+              "number": "75",
+              "active": true
+            },
+            {
+              "number": "76",
+              "active": true
+            },
+            {
+              "number": "77",
+              "active": true
+            },
+            {
+              "number": "78",
+              "active": true
+            },
+            {
+              "number": "79",
+              "active": true
+            },
+            {
+              "number": "80",
+              "active": true
+            },
+            {
+              "number": "81",
+              "active": true
+            },
+            {
+              "number": "82",
+              "active": true
+            },
+            {
+              "number": "83",
+              "active": true
+            },
+            {
+              "number": "84",
+              "active": true
+            },
+            {
+              "number": "85",
+              "active": true
+            },
+            {
+              "number": "86",
+              "active": true
+            },
+            {
+              "number": "87",
+              "active": true
+            },
+            {
+              "number": "88",
+              "active": true
+            },
+            {
+              "number": "89",
+              "active": true
+            },
+            {
+              "number": "90",
+              "active": true
+            },
+            {
+              "number": "91",
+              "active": true
+            },
+            {
+              "number": "92",
+              "active": true
+            },
+            {
+              "number": "93",
+              "active": true
+            },
+            {
+              "number": "94",
+              "active": true
+            },
+            {
+              "number": "95",
+              "active": true
+            },
+            {
+              "number": "96",
+              "active": true
+            },
+            {
+              "number": "97",
+              "active": true
+            },
+            {
+              "number": "98",
+              "active": true
+            },
+            {
+              "number": "99",
+              "active": true
+            },
+            {
+              "number": "100",
+              "active": true
+            },
+            {
+              "number": "101",
+              "active": true
+            },
+            {
+              "number": "102",
+              "active": true
+            },
+            {
+              "number": "103",
+              "active": true
+            },
+            {
+              "number": "104",
+              "active": true
+            },
+            {
+              "number": "105",
+              "active": true
+            },
+            {
+              "number": "106",
+              "active": true
+            },
+            {
+              "number": "107",
+              "active": true
+            },
+            {
+              "number": "108",
+              "active": true
+            },
+            {
+              "number": "109",
+              "active": true
+            },
+            {
+              "number": "110",
+              "active": true
+            },
+            {
+              "number": "111",
+              "active": true
+            },
+            {
+              "number": "112",
+              "active": true
+            },
+            {
+              "number": "113",
+              "active": true
+            },
+            {
+              "number": "114",
+              "active": true
+            },
+            {
+              "number": "115",
+              "active": true
+            },
+            {
+              "number": "116",
+              "active": true
+            },
+            {
+              "number": "117",
+              "active": true
+            },
+            {
+              "number": "118",
+              "active": true
+            },
+            {
+              "number": "119",
+              "active": true
+            },
+            {
+              "number": "120",
+              "active": true
+            },
+            {
+              "number": "121",
+              "active": true
+            },
+            {
+              "number": "122",
+              "active": true
+            },
+            {
+              "number": "123",
+              "active": true
+            },
+            {
+              "number": "124",
+              "active": true
+            },
+            {
+              "number": "125",
+              "active": true
+            },
+            {
+              "number": "126",
+              "active": true
+            },
+            {
+              "number": "127",
+              "active": true
+            },
+            {
+              "number": "128",
+              "active": true
+            },
+            {
+              "number": "129",
+              "active": true
+            },
+            {
+              "number": "130",
+              "active": true
+            },
+            {
+              "number": "131",
+              "active": true
+            },
+            {
+              "number": "132",
+              "active": true
+            },
+            {
+              "number": "133",
+              "active": true
+            },
+            {
+              "number": "134",
+              "active": true
+            },
+            {
+              "number": "135",
+              "active": true
+            },
+            {
+              "number": "136",
+              "active": true
+            },
+            {
+              "number": "137",
+              "active": true
+            },
+            {
+              "number": "138",
+              "active": true
+            },
+            {
+              "number": "139",
+              "active": true
+            },
+            {
+              "number": "140",
+              "active": true
+            },
+            {
+              "number": "141",
+              "active": true
+            },
+            {
+              "number": "142",
+              "active": true
+            },
+            {
+              "number": "143",
+              "active": true
+            },
+            {
+              "number": "144",
+              "active": true
+            },
+            {
+              "number": "145",
+              "active": true
+            },
+            {
+              "number": "146",
+              "active": true
+            },
+            {
+              "number": "147",
+              "active": true
+            },
+            {
+              "number": "148",
+              "active": true
+            },
+            {
+              "number": "149",
+              "active": true
+            },
+            {
+              "number": "150",
+              "active": true
+            },
+            {
+              "number": "151",
+              "active": true
+            },
+            {
+              "number": "152",
+              "active": true
+            },
+            {
+              "number": "153",
+              "active": true
+            },
+            {
+              "number": "154",
+              "active": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
