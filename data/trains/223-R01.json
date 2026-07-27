@@ -44,5 +44,14 @@
       "note": ""
     }
   ],
-  "photos": []
+  "photos": [
+    {
+      "src": "image/223/R01/1.webp",
+      "date": "2026年5月13日",
+      "trainNumber": "5373M",
+      "destination": "普通 京都行き",
+      "location": "南草津〜瀬田",
+      "note": ""
+    }
+  ]
 }
