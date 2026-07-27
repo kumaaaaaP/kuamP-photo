@@ -117,6 +117,7 @@
               <input type="number" id="photoDateM" placeholder="月" min="1" max="12" style="flex:1;">
               <input type="number" id="photoDateD" placeholder="日" min="1" max="31" style="flex:1;">
             </div>
+            <span class="note">画像を選択すると、可能な場合はExif（無ければファイルの更新日時）から自動入力されます</span>
           </label>
           <label>列車番号<input type="text" id="photoNumber" placeholder="例: 791T"></label>
         </div>
@@ -153,9 +154,11 @@
         <label>編成表（1行1両、「車両種別,車両番号」の形式・上から編成順）
           <textarea id="trainFormation" placeholder="クハ222,2063&#10;サハ223,2149&#10;モハ223,2030"></textarea>
         </label>
-        <label>車歴（1行1件、「イベント,日付,備考」の形式。備考は省略可）
-          <textarea id="trainHistory" placeholder="網干新製配置,2004年5月25日,（近車）"></textarea>
-        </label>
+
+        <label>車歴</label>
+        <div id="trainHistoryRows"></div>
+        <button type="button" class="secondary" id="trainHistoryAddBtn">＋ イベントを追加</button>
+
         <label>写真（この場では未登録でもOK。後から「画像追加」で追加できます）
           <input type="file" id="trainPhotoFiles" accept="image/*" multiple>
         </label>
@@ -166,6 +169,7 @@
               <input type="number" id="trainPhotoDateM" placeholder="月" min="1" max="12" style="flex:1;">
               <input type="number" id="trainPhotoDateD" placeholder="日" min="1" max="31" style="flex:1;">
             </div>
+            <span class="note">画像を選択すると、可能な場合はExif（無ければファイルの更新日時）から自動入力されます</span>
           </label>
           <label>列車番号<input type="text" id="trainPhotoNumber" placeholder="例: 791T"></label>
         </div>
@@ -186,7 +190,7 @@
         <label>形式名<input type="text" id="typeName" placeholder="例: 223系"></label>
         <label>説明（任意）<textarea id="typeDesc"></textarea></label>
         <h3 class="small" style="margin-top:1.2em;">所属ごとの編成一覧</h3>
-        <p class="small">複数の会社にまたがる形式（例: 205系）も、所属ごとに会社を指定することで同じ形式ページにまとめられます。</p>
+        <p class="small">複数の会社にまたがる形式（例: EF65）も、所属ごとに会社を指定することで同じ形式ページにまとめられます。</p>
         <div id="typeAffiliations"></div>
         <button type="button" class="secondary" id="typeAddAffBtn">＋ 所属を追加</button>
         <button id="typeSaveBtn">形式ページを作成</button>
@@ -353,13 +357,92 @@ function fileToWebp(file, maxWidth = 1600, quality = 0.85) {
   });
 }
 
-// 年・月・日の3つの入力欄から "2026年5月24日" 形式の文字列を組み立てる。未入力なら空文字。
+// 年・月・日の3つの入力欄(ID指定)から "2026年5月24日" 形式の文字列を組み立てる。未入力なら空文字。
 function buildDateString(yId, mId, dId) {
   const y = document.getElementById(yId).value.trim();
   const m = document.getElementById(mId).value.trim();
   const d = document.getElementById(dId).value.trim();
   if (!y || !m || !d) return "";
   return `${y}年${m}月${d}日`;
+}
+// buildDateString の要素版（動的に追加された行など、id指定が難しい場合に使う）
+function buildDateString3(yEl, mEl, dEl) {
+  const y = yEl.value.trim(), m = mEl.value.trim(), d = dEl.value.trim();
+  if (!y || !m || !d) return "";
+  return `${y}年${m}月${d}日`;
+}
+
+// ---------- Exifからの撮影日読み取り ----------
+// JPEGファイルのExifから撮影日時(DateTimeOriginal, タグ0x9003)を読み取る。
+// 取得できなければファイルの更新日時(lastModified)を使う。どちらも無理なら null。
+function readPhotoDate(file) {
+  return new Promise((resolve) => {
+    const fallback = () => {
+      const d = new Date(file.lastModified);
+      if (!file.lastModified || isNaN(d.getTime())) return resolve(null);
+      resolve({ y: d.getFullYear(), m: d.getMonth() + 1, d: d.getDate() });
+    };
+    if (!/jpeg|jpg/i.test(file.type)) return fallback();
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const view = new DataView(reader.result);
+        if (view.getUint16(0) !== 0xFFD8) return fallback();
+        let offset = 2;
+        while (offset < view.byteLength - 4) {
+          const marker = view.getUint16(offset);
+          if (marker === 0xFFE1) {
+            const found = parseExifDate(view, offset + 4);
+            if (found) return resolve(found);
+            return fallback();
+          }
+          if ((marker & 0xFF00) !== 0xFF00) break;
+          offset += 2 + view.getUint16(offset + 2);
+        }
+        fallback();
+      } catch (e) {
+        fallback();
+      }
+    };
+    reader.onerror = fallback;
+    reader.readAsArrayBuffer(file.slice(0, 128 * 1024)); // Exifは先頭付近にあるため一部だけ読む
+  });
+}
+
+// APP1セグメント内のTIFFヘッダーから DateTimeOriginal(0x9003) / DateTime(0x0132) を探す簡易パーサー
+function parseExifDate(view, app1Start) {
+  if (view.getUint32(app1Start) !== 0x45786966) return null; // "Exif" 確認
+  const tiffStart = app1Start + 6;
+  const little = view.getUint16(tiffStart) === 0x4949;
+  const getU16 = (o) => view.getUint16(o, little);
+  const getU32 = (o) => view.getUint32(o, little);
+  const ifd0Offset = tiffStart + getU32(tiffStart + 4);
+
+  function findTagDate(ifdOffset) {
+    const count = getU16(ifdOffset);
+    for (let i = 0; i < count; i++) {
+      const entryOffset = ifdOffset + 2 + i * 12;
+      const tag = getU16(entryOffset);
+      if (tag === 0x8769) { // Exif IFDポインタ → その中も探す
+        const exifIfdOffset = tiffStart + getU32(entryOffset + 8);
+        const found = findTagDate(exifIfdOffset);
+        if (found) return found;
+      }
+      if (tag === 0x9003 || tag === 0x0132) {
+        const valueOffset = tiffStart + getU32(entryOffset + 8);
+        let str = "";
+        for (let j = 0; j < 19; j++) {
+          const c = view.getUint8(valueOffset + j);
+          if (c === 0) break;
+          str += String.fromCharCode(c);
+        }
+        const m = str.match(/^(\d{4}):(\d{2}):(\d{2})/); // "YYYY:MM:DD HH:MM:SS"
+        if (m) return { y: Number(m[1]), m: Number(m[2]), d: Number(m[3]) };
+      }
+    }
+    return null;
+  }
+  return findTagDate(ifd0Offset);
 }
 
 // ---------- 編成番号レンジ展開: "W1〜W5,W7,W10〜W16" → [W1..W5,W7,W10..W16] ----------
@@ -439,10 +522,17 @@ async function bootData() {
   const { json } = await ghGetJSON("data/site.json");
   siteData = json || { siteName: "くまP撮影記録", companies: [] };
   fillCompanySelects();
-  // 会社データ読み込み後に、形式ページ追加タブの所属行を1つ用意する
+
+  // 形式ページ追加タブ: 所属行を1つ用意（siteData読み込み後でないと会社選択肢が作れないため）
   document.getElementById("typeAffiliations").innerHTML = "";
   affRowCount = 0;
   addAffiliationRow();
+
+  // 編成ページ追加タブ: 車歴行を1つ用意
+  document.getElementById("trainHistoryRows").innerHTML = "";
+  historyRowCount = 0;
+  addHistoryRow();
+
   await fillPhotoTrainSelect();
   await fillEditSelect();
 }
@@ -484,6 +574,13 @@ document.getElementById("photoFiles").addEventListener("change", async (e) => {
     photoPending.push({ name: f.name, base64, blobUrl });
   }
   preview.innerHTML = photoPending.map(p => `<div><img src="${p.blobUrl}"><br>${p.name}</div>`).join("");
+
+  // 撮影日欄が未入力なら、先頭ファイルのExif(無ければ更新日時)から自動入力
+  const yEl = document.getElementById("photoDateY"), mEl = document.getElementById("photoDateM"), dEl = document.getElementById("photoDateD");
+  if (files.length && !yEl.value && !mEl.value && !dEl.value) {
+    const date = await readPhotoDate(files[0]);
+    if (date) { yEl.value = date.y; mEl.value = date.m; dEl.value = date.d; }
+  }
 });
 document.getElementById("photoUploadBtn").addEventListener("click", async () => {
   const sel = document.getElementById("photoTrainSelect");
@@ -536,16 +633,47 @@ async function appendLatest(train, newPaths) {
 }
 
 // ================= 編成ページ追加タブ =================
+
+// ---- 車歴の行UI ----
+let historyRowCount = 0;
+function addHistoryRow() {
+  historyRowCount++;
+  const div = document.createElement("div");
+  div.className = "group-box";
+  div.innerHTML = `
+    <label>イベント<input type="text" class="hist-event" placeholder="例: 網干新製配置"></label>
+    <label>日付
+      <div class="row" style="gap:.4em;">
+        <input type="number" class="hist-y" placeholder="年" min="1900" max="2200" style="flex:1.3;">
+        <input type="number" class="hist-m" placeholder="月" min="1" max="12" style="flex:1;">
+        <input type="number" class="hist-d" placeholder="日" min="1" max="31" style="flex:1;">
+      </div>
+    </label>
+    <label>備考<input type="text" class="hist-note" placeholder="例: （近車）"></label>
+    <button type="button" class="secondary" onclick="this.parentElement.remove()">この行を削除</button>
+  `;
+  document.getElementById("trainHistoryRows").appendChild(div);
+}
+document.getElementById("trainHistoryAddBtn").addEventListener("click", addHistoryRow);
+
 let trainPhotoPending = [];
 document.getElementById("trainPhotoFiles").addEventListener("change", async (e) => {
   trainPhotoPending = [];
   const preview = document.getElementById("trainPhotoPreview");
   preview.innerHTML = "変換中...";
-  for (const f of Array.from(e.target.files)) {
+  const files = Array.from(e.target.files);
+  for (const f of files) {
     const { base64, blobUrl } = await fileToWebp(f);
     trainPhotoPending.push({ name: f.name, base64, blobUrl });
   }
   preview.innerHTML = trainPhotoPending.map(p => `<div><img src="${p.blobUrl}"><br>${p.name}</div>`).join("");
+
+  // 撮影日欄が未入力なら、先頭ファイルのExif(無ければ更新日時)から自動入力
+  const yEl = document.getElementById("trainPhotoDateY"), mEl = document.getElementById("trainPhotoDateM"), dEl = document.getElementById("trainPhotoDateD");
+  if (files.length && !yEl.value && !mEl.value && !dEl.value) {
+    const date = await readPhotoDate(files[0]);
+    if (date) { yEl.value = date.y; mEl.value = date.m; dEl.value = date.d; }
+  }
 });
 document.getElementById("trainSaveBtn").addEventListener("click", async () => {
   const company = document.getElementById("trainCompany").value;
@@ -556,7 +684,6 @@ document.getElementById("trainSaveBtn").addEventListener("click", async () => {
   const noFormation = document.getElementById("trainNoFormation").checked;
   const direction = document.getElementById("trainDirection").value.trim();
   const formationRaw = document.getElementById("trainFormation").value.trim();
-  const historyRaw = document.getElementById("trainHistory").value.trim();
 
   if (!company || !typeId || !affId || !number) {
     return showMsg("trainMsg", "会社・形式ID・所属ID・編成番号は必須です。", "err");
@@ -575,12 +702,16 @@ document.getElementById("trainSaveBtn").addEventListener("click", async () => {
       });
       formation = { direction, cars };
     }
-    const history = historyRaw
-      ? historyRaw.split("\n").map(l => l.trim()).filter(Boolean).map(l => {
-          const [event, date, note] = l.split(",").map(s => (s || "").trim());
-          return { event: event || "", date: date || "", note: note || "" };
-        })
-      : [];
+
+    // 車歴: 行UIから収集（空行はスキップ）
+    const history = [];
+    document.querySelectorAll("#trainHistoryRows .group-box").forEach(box => {
+      const event = box.querySelector(".hist-event").value.trim();
+      const date = buildDateString3(box.querySelector(".hist-y"), box.querySelector(".hist-m"), box.querySelector(".hist-d"));
+      const note = box.querySelector(".hist-note").value.trim();
+      if (!event && !date && !note) return;
+      history.push({ event, date, note });
+    });
 
     const photoMeta = {
       date: buildDateString("trainPhotoDateY", "trainPhotoDateM", "trainPhotoDateD"),
@@ -614,6 +745,11 @@ document.getElementById("trainSaveBtn").addEventListener("click", async () => {
     }
 
     showMsg("trainMsg", "編成ページを作成しました。GitHub Actions がページを再生成します。", "ok");
+
+    // 車歴の行をリセット
+    document.getElementById("trainHistoryRows").innerHTML = "";
+    historyRowCount = 0;
+    addHistoryRow();
   } catch (e) {
     showMsg("trainMsg", "エラー: " + e.message, "err");
   }
@@ -650,10 +786,10 @@ function addAffiliationRow() {
       <label>会社<select class="aff-company"></select></label>
       <label>所属ID<input type="text" class="aff-id" placeholder="例: aboshi"></label>
     </div>
-    <label>所属名<input type="text" class="aff-name" placeholder="例: 網干"></label>
+    <label>所属名<input type="text" class="aff-name" placeholder="例: 網干総合車両所"></label>
     <label>編成グループ名<input type="text" class="grp-label" placeholder="例: J編成"></label>
     <label>編成番号（レンジ指定可）
-      <input type="text" class="grp-trains" placeholder="例: J1〜J5,J7,J10〜J14">
+      <input type="text" class="grp-trains" placeholder="例: J1〜J5,J7,J10〜J16">
       <span class="note">「〜」または「~」でレンジ展開されます。すべて現存扱いで登録されます（非現存にする場合は後で「編集」タブから active:false に変更してください）</span>
     </label>
     <button type="button" class="secondary" onclick="this.parentElement.remove()">この所属を削除</button>
