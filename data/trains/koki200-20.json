@@ -1,0 +1,22 @@
+{
+  "type": "koki200",
+  "typeName": "コキ200",
+  "company": "jr-freight",
+  "companyName": "JR貨物",
+  "affiliation": "containercar",
+  "affiliationName": "コンテナ貨車",
+  "number": "20",
+  "formation": null,
+  "history": [],
+  "photos": [
+    {
+      "src": "image/koki200/20/1.webp",
+      "date": "2025年5月28日",
+      "trainNumber": "8865レ",
+      "destination": "",
+      "location": "南草津",
+      "note": ""
+    }
+  ],
+  "title": "コキ200-20"
+}
