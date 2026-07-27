@@ -1,0 +1,48 @@
+{
+  "type": "223",
+  "typeName": "223系",
+  "company": "jr-west",
+  "companyName": "JR西日本",
+  "affiliation": "kyoto",
+  "affiliationName": "京都",
+  "number": "RS51",
+  "formation": {
+    "direction": "←向日町（操），園部　　　永原，柘植→",
+    "cars": [
+      {
+        "type": "クハ222",
+        "number": "2503"
+      },
+      {
+        "type": "モハ223",
+        "number": "2501"
+      },
+      {
+        "type": "サハ223",
+        "number": "2501"
+      },
+      {
+        "type": "クモハ223",
+        "number": "2503"
+      }
+    ]
+  },
+  "history": [
+    {
+      "event": "日根野新製配置",
+      "date": "2006年12月7日",
+      "note": "（E810→（サハ223-2502脱車）E419→HE419）"
+    },
+    {
+      "event": "京都転属",
+      "date": "2022年3月13日",
+      "note": "（R51）"
+    },
+    {
+      "event": "編成番号改番",
+      "date": "",
+      "note": "（R51→RS51）"
+    }
+  ],
+  "photos": []
+}
