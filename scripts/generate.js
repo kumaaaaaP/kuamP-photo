@@ -288,7 +288,8 @@ function historyHtml(history) {
   return history
     .map((h) => `<div class="history-entry">
     <span class="tag-label">${esc(h.event || "")}</span><br>
-    <div class="history-detail">${esc(h.date || "")}${h.note ? esc(h.note) : ""}</div>
+    <div class="history-detail">${esc(h.date || "")}</div>
+    ${h.note ? `<div class="history-note">${esc(h.note)}</div>` : ""}
   </div>`)
     .join("\n");
 }
