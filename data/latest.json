@@ -1,5 +1,13 @@
 [
   {
+    "src": "image/223/RS51/1.webp",
+    "caption": "223系RS51編成",
+    "type": "223",
+    "number": "RS51",
+    "company": "jr-west",
+    "date": "2026-07-27"
+  },
+  {
     "src": "image/EF66/130/3.webp",
     "caption": "EF66 130（吹田）",
     "type": "EF66",
