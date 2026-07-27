@@ -103,6 +103,12 @@ img{max-width:100%;display:block;}
 /* ---------- 車歴 ---------- */
 .history-entry{margin-bottom:16px;}
 .history-entry .history-detail{margin-top:2px;}
+.history-note{
+  margin-top:4px;
+  font-size:.85rem;
+  color:#777;
+  font-style:italic;
+}
 
 /* ---------- 写真一覧 ---------- */
 .photo-grid{
