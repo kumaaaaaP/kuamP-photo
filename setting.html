@@ -366,11 +366,17 @@ function buildDateString(yId, mId, dId) {
   return `${y}年${m}月${d}日`;
 }
 // buildDateString の要素版（動的に追加された行など、id指定が難しい場合に使う）
+// 年・月・日のうち空欄があればその部分を飛ばして組み立てる（例: 月だけ空欄→「2025年　　日」、日だけ空欄→「2026年2月」）
 function buildDateString3(yEl, mEl, dEl) {
   const y = yEl.value.trim(), m = mEl.value.trim(), d = dEl.value.trim();
-  if (!y || !m || !d) return "";
-  return `${y}年${m}月${d}日`;
+  if (!y && !m && !d) return "";
+  let s = "";
+  if (y) s += `${y}年`;
+  if (m) s += `${m}月`;
+  if (d) s += `${d}日`;
+  return s;
 }
+
 
 // ---------- Exifからの撮影日読み取り ----------
 // JPEGファイルのExifから撮影日時(DateTimeOriginal, タグ0x9003)を読み取る。
