@@ -1,0 +1,22 @@
+{
+  "type": "koki104",
+  "typeName": "コキ104",
+  "company": "jr-freight",
+  "companyName": "JR貨物",
+  "affiliation": "containercar",
+  "affiliationName": "コンテナ貨車",
+  "number": "2191",
+  "formation": null,
+  "history": [],
+  "photos": [
+    {
+      "src": "image/koki104/2191/1.webp",
+      "date": "2026年7月26日",
+      "trainNumber": "遅5085レ",
+      "destination": "",
+      "location": "南草津〜瀬田",
+      "note": ""
+    }
+  ],
+  "title": "コキ104-2191"
+}
