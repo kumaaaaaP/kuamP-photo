@@ -1,0 +1,42 @@
+{
+  "id": "koki110",
+  "name": "コキ110",
+  "companies": [
+    "jr-freight"
+  ],
+  "description": "",
+  "affiliations": [
+    {
+      "id": "containercar",
+      "name": "コンテナ貨車",
+      "company": "jr-freight",
+      "groups": [
+        {
+          "label": "コキ110",
+          "trains": [
+            {
+              "number": "1",
+              "active": true
+            },
+            {
+              "number": "2",
+              "active": true
+            },
+            {
+              "number": "3",
+              "active": true
+            },
+            {
+              "number": "4",
+              "active": true
+            },
+            {
+              "number": "5",
+              "active": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
