@@ -86,6 +86,7 @@ function layout({ title, depth, breadcrumb, body }) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
 <title>${esc(title)} | ${esc(site.siteName)}</title>
 <link rel="stylesheet" href="${pre}${CSS_HREF}">
 </head>
