@@ -1,0 +1,22 @@
+{
+  "type": "koki104",
+  "typeName": "コキ104",
+  "company": "jr-freight",
+  "companyName": "JR貨物",
+  "affiliation": "containercar",
+  "affiliationName": "コンテナ貨車",
+  "number": "697",
+  "formation": null,
+  "history": [],
+  "photos": [
+    {
+      "src": "image/koki104/697/1.webp",
+      "date": "2024年8月4日",
+      "trainNumber": "",
+      "destination": "",
+      "location": "笠寺",
+      "note": ""
+    }
+  ],
+  "title": "コキ104-697"
+}
