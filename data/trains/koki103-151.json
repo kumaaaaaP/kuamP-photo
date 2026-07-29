@@ -1,0 +1,22 @@
+{
+  "type": "koki103",
+  "typeName": "コキ103",
+  "company": "jr-freight",
+  "companyName": "JR貨物",
+  "affiliation": "containercar",
+  "affiliationName": "コンテナ貨車",
+  "number": "151",
+  "formation": null,
+  "history": [],
+  "photos": [
+    {
+      "src": "image/koki103/151/1.webp",
+      "date": "2025年3月29日",
+      "trainNumber": "5061レ",
+      "destination": "",
+      "location": "南草津〜瀬田",
+      "note": ""
+    }
+  ],
+  "title": "コキ103-151"
+}
