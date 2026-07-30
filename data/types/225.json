@@ -1,0 +1,50 @@
+{
+  "id": "225",
+  "name": "225系",
+  "companies": [
+    "jr-west"
+  ],
+  "description": "",
+  "affiliations": [
+    {
+      "id": "aboshi",
+      "name": "網干",
+      "company": "jr-west",
+      "groups": [
+        {
+          "label": "0番台",
+          "trains": [
+            {
+              "number": "I1",
+              "active": true
+            },
+            {
+              "number": "I2",
+              "active": true
+            },
+            {
+              "number": "I3",
+              "active": true
+            },
+            {
+              "number": "I4",
+              "active": true
+            },
+            {
+              "number": "I5",
+              "active": true
+            },
+            {
+              "number": "I6",
+              "active": true
+            },
+            {
+              "number": "I7",
+              "active": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
