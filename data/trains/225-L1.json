@@ -42,5 +42,14 @@
       "note": "（近車）"
     }
   ],
-  "photos": []
+  "photos": [
+    {
+      "src": "image/225/L1/1.webp",
+      "date": "2025年9月7日",
+      "trainNumber": "795T",
+      "destination": "普通 網干行き",
+      "location": "膳所",
+      "note": ""
+    }
+  ]
 }
