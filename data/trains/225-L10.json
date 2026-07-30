@@ -1,0 +1,46 @@
+{
+  "type": "225",
+  "typeName": "225系",
+  "company": "jr-west",
+  "companyName": "JR西日本",
+  "affiliation": "aboshi",
+  "affiliationName": "網干",
+  "number": "L10",
+  "formation": {
+    "direction": "←上郡，播州赤穂　　　長浜→",
+    "cars": [
+      {
+        "type": "クモハ224",
+        "number": "124"
+      },
+      {
+        "type": "モハ224",
+        "number": "165"
+      },
+      {
+        "type": "モハ225",
+        "number": "131"
+      },
+      {
+        "type": "モハ224",
+        "number": "164"
+      },
+      {
+        "type": "モハ224",
+        "number": "16"
+      },
+      {
+        "type": "クモハ225",
+        "number": "124"
+      }
+    ]
+  },
+  "history": [
+    {
+      "event": "網干新製配置",
+      "date": "2022年11月17日",
+      "note": "（川車）"
+    }
+  ],
+  "photos": []
+}
