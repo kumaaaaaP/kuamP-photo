@@ -1,18 +1,15 @@
 {
   "id": "225",
   "name": "225系",
-  "companies": [
-    "jr-west"
-  ],
-  "description": "",
+  "company": "jr-west",
+  "description": "JR西日本の直流近郊形電車。",
   "affiliations": [
     {
       "id": "aboshi",
       "name": "網干",
-      "company": "jr-west",
       "groups": [
         {
-          "label": "0番台",
+          "label": "0番台8両I編成",
           "trains": [
             {
               "number": "I1",
@@ -40,6 +37,448 @@
             },
             {
               "number": "I7",
+              "active": true
+            }
+          ]
+        },
+        {
+          "label": "0番台4両U編成",
+          "trains": [
+            {
+              "number": "U1",
+              "active": true
+            },
+            {
+              "number": "U2",
+              "active": true
+            },
+            {
+              "number": "U3",
+              "active": true
+            }
+          ]
+        },
+        {
+          "label": "100番台8両I編成",
+          "trains": [
+            {
+              "number": "I8",
+              "active": true
+            },
+            {
+              "number": "I9",
+              "active": true
+            },
+            {
+              "number": "I10",
+              "active": true
+            },
+            {
+              "number": "I11",
+              "active": true
+            },
+            {
+              "number": "I12",
+              "active": true
+            },
+            {
+              "number": "I13",
+              "active": true
+            },
+            {
+              "number": "I14",
+              "active": true
+            }
+          ]
+        },
+        {
+          "label": "100番台6両L編成",
+          "trains": [
+            {
+              "number": "L1",
+              "active": true
+            },
+            {
+              "number": "L2",
+              "active": true
+            },
+            {
+              "number": "L3",
+              "active": true
+            },
+            {
+              "number": "L4",
+              "active": true
+            },
+            {
+              "number": "L5",
+              "active": true
+            },
+            {
+              "number": "L6",
+              "active": true
+            },
+            {
+              "number": "L7",
+              "active": true
+            },
+            {
+              "number": "L8",
+              "active": true
+            },
+            {
+              "number": "L9",
+              "active": true
+            },
+            {
+              "number": "L10",
+              "active": true
+            },
+            {
+              "number": "L11",
+              "active": true
+            },
+            {
+              "number": "L12",
+              "active": true
+            },
+            {
+              "number": "L13",
+              "active": true
+            },
+            {
+              "number": "L14",
+              "active": true
+            }
+          ]
+        },
+        {
+          "label": "100番台4両U編成",
+          "trains": [
+            {
+              "number": "U4",
+              "active": true
+            },
+            {
+              "number": "U5",
+              "active": true
+            },
+            {
+              "number": "U6",
+              "active": true
+            },
+            {
+              "number": "U7",
+              "active": true
+            },
+            {
+              "number": "U8",
+              "active": true
+            },
+            {
+              "number": "U9",
+              "active": true
+            },
+            {
+              "number": "U10",
+              "active": true
+            }
+          ]
+        },
+        {
+          "label": "100番台4両K編成（Aシート）",
+          "trains": [
+            {
+              "number": "K1",
+              "active": true
+            },
+            {
+              "number": "K2",
+              "active": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "miyahara",
+      "name": "宮原",
+      "groups": [
+        {
+          "label": "6000番台6両ML編成",
+          "trains": [
+            {
+              "number": "ML01",
+              "active": true
+            },
+            {
+              "number": "ML02",
+              "active": true
+            },
+            {
+              "number": "ML03",
+              "active": true
+            },
+            {
+              "number": "ML04",
+              "active": true
+            },
+            {
+              "number": "ML05",
+              "active": true
+            }
+          ]
+        },
+        {
+          "label": "6000番台4両MY編成",
+          "trains": [
+            {
+              "number": "MY01",
+              "active": true
+            },
+            {
+              "number": "MY02",
+              "active": true
+            },
+            {
+              "number": "MY03",
+              "active": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hineno",
+      "name": "日根野",
+      "groups": [
+        {
+          "label": "5000番台4両HF編成",
+          "trains": [
+            {
+              "number": "HF401",
+              "active": true
+            },
+            {
+              "number": "HF402",
+              "active": true
+            },
+            {
+              "number": "HF403",
+              "active": true
+            },
+            {
+              "number": "HF404",
+              "active": true
+            },
+            {
+              "number": "HF405",
+              "active": true
+            },
+            {
+              "number": "HF406",
+              "active": true
+            },
+            {
+              "number": "HF407",
+              "active": true
+            },
+            {
+              "number": "HF408",
+              "active": true
+            },
+            {
+              "number": "HF409",
+              "active": true
+            },
+            {
+              "number": "HF410",
+              "active": true
+            },
+            {
+              "number": "HF411",
+              "active": true
+            },
+            {
+              "number": "HF412",
+              "active": true
+            },
+            {
+              "number": "HF413",
+              "active": true
+            },
+            {
+              "number": "HF414",
+              "active": true
+            },
+            {
+              "number": "HF415",
+              "active": true
+            },
+            {
+              "number": "HF416",
+              "active": true
+            },
+            {
+              "number": "HF417",
+              "active": true
+            },
+            {
+              "number": "HF418",
+              "active": true
+            },
+            {
+              "number": "HF419",
+              "active": true
+            },
+            {
+              "number": "HF420",
+              "active": true
+            },
+            {
+              "number": "HF421",
+              "active": true
+            },
+            {
+              "number": "HF422",
+              "active": true
+            },
+            {
+              "number": "HF423",
+              "active": true
+            },
+            {
+              "number": "HF424",
+              "active": true
+            },
+            {
+              "number": "HF425",
+              "active": true
+            },
+            {
+              "number": "HF426",
+              "active": true
+            },
+            {
+              "number": "HF427",
+              "active": true
+            },
+            {
+              "number": "HF428",
+              "active": true
+            },
+            {
+              "number": "HF429",
+              "active": true
+            }
+          ]
+        },
+        {
+          "label": "5100番台4両HF編成",
+          "trains": [
+            {
+              "number": "HF430",
+              "active": true
+            },
+            {
+              "number": "HF431",
+              "active": true
+            },
+            {
+              "number": "HF432",
+              "active": true
+            },
+            {
+              "number": "HF433",
+              "active": true
+            },
+            {
+              "number": "HF434",
+              "active": true
+            },
+            {
+              "number": "HF435",
+              "active": true
+            },
+            {
+              "number": "HF436",
+              "active": true
+            },
+            {
+              "number": "HF437",
+              "active": true
+            },
+            {
+              "number": "HF438",
+              "active": true
+            },
+            {
+              "number": "HF439",
+              "active": true
+            },
+            {
+              "number": "HF440",
+              "active": true
+            },
+            {
+              "number": "HF441",
+              "active": true
+            },
+            {
+              "number": "HF442",
+              "active": true
+            },
+            {
+              "number": "HF443",
+              "active": true
+            }
+          ]
+        },
+        {
+          "label": "5100番台6両HF編成",
+          "trains": [
+            {
+              "number": "HF601",
+              "active": true
+            },
+            {
+              "number": "HF602",
+              "active": true
+            },
+            {
+              "number": "HF603",
+              "active": true
+            },
+            {
+              "number": "HF604",
+              "active": true
+            },
+            {
+              "number": "HF605",
+              "active": true
+            },
+            {
+              "number": "HF606",
+              "active": true
+            },
+            {
+              "number": "HF607",
+              "active": true
+            },
+            {
+              "number": "HF608",
+              "active": true
+            },
+            {
+              "number": "HF609",
+              "active": true
+            },
+            {
+              "number": "HF610",
+              "active": true
+            },
+            {
+              "number": "HF611",
               "active": true
             }
           ]
