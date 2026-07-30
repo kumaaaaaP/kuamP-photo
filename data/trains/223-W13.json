@@ -1,0 +1,54 @@
+{
+  "type": "223",
+  "typeName": "223系",
+  "company": "jr-west",
+  "companyName": "JR西日本",
+  "affiliation": "aboshi",
+  "affiliationName": "網干",
+  "number": "W13",
+  "formation": {
+    "direction": "←上郡，播州赤穂　　　長浜，永原，柘植→",
+    "cars": [
+      {
+        "type": "クハ222",
+        "number": "2010"
+      },
+      {
+        "type": "モハ223",
+        "number": "2004"
+      },
+      {
+        "type": "サハ223",
+        "number": "2022"
+      },
+      {
+        "type": "サハ223",
+        "number": "2021"
+      },
+      {
+        "type": "モハ222",
+        "number": "2004"
+      },
+      {
+        "type": "サハ223",
+        "number": "2020"
+      },
+      {
+        "type": "サハ223",
+        "number": "2019"
+      },
+      {
+        "type": "クモハ223",
+        "number": "3010"
+      }
+    ]
+  },
+  "history": [
+    {
+      "event": "網干新製配置",
+      "date": "1999年4月23日",
+      "note": "（近車）"
+    }
+  ],
+  "photos": []
+}
