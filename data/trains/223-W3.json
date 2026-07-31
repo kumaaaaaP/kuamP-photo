@@ -55,5 +55,14 @@
       "note": ""
     }
   ],
-  "photos": []
+  "photos": [
+    {
+      "src": "image/223/W3/1.webp",
+      "date": "2025年8月20日",
+      "trainNumber": "787T",
+      "destination": "普通 網干行き",
+      "location": "南草津〜瀬田",
+      "note": ""
+    }
+  ]
 }
