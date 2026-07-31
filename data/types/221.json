@@ -1,21 +1,412 @@
 {
   "id": "221",
   "name": "221系",
-  "companies": [
-    "jr-west"
-  ],
-  "description": "",
+  "company": "jr-west",
+  "description": "JR西日本の直流近郊形電車。",
   "affiliations": [
     {
       "id": "nara",
       "name": "奈良",
-      "company": "jr-west",
       "groups": [
         {
-          "label": "0番台8両NB編成",
+          "label": "8両NB編成",
           "trains": [
             {
               "number": "NB801",
+              "active": true
+            },
+            {
+              "number": "NB803",
+              "active": true
+            },
+            {
+              "number": "NB804",
+              "active": true
+            },
+            {
+              "number": "NB805",
+              "active": true
+            },
+            {
+              "number": "NB806",
+              "active": true
+            },
+            {
+              "number": "NB807",
+              "active": true
+            },
+            {
+              "number": "NB808",
+              "active": true
+            },
+            {
+              "number": "NB809",
+              "active": true
+            }
+          ]
+        },
+        {
+          "label": "6両NC編成",
+          "trains": [
+            {
+              "number": "NC601",
+              "active": true
+            },
+            {
+              "number": "NC602",
+              "active": true
+            },
+            {
+              "number": "NC603",
+              "active": true
+            },
+            {
+              "number": "NC604",
+              "active": true
+            },
+            {
+              "number": "NC605",
+              "active": true
+            },
+            {
+              "number": "NC606",
+              "active": true
+            },
+            {
+              "number": "NC607",
+              "active": true
+            },
+            {
+              "number": "NC608",
+              "active": true
+            },
+            {
+              "number": "NC609",
+              "active": true
+            },
+            {
+              "number": "NC610",
+              "active": true
+            },
+            {
+              "number": "NC611",
+              "active": true
+            },
+            {
+              "number": "NC612",
+              "active": true
+            },
+            {
+              "number": "NC613",
+              "active": true
+            },
+            {
+              "number": "NC614",
+              "active": true
+            },
+            {
+              "number": "NC615",
+              "active": true
+            },
+            {
+              "number": "NC616",
+              "active": true
+            },
+            {
+              "number": "NC617",
+              "active": true
+            },
+            {
+              "number": "NC618",
+              "active": true
+            },
+            {
+              "number": "NC619",
+              "active": true
+            },
+            {
+              "number": "NC620",
+              "active": true
+            },
+            {
+              "number": "NC621",
+              "active": true
+            },
+            {
+              "number": "NC622",
+              "active": true
+            },
+            {
+              "number": "NC623",
+              "active": true
+            },
+            {
+              "number": "NC624",
+              "active": true
+            },
+            {
+              "number": "NC625",
+              "active": true
+            },
+            {
+              "number": "NC626",
+              "active": true
+            },
+            {
+              "number": "NC627",
+              "active": true
+            },
+            {
+              "number": "NC628",
+              "active": true
+            },
+            {
+              "number": "NC629",
+              "active": true
+            },
+            {
+              "number": "NC630",
+              "active": true
+            }
+          ]
+        },
+        {
+          "label": "4両NA編成",
+          "trains": [
+            {
+              "number": "NA401",
+              "active": true
+            },
+            {
+              "number": "NA402",
+              "active": true
+            },
+            {
+              "number": "NA403",
+              "active": true
+            },
+            {
+              "number": "NA404",
+              "active": true
+            },
+            {
+              "number": "NA405",
+              "active": true
+            },
+            {
+              "number": "NA406",
+              "active": true
+            },
+            {
+              "number": "NA407",
+              "active": true
+            },
+            {
+              "number": "NA408",
+              "active": true
+            },
+            {
+              "number": "NA409",
+              "active": true
+            },
+            {
+              "number": "NA410",
+              "active": true
+            },
+            {
+              "number": "NA411",
+              "active": true
+            },
+            {
+              "number": "NA412",
+              "active": true
+            },
+            {
+              "number": "NA413",
+              "active": true
+            },
+            {
+              "number": "NA414",
+              "active": true
+            },
+            {
+              "number": "NA415",
+              "active": true
+            },
+            {
+              "number": "NA416",
+              "active": true
+            },
+            {
+              "number": "NA417",
+              "active": true
+            },
+            {
+              "number": "NA418",
+              "active": true
+            },
+            {
+              "number": "NA419",
+              "active": true
+            },
+            {
+              "number": "NA420",
+              "active": true
+            },
+            {
+              "number": "NA421",
+              "active": true
+            },
+            {
+              "number": "NA422",
+              "active": true
+            },
+            {
+              "number": "NA423",
+              "active": true
+            },
+            {
+              "number": "NA424",
+              "active": true
+            },
+            {
+              "number": "NA425",
+              "active": true
+            },
+            {
+              "number": "NA426",
+              "active": true
+            },
+            {
+              "number": "NA427",
+              "active": true
+            },
+            {
+              "number": "NA428",
+              "active": true
+            },
+            {
+              "number": "NA429",
+              "active": true
+            },
+            {
+              "number": "NA430",
+              "active": true
+            },
+            {
+              "number": "NA431",
+              "active": true
+            },
+            {
+              "number": "NA432",
+              "active": true
+            },
+            {
+              "number": "NA433",
+              "active": true
+            },
+            {
+              "number": "NA434",
+              "active": true
+            },
+            {
+              "number": "NA435",
+              "active": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyoto",
+      "name": "京都",
+      "groups": [
+        {
+          "label": "6両F編成",
+          "trains": [
+            {
+              "number": "F01",
+              "active": true
+            },
+            {
+              "number": "F02",
+              "active": true
+            },
+            {
+              "number": "F03",
+              "active": true
+            },
+            {
+              "number": "F04",
+              "active": true
+            },
+            {
+              "number": "F05",
+              "active": true
+            }
+          ]
+        },
+        {
+          "label": "4両K編成",
+          "trains": [
+            {
+              "number": "K03",
+              "active": true
+            },
+            {
+              "number": "K04",
+              "active": true
+            },
+            {
+              "number": "K05",
+              "active": true
+            },
+            {
+              "number": "K06",
+              "active": true
+            },
+            {
+              "number": "K07",
+              "active": true
+            },
+            {
+              "number": "K08",
+              "active": true
+            },
+            {
+              "number": "K09",
+              "active": true
+            },
+            {
+              "number": "K17",
+              "active": true
+            },
+            {
+              "number": "K18",
+              "active": true
+            },
+            {
+              "number": "K19",
+              "active": true
+            },
+            {
+              "number": "K20",
+              "active": true
+            },
+            {
+              "number": "K21",
+              "active": true
+            },
+            {
+              "number": "K22",
+              "active": true
+            },
+            {
+              "number": "K23",
+              "active": true
+            },
+            {
+              "number": "K24",
               "active": true
             }
           ]
