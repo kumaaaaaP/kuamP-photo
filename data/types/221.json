@@ -1,0 +1,26 @@
+{
+  "id": "221",
+  "name": "221系",
+  "companies": [
+    "jr-west"
+  ],
+  "description": "",
+  "affiliations": [
+    {
+      "id": "nara",
+      "name": "奈良",
+      "company": "jr-west",
+      "groups": [
+        {
+          "label": "0番台8両NB編成",
+          "trains": [
+            {
+              "number": "NB801",
+              "active": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
