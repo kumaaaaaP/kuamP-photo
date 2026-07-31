@@ -227,11 +227,11 @@
             },
             {
               "number": "J13",
-              "active": true
+              "active": false
             },
             {
               "number": "J14",
-              "active": true
+              "active": false
             }
           ]
         },
@@ -622,6 +622,302 @@
             },
             {
               "number": "R209",
+              "active": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hineno",
+      "name": "日根野",
+      "groups": [
+        {
+          "label": "0・2500番台4両HE編成",
+          "trains": [
+            {
+              "number": "HE401",
+              "active": true
+            },
+            {
+              "number": "HE402",
+              "active": true
+            },
+            {
+              "number": "HE403",
+              "active": true
+            },
+            {
+              "number": "HE404",
+              "active": true
+            },
+            {
+              "number": "HE405",
+              "active": true
+            },
+            {
+              "number": "HE406",
+              "active": true
+            },
+            {
+              "number": "HE407",
+              "active": true
+            },
+            {
+              "number": "HE408",
+              "active": true
+            },
+            {
+              "number": "HE409",
+              "active": true
+            },
+            {
+              "number": "HE410",
+              "active": true
+            },
+            {
+              "number": "HE411",
+              "active": true
+            },
+            {
+              "number": "HE412",
+              "active": true
+            },
+            {
+              "number": "HE413",
+              "active": true
+            },
+            {
+              "number": "HE414",
+              "active": true
+            },
+            {
+              "number": "HE415",
+              "active": true
+            },
+            {
+              "number": "HE416",
+              "active": true
+            },
+            {
+              "number": "HE417",
+              "active": true
+            },
+            {
+              "number": "HE418",
+              "active": true
+            },
+            {
+              "number": "HE422",
+              "active": true
+            },
+            {
+              "number": "HE423",
+              "active": true
+            },
+            {
+              "number": "HE426",
+              "active": true
+            },
+            {
+              "number": "HE427",
+              "active": true
+            },
+            {
+              "number": "HE428",
+              "active": true
+            },
+            {
+              "number": "HE429",
+              "active": true
+            },
+            {
+              "number": "HE430",
+              "active": true
+            },
+            {
+              "number": "HE431",
+              "active": true
+            },
+            {
+              "number": "HE432",
+              "active": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fukuchiyama",
+      "name": "福知山",
+      "groups": [
+        {
+          "label": "5500番台2両F編成",
+          "trains": [
+            {
+              "number": "F1",
+              "active": true
+            },
+            {
+              "number": "F2",
+              "active": true
+            },
+            {
+              "number": "F3",
+              "active": true
+            },
+            {
+              "number": "F4",
+              "active": true
+            },
+            {
+              "number": "F5",
+              "active": true
+            },
+            {
+              "number": "F6",
+              "active": true
+            },
+            {
+              "number": "F7",
+              "active": true
+            },
+            {
+              "number": "F8",
+              "active": true
+            },
+            {
+              "number": "F9",
+              "active": true
+            },
+            {
+              "number": "F10",
+              "active": true
+            },
+            {
+              "number": "F11",
+              "active": true
+            },
+            {
+              "number": "F12",
+              "active": true
+            },
+            {
+              "number": "F13",
+              "active": true
+            },
+            {
+              "number": "F14",
+              "active": true
+            },
+            {
+              "number": "F15",
+              "active": true
+            },
+            {
+              "number": "F16",
+              "active": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "miyahara",
+      "name": "宮原",
+      "groups": [
+        {
+          "label": "6000番台4両MA編成",
+          "trains": [
+            {
+              "number": "MA10",
+              "active": true
+            },
+            {
+              "number": "MA11",
+              "active": true
+            },
+            {
+              "number": "MA12",
+              "active": true
+            },
+            {
+              "number": "MA13",
+              "active": true
+            },
+            {
+              "number": "MA14",
+              "active": true
+            },
+            {
+              "number": "MA15",
+              "active": true
+            },
+            {
+              "number": "MA16",
+              "active": true
+            },
+            {
+              "number": "MA17",
+              "active": true
+            },
+            {
+              "number": "MA18",
+              "active": true
+            },
+            {
+              "number": "MA19",
+              "active": true
+            },
+            {
+              "number": "MA20",
+              "active": true
+            },
+            {
+              "number": "MA21",
+              "active": true
+            },
+            {
+              "number": "MA22",
+              "active": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "okayama",
+      "name": "岡山",
+      "groups": [
+        {
+          "label": "5000番台2両P編成",
+          "trains": [
+            {
+              "number": "P1",
+              "active": true
+            },
+            {
+              "number": "P2",
+              "active": true
+            },
+            {
+              "number": "P3",
+              "active": true
+            },
+            {
+              "number": "P4",
+              "active": true
+            },
+            {
+              "number": "P5",
+              "active": true
+            },
+            {
+              "number": "P6",
+              "active": true
+            },
+            {
+              "number": "P7",
               "active": true
             }
           ]
