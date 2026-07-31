@@ -50,5 +50,14 @@
       "note": "（近車）"
     }
   ],
-  "photos": []
+  "photos": [
+    {
+      "src": "image/223/W13/1.webp",
+      "date": "2025年8月26日",
+      "trainNumber": "3503M",
+      "destination": "新快速 姫路行き",
+      "location": "南草津〜瀬田",
+      "note": ""
+    }
+  ]
 }
