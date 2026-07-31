@@ -1,0 +1,29 @@
+{
+  "type": "DD51",
+  "typeName": "DD51",
+  "company": "jr-west",
+  "companyName": "JR西日本",
+  "affiliation": "miyahara",
+  "affiliationName": "宮原",
+  "number": "1183",
+  "formation": null,
+  "history": [
+    {
+      "event": "福知山新製配置",
+      "date": "1976年10月15日",
+      "note": "（三菱）"
+    },
+    {
+      "event": "亀山転属",
+      "date": "1986年11月",
+      "note": ""
+    },
+    {
+      "event": "宮原転属",
+      "date": "1990年6月1日",
+      "note": ""
+    }
+  ],
+  "photos": [],
+  "title": "DD51 1183"
+}
