@@ -49,5 +49,14 @@
       "note": ""
     }
   ],
-  "photos": []
+  "photos": [
+    {
+      "src": "image/223/V26/1.webp",
+      "date": "2025年6月19日",
+      "trainNumber": "5364M",
+      "destination": "普通 柘植行き",
+      "location": "京都",
+      "note": ""
+    }
+  ]
 }
