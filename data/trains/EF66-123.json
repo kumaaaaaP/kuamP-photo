@@ -1,0 +1,19 @@
+{
+  "type": "EF66",
+  "typeName": "EF66",
+  "company": "jr-freight",
+  "companyName": "JR貨物",
+  "affiliation": "suita",
+  "affiliationName": "吹田",
+  "number": "123",
+  "formation": null,
+  "history": [
+    {
+      "event": "広島新製配置",
+      "date": "1990年11月13日",
+      "note": "（川重・富士）"
+    }
+  ],
+  "photos": [],
+  "title": "EF66 123（吹田）"
+}
