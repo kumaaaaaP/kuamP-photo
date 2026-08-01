@@ -1,5 +1,13 @@
 [
   {
+    "src": "image/225/L10/2.webp",
+    "caption": "225系L10編成",
+    "type": "225",
+    "number": "L10",
+    "company": "jr-west",
+    "date": "2026-08-01"
+  },
+  {
     "src": "image/DD51/1192/3.webp",
     "caption": "DD51 1192（宮原）",
     "type": "DD51",
