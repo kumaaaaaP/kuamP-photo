@@ -2,7 +2,7 @@
 /**
  * くまP撮影記録 — 静的サイトジェネレーター
  *
- * data/site.json          … サイト名・会社一覧
+ * data/site.json          … サイト名・会社一覧（ジャンル分け・並び順を含む）
  * data/types/*.json       … 形式ページのデータ（所属ごとの編成一覧を含む）
  * data/trains/*.json      … 編成ページのデータ（存在する = 撮影済み）
  * data/latest.json        … ホームの「最新更新画像」
@@ -52,7 +52,7 @@ function assetPrefix(depth) {
 }
 
 // ---------- 読み込み ----------
-const site = readJSON(path.join(DATA, "site.json"), { siteName: "くまP撮影記録", companies: [] });
+const site = readJSON(path.join(DATA, "site.json"), { siteName: "くまP撮影記録", genres: [], companies: [] });
 const latest = readJSON(path.join(DATA, "latest.json"), []);
 const types = listJSONFiles(path.join(DATA, "types")).map((f) => readJSON(f));
 const trains = listJSONFiles(path.join(DATA, "trains")).map((f) => readJSON(f));
@@ -128,9 +128,44 @@ function trainButton(typeId, t) {
 
 // ---------- ホームページ ----------
 function buildHome() {
-  const companyItems = site.companies
-    .map((c) => `<a class="company-card" href="${esc(c.id)}.html">${esc(c.name)}</a>`)
-    .join("\n");
+  const genres = site.genres || [];
+  const companyCard = (c) => `<a class="company-card" href="${esc(c.id)}.html">${esc(c.name)}</a>`;
+
+  let companySection;
+  if (!genres.length) {
+    // ジャンル未設定の場合は従来通り単一リスト
+    const companyItems = site.companies.map(companyCard).join("\n");
+    companySection = `<div class="section-block">
+  <span class="tag-label">会社一覧</span>
+  <div class="company-list">
+    ${companyItems || "<p>まだ会社が登録されていません。</p>"}
+  </div>
+</div>`;
+  } else {
+    const genreBlocks = genres
+      .map((g) => {
+        const comps = site.companies.filter((c) => c.genre === g.id);
+        if (!comps.length) return "";
+        return `<div class="section-block">
+  <span class="tag-label">${esc(g.name)}</span>
+  <div class="company-list">
+    ${comps.map(companyCard).join("\n")}
+  </div>
+</div>`;
+      })
+      .join("\n");
+    const unassigned = site.companies.filter((c) => !c.genre || !genres.find((g) => g.id === c.genre));
+    const unassignedBlock = unassigned.length
+      ? `<div class="section-block">
+  <span class="tag-label">その他</span>
+  <div class="company-list">
+    ${unassigned.map(companyCard).join("\n")}
+  </div>
+</div>`
+      : "";
+    companySection = genreBlocks + "\n" + unassignedBlock;
+  }
+
   const latestItems = latest
     .slice(0, 12)
     .map((p) => `<figure>
@@ -141,12 +176,7 @@ function buildHome() {
 
   const body = `
 <h2 class="page-title">くまP撮影記録</h2>
-<div class="section-block">
-  <span class="tag-label">会社一覧</span>
-  <div class="company-list">
-    ${companyItems || "<p>まだ会社が登録されていません。</p>"}
-  </div>
-</div>
+${companySection}
 <div class="section-block">
   <span class="tag-label">最新更新画像</span>
   <div class="latest-grid">
@@ -169,8 +199,17 @@ function buildCompanyPages() {
         byAffiliation.get(aff.id).types.push({ id: t.id, name: t.name });
       }
     }
-    const blocks = [...byAffiliation.values()]
-      .map((a) => `<div class="affiliation-block">
+
+    // 会社ごとに設定された affiliationOrder（並び替えタブで保存）に従って並べ替える
+    const order = c.affiliationOrder || [];
+    const sortedAffiliations = [...byAffiliation.entries()].sort((a, b) => {
+      const ai = order.indexOf(a[0]);
+      const bi = order.indexOf(b[0]);
+      return (ai === -1 ? Infinity : ai) - (bi === -1 ? Infinity : bi);
+    });
+
+    const blocks = sortedAffiliations
+      .map(([, a]) => `<div class="affiliation-block">
   <span class="tag-label">${esc(a.name)}</span>
   <ul class="type-links">
     ${a.types.map((t) => `<li><a href="${esc(t.id)}.html">${esc(t.name)}</a></li>`).join("\n    ")}
