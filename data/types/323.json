@@ -15,39 +15,39 @@
           "label": "8両LS編成",
           "trains": [
             {
-              "number": "LS1",
+              "number": "LS01",
               "active": true
             },
             {
-              "number": "LS2",
+              "number": "LS02",
               "active": true
             },
             {
-              "number": "LS3",
+              "number": "LS03",
               "active": true
             },
             {
-              "number": "LS4",
+              "number": "LS04",
               "active": true
             },
             {
-              "number": "LS5",
+              "number": "LS05",
               "active": true
             },
             {
-              "number": "LS6",
+              "number": "LS06",
               "active": true
             },
             {
-              "number": "LS7",
+              "number": "LS07",
               "active": true
             },
             {
-              "number": "LS8",
+              "number": "LS08",
               "active": true
             },
             {
-              "number": "LS9",
+              "number": "LS09",
               "active": true
             },
             {
