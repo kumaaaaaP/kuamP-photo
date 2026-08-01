@@ -1,0 +1,110 @@
+{
+  "id": "323",
+  "name": "323系",
+  "companies": [
+    "jr-west"
+  ],
+  "description": "",
+  "affiliations": [
+    {
+      "id": "morinomiya",
+      "name": "森ノ宮",
+      "company": "jr-west",
+      "groups": [
+        {
+          "label": "8両LS編成",
+          "trains": [
+            {
+              "number": "LS1",
+              "active": true
+            },
+            {
+              "number": "LS2",
+              "active": true
+            },
+            {
+              "number": "LS3",
+              "active": true
+            },
+            {
+              "number": "LS4",
+              "active": true
+            },
+            {
+              "number": "LS5",
+              "active": true
+            },
+            {
+              "number": "LS6",
+              "active": true
+            },
+            {
+              "number": "LS7",
+              "active": true
+            },
+            {
+              "number": "LS8",
+              "active": true
+            },
+            {
+              "number": "LS9",
+              "active": true
+            },
+            {
+              "number": "LS10",
+              "active": true
+            },
+            {
+              "number": "LS11",
+              "active": true
+            },
+            {
+              "number": "LS12",
+              "active": true
+            },
+            {
+              "number": "LS13",
+              "active": true
+            },
+            {
+              "number": "LS14",
+              "active": true
+            },
+            {
+              "number": "LS15",
+              "active": true
+            },
+            {
+              "number": "LS16",
+              "active": true
+            },
+            {
+              "number": "LS17",
+              "active": true
+            },
+            {
+              "number": "LS18",
+              "active": true
+            },
+            {
+              "number": "LS19",
+              "active": true
+            },
+            {
+              "number": "LS20",
+              "active": true
+            },
+            {
+              "number": "LS21",
+              "active": true
+            },
+            {
+              "number": "LS22",
+              "active": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
