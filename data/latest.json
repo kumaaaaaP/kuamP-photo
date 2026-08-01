@@ -1,5 +1,13 @@
 [
   {
+    "src": "image/EF66/123/1.webp",
+    "caption": "EF66 123（吹田）",
+    "type": "EF66",
+    "number": "123",
+    "company": "jr-freight",
+    "date": "2026-08-01"
+  },
+  {
     "src": "image/DD51/1192/4.webp",
     "caption": "DD51 1192（宮原）",
     "type": "DD51",
