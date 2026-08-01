@@ -50,6 +50,18 @@
   .lock-screen{max-width:360px;margin:80px auto;text-align:center;}
   .lock-screen input{text-align:center;letter-spacing:.3em;font-size:1.2rem;}
   code{background:#eef2f6;padding:.1em .35em;border-radius:4px;}
+
+  /* ---------- 並び替え(ドラッグ&ドロップ) ---------- */
+  .dnd-list{display:flex;flex-direction:column;gap:6px;min-height:8px;}
+  .dnd-item{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:.5em .8em;cursor:grab;touch-action:none;user-select:none;
+    display:flex;align-items:center;gap:.5em;font-size:.9rem;
+  }
+  .dnd-item.dragging{opacity:.4;}
+  .dnd-item .handle{color:#999;font-size:1.1em;}
+  .genre-bucket{border:1px dashed var(--line);border-radius:var(--radius);padding:10px;margin-bottom:12px;}
+  .genre-bucket h4{margin:0 0 8px;font-size:.9rem;color:var(--navy);}
 </style>
 </head>
 <body>
@@ -96,6 +108,7 @@
         <button data-tab="train">編成ページ追加</button>
         <button data-tab="type">形式ページ追加</button>
         <button data-tab="company">会社ページ追加</button>
+        <button data-tab="order">並び替え</button>
         <button data-tab="edit">編集</button>
       </div>
 
@@ -206,6 +219,34 @@
         </div>
         <button id="companySaveBtn">会社を追加</button>
         <div id="companyMsg" class="msg"></div>
+      </div>
+
+      <!-- ===== 並び替え ===== -->
+      <div class="card tabpane hidden" id="tab-order">
+        <h2>ジャンル・会社の並び替え</h2>
+        <p class="small">項目を長押ししたままドラッグすると並び替えできます（マウス・タッチ両対応）。会社ピルは別のジャンル枠にドラッグして移動できます。</p>
+
+        <div class="row">
+          <input type="text" id="genreIdInput" placeholder="ジャンルID（例: kansai-private）">
+          <input type="text" id="genreNameInput" placeholder="ジャンル名（例: 関西私鉄）">
+        </div>
+        <button type="button" class="secondary" id="genreAddBtn">＋ジャンルを追加</button>
+
+        <h3 class="small" style="margin-top:1.2em;">ジャンルの並び順</h3>
+        <div id="genreOrderList" class="dnd-list"></div>
+
+        <h3 class="small" style="margin-top:1.4em;">会社の割り当て・並び替え</h3>
+        <div id="genreBuckets"></div>
+
+        <button id="orderSaveBtn">この並び順を保存</button>
+        <div id="orderMsg" class="msg"></div>
+
+        <h3 class="small" style="margin-top:2em;border-top:1px solid var(--line);padding-top:1em;">所属区の並び替え（会社ページ内）</h3>
+        <label>対象の会社<select id="affOrderCompanySelect"></select></label>
+        <button type="button" class="secondary" id="affOrderLoadBtn">この会社の所属を読み込む</button>
+        <div id="affOrderList" class="dnd-list" style="margin-top:.8em;"></div>
+        <button id="affOrderSaveBtn">所属の並び順を保存</button>
+        <div id="affOrderMsg" class="msg"></div>
       </div>
 
       <!-- ===== 編集 ===== -->
@@ -526,7 +567,8 @@ document.querySelectorAll(".tabs button").forEach(btn => {
 let siteData = null;
 async function bootData() {
   const { json } = await ghGetJSON("data/site.json");
-  siteData = json || { siteName: "くまP撮影記録", companies: [] };
+  siteData = json || { siteName: "くまP撮影記録", genres: [], companies: [] };
+  if (!siteData.genres) siteData.genres = [];
   fillCompanySelects();
 
   // 形式ページ追加タブ: 所属行を1つ用意（siteData読み込み後でないと会社選択肢が作れないため）
@@ -539,12 +581,17 @@ async function bootData() {
   historyRowCount = 0;
   addHistoryRow();
 
+  // 並び替えタブ
+  renderGenreOrderList();
+  renderGenreBuckets();
+
   await fillPhotoTrainSelect();
   await fillEditSelect();
 }
 function fillCompanySelects() {
   const opts = siteData.companies.map(c => `<option value="${c.id}">${c.name}</option>`).join("");
   document.getElementById("trainCompany").innerHTML = opts || "<option value=''>（会社未登録）</option>";
+  document.getElementById("affOrderCompanySelect").innerHTML = opts || "<option value=''>（会社未登録）</option>";
 }
 
 // ================= 画像追加タブ =================
@@ -850,13 +897,14 @@ document.getElementById("companySaveBtn").addEventListener("click", async () => 
   if (!id || !name) return showMsg("companyMsg", "会社ID・会社名は必須です。", "err");
   try {
     const { json, sha } = await ghGetJSON("data/site.json");
-    const site = json || { siteName: "くまP撮影記録", companies: [] };
+    const site = json || { siteName: "くまP撮影記録", genres: [], companies: [] };
     if (site.companies.find(c => c.id === id)) {
       return showMsg("companyMsg", "同じIDの会社が既に存在します。", "err");
     }
     site.companies.push({ id, name });
     await ghPutJSON("data/site.json", site, `会社ページ追加: ${name}`, sha);
     siteData = site;
+    if (!siteData.genres) siteData.genres = [];
     fillCompanySelects();
     // 形式ページ追加タブの各所属行の会社選択肢も更新する
     document.querySelectorAll("#typeAffiliations .aff-company").forEach(sel => {
@@ -864,11 +912,182 @@ document.getElementById("companySaveBtn").addEventListener("click", async () => 
       sel.innerHTML = siteData.companies.map(c => `<option value="${c.id}">${c.name}</option>`).join("");
       if (prev) sel.value = prev;
     });
+    renderGenreBuckets();
     showMsg("companyMsg", "会社を追加しました。GitHub Actions がページを再生成します。", "ok");
     document.getElementById("companyId").value = "";
     document.getElementById("companyName").value = "";
   } catch (e) {
     showMsg("companyMsg", "エラー: " + e.message, "err");
+  }
+});
+
+// ================= 並び替えタブ（Pointer Events方式ドラッグ&ドロップ） =================
+function esc2(s) { return String(s).replace(/[<>&]/g, c => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;" }[c])); }
+
+// 汎用ソート可能リスト。containerSelectorに一致する全コンテナ間でアイテムを移動できる（cross-list対応）。
+// マウス・タッチ・ペンをPointer Eventsで統一的に扱うため、iPad等でも同じコードで動く。
+function enableSortable(containerSelector) {
+  let dragEl = null;
+  function bindItem(item) {
+    if (item.dataset.sortableBound) return;
+    item.dataset.sortableBound = "1";
+    item.addEventListener("pointerdown", (e) => {
+      dragEl = item;
+      item.setPointerCapture(e.pointerId);
+      item.classList.add("dragging");
+    });
+    item.addEventListener("pointermove", (e) => {
+      if (dragEl !== item) return;
+      const target = document.elementFromPoint(e.clientX, e.clientY);
+      if (!target) return;
+      const overContainer = target.closest(containerSelector);
+      if (!overContainer) return;
+      const overItem = target.closest(".dnd-item");
+      if (overItem && overItem !== dragEl) {
+        const rect = overItem.getBoundingClientRect();
+        const before = (e.clientY - rect.top) < rect.height / 2;
+        overContainer.insertBefore(dragEl, before ? overItem : overItem.nextSibling);
+      } else if (!overItem && overContainer !== dragEl.parentElement) {
+        overContainer.appendChild(dragEl);
+      }
+    });
+    item.addEventListener("pointerup", (e) => {
+      if (dragEl !== item) return;
+      item.classList.remove("dragging");
+      try { item.releasePointerCapture(e.pointerId); } catch (_) {}
+      dragEl = null;
+    });
+  }
+  return {
+    refresh() {
+      document.querySelectorAll(containerSelector + " .dnd-item").forEach(bindItem);
+    },
+  };
+}
+const genreSortable = enableSortable("#genreOrderList");
+const companySortable = enableSortable(".genre-bucket .dnd-list");
+const affSortable = enableSortable("#affOrderList");
+
+function renderGenreOrderList() {
+  const list = document.getElementById("genreOrderList");
+  list.innerHTML = (siteData.genres || []).map(g => `
+    <div class="dnd-item" data-genre-id="${g.id}">
+      <span class="handle">≡</span>${esc2(g.name)}（${g.id}）
+      <button type="button" class="secondary" style="margin:0 0 0 auto;padding:.2em .6em;" onclick="removeGenre('${g.id}')">削除</button>
+    </div>`).join("");
+  genreSortable.refresh();
+}
+window.removeGenre = function (id) {
+  siteData.genres = (siteData.genres || []).filter(g => g.id !== id);
+  siteData.companies.forEach(c => { if (c.genre === id) delete c.genre; });
+  renderGenreOrderList();
+  renderGenreBuckets();
+};
+
+function renderGenreBuckets() {
+  const wrap = document.getElementById("genreBuckets");
+  const genres = siteData.genres || [];
+  const buckets = genres.map(g => ({ id: g.id, name: g.name, companies: siteData.companies.filter(c => c.genre === g.id) }));
+  buckets.push({ id: "", name: "未分類", companies: siteData.companies.filter(c => !c.genre || !genres.find(g => g.id === c.genre)) });
+  wrap.innerHTML = buckets.map(b => `
+    <div class="genre-bucket" data-genre-id="${b.id}">
+      <h4>${esc2(b.name)}</h4>
+      <div class="dnd-list">
+        ${b.companies.map(c => `<div class="dnd-item" data-company-id="${c.id}"><span class="handle">≡</span>${esc2(c.name)}</div>`).join("")}
+      </div>
+    </div>`).join("");
+  companySortable.refresh();
+}
+
+document.getElementById("genreAddBtn").addEventListener("click", () => {
+  const id = document.getElementById("genreIdInput").value.trim();
+  const name = document.getElementById("genreNameInput").value.trim();
+  if (!id || !name) return;
+  siteData.genres = siteData.genres || [];
+  if (siteData.genres.find(g => g.id === id)) { alert("同じIDのジャンルが既にあります。"); return; }
+  siteData.genres.push({ id, name });
+  document.getElementById("genreIdInput").value = "";
+  document.getElementById("genreNameInput").value = "";
+  renderGenreOrderList();
+  renderGenreBuckets();
+});
+
+document.getElementById("orderSaveBtn").addEventListener("click", async () => {
+  try {
+    const genreOrder = Array.from(document.querySelectorAll("#genreOrderList .dnd-item")).map(el => el.dataset.genreId);
+    siteData.genres = genreOrder.map(id => siteData.genres.find(g => g.id === id)).filter(Boolean);
+
+    const newCompanies = [];
+    document.querySelectorAll(".genre-bucket").forEach(bucket => {
+      const genreId = bucket.dataset.genreId;
+      bucket.querySelectorAll(".dnd-item").forEach(el => {
+        const c = siteData.companies.find(x => x.id === el.dataset.companyId);
+        if (!c) return;
+        if (genreId) c.genre = genreId; else delete c.genre;
+        newCompanies.push(c);
+      });
+    });
+    siteData.companies = newCompanies;
+
+    const { sha } = await ghGetJSON("data/site.json");
+    await ghPutJSON("data/site.json", siteData, "ジャンル・会社の並び替え", sha);
+    showMsg("orderMsg", "保存しました。GitHub Actions がページを再生成します。", "ok");
+    fillCompanySelects();
+  } catch (e) {
+    showMsg("orderMsg", "エラー: " + e.message, "err");
+  }
+});
+
+// ---- 所属区の並び替え ----
+function jsTypeCompanies(t) {
+  if (Array.isArray(t.companies) && t.companies.length) return t.companies;
+  if (t.company) return [t.company];
+  return [];
+}
+function jsAffCompany(t, aff) {
+  return aff.company || t.company || jsTypeCompanies(t)[0];
+}
+document.getElementById("affOrderLoadBtn").addEventListener("click", async () => {
+  const companyId = document.getElementById("affOrderCompanySelect").value;
+  if (!companyId) return;
+  showMsg("affOrderMsg", "読み込み中...", "ok");
+  const typeFiles = await ghListDir("data/types");
+  const seen = new Map();
+  for (const f of typeFiles.filter(f => f.name.endsWith(".json"))) {
+    const { json: t } = await ghGetJSON(`data/types/${f.name}`);
+    if (!t || !jsTypeCompanies(t).includes(companyId)) continue;
+    for (const aff of t.affiliations || []) {
+      if (jsAffCompany(t, aff) !== companyId) continue;
+      if (!seen.has(aff.id)) seen.set(aff.id, aff.name || aff.id);
+    }
+  }
+  const company = siteData.companies.find(c => c.id === companyId);
+  const order = (company && company.affiliationOrder) || [];
+  const ids = [...seen.keys()].sort((a, b) => {
+    const ai = order.indexOf(a), bi = order.indexOf(b);
+    return (ai === -1 ? Infinity : ai) - (bi === -1 ? Infinity : bi);
+  });
+  const list = document.getElementById("affOrderList");
+  list.innerHTML = ids.length
+    ? ids.map(id => `<div class="dnd-item" data-aff-id="${id}"><span class="handle">≡</span>${esc2(seen.get(id))}（${id}）</div>`).join("")
+    : "<p class='small'>この会社に紐づく所属が見つかりませんでした。</p>";
+  affSortable.refresh();
+  showMsg("affOrderMsg", "読み込みました。", "ok");
+});
+document.getElementById("affOrderSaveBtn").addEventListener("click", async () => {
+  const companyId = document.getElementById("affOrderCompanySelect").value;
+  if (!companyId) return showMsg("affOrderMsg", "会社を選択してください。", "err");
+  try {
+    const order = Array.from(document.querySelectorAll("#affOrderList .dnd-item")).map(el => el.dataset.affId);
+    const { json, sha } = await ghGetJSON("data/site.json");
+    const company = json.companies.find(c => c.id === companyId);
+    if (!company) throw new Error("会社が見つかりません。");
+    company.affiliationOrder = order;
+    await ghPutJSON("data/site.json", json, `所属の並び替え: ${companyId}`, sha);
+    siteData = json;
+    showMsg("affOrderMsg", "保存しました。GitHub Actions がページを再生成します。", "ok");
+  } catch (e) {
+    showMsg("affOrderMsg", "エラー: " + e.message, "err");
   }
 });
 
@@ -937,7 +1156,10 @@ document.getElementById("editSaveBtn").addEventListener("click", async () => {
       json.companies[idx] = parsed;
       await ghPutJSON("data/site.json", json, `編集: 会社 ${box.dataset.companyId}`, sha);
       siteData = json;
+      if (!siteData.genres) siteData.genres = [];
       fillCompanySelects();
+      renderGenreOrderList();
+      renderGenreBuckets();
     } else {
       const { sha } = await ghGetJSON(box.dataset.path);
       await ghPutJSON(box.dataset.path, parsed, `編集: ${box.dataset.path}`, sha);
