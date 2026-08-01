@@ -1,0 +1,54 @@
+{
+  "type": "323",
+  "typeName": "323系",
+  "company": "jr-west",
+  "companyName": "JR西日本",
+  "affiliation": "morinomiya",
+  "affiliationName": "森ノ宮",
+  "number": "LS20",
+  "formation": {
+    "direction": "←内回り，桜島　　　外回り→",
+    "cars": [
+      {
+        "type": "クモハ322",
+        "number": "20"
+      },
+      {
+        "type": "モハ323",
+        "number": "40"
+      },
+      {
+        "type": "モハ322",
+        "number": "80"
+      },
+      {
+        "type": "モハ322",
+        "number": "79"
+      },
+      {
+        "type": "モハ323",
+        "number": "539"
+      },
+      {
+        "type": "モハ322",
+        "number": "78"
+      },
+      {
+        "type": "モハ322",
+        "number": "77"
+      },
+      {
+        "type": "クモハ323",
+        "number": "20"
+      }
+    ]
+  },
+  "history": [
+    {
+      "event": "森ノ宮新製配置",
+      "date": "2019年3月15日",
+      "note": "（近車）"
+    }
+  ],
+  "photos": []
+}
