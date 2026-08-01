@@ -1,5 +1,13 @@
 [
   {
+    "src": "image/225/L10/3.webp",
+    "caption": "225系L10編成",
+    "type": "225",
+    "number": "L10",
+    "company": "jr-west",
+    "date": "2026-08-01"
+  },
+  {
     "src": "image/EF66/123/1.webp",
     "caption": "EF66 123（吹田）",
     "type": "EF66",
