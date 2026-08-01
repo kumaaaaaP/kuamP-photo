@@ -1,0 +1,28 @@
+{
+  "type": "EF210",
+  "typeName": "EF210",
+  "company": "jr-freight",
+  "companyName": "JR貨物",
+  "affiliation": "suita",
+  "affiliationName": "吹田",
+  "number": "356",
+  "formation": null,
+  "history": [
+    {
+      "event": "吹田新製配置",
+      "date": "2023年9月6日",
+      "note": "（川車）"
+    }
+  ],
+  "photos": [
+    {
+      "src": "image/EF210/356/1.webp",
+      "date": "2024年7月5日",
+      "trainNumber": "5073レ",
+      "destination": "",
+      "location": "南草津",
+      "note": ""
+    }
+  ],
+  "title": "EF210-356（吹田）"
+}
