@@ -50,5 +50,14 @@
       "note": "（近車）"
     }
   ],
-  "photos": []
+  "photos": [
+    {
+      "src": "image/323/LS20/1.webp",
+      "date": "2024年10月12日",
+      "trainNumber": "",
+      "destination": "",
+      "location": "京都",
+      "note": "大阪・関西万博ラッピング／京都駅展示イベント"
+    }
+  ]
 }
