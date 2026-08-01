@@ -500,9 +500,15 @@ function expandTrainRange(input) {
     const m = part.match(/^([^\d]*)(\d+)\s*[〜~～\-ー]\s*[^\d]*(\d+)$/);
     if (m) {
       const prefix = m[1];
-      const start = parseInt(m[2], 10);
+      const startStr = m[2]; // 開始番号の元の文字列（"01"など桁数の情報を保持するため）
+      const start = parseInt(startStr, 10);
       const end = parseInt(m[3], 10);
-      for (let n = start; n <= end; n++) result.push(prefix + n);
+      // 開始番号が "0" から始まる場合はゼロ埋め桁数として扱う（例: "01"→2桁, "007"→3桁）
+      const padLen = /^0/.test(startStr) ? startStr.length : 0;
+      for (let n = start; n <= end; n++) {
+        const numStr = padLen ? String(n).padStart(padLen, "0") : String(n);
+        result.push(prefix + numStr);
+      }
     } else if (part) {
       result.push(part);
     }
