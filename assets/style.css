@@ -211,6 +211,19 @@ span.train-btn{cursor:default;}
   vertical-align:middle;border:1px solid rgba(0,0,0,.15);
 }
 
+/* ---------- 並び替え(ドラッグ&ドロップ) ---------- */
+.dnd-list{display:flex;flex-direction:column;gap:6px;min-height:8px;}
+.dnd-item{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:.5em .8em;cursor:grab;touch-action:none;user-select:none;
+  display:flex;align-items:center;gap:.5em;font-size:.9rem;
+}
+.dnd-item.dragging{opacity:.4;}
+.dnd-item .handle{color:#999;font-size:1.1em;}
+.genre-bucket{border:1px dashed var(--line);border-radius:var(--radius);padding:10px;margin-bottom:12px;}
+.genre-bucket h4{margin:0 0 8px;font-size:.9rem;color:var(--navy);}
+
+
 /* ---------- 最新更新画像（ホーム） ---------- */
 .latest-grid{
   display:grid;
