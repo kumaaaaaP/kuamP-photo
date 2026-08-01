@@ -1,5 +1,13 @@
 [
   {
+    "src": "image/225/L13/1.webp",
+    "caption": "225系L13編成",
+    "type": "225",
+    "number": "L13",
+    "company": "jr-west",
+    "date": "2026-08-01"
+  },
+  {
     "src": "image/323/LS20/1.webp",
     "caption": "323系LS20編成",
     "type": "323",
