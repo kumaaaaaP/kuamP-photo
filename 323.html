@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<title>323系 | くまP撮影記録</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <h1><a href="./index.html">くまP撮影記録</a></h1>
+</header>
+<div class="page-container">
+<nav class="breadcrumb"><a href="index.html">ホーム</a><span class="sep">&gt;</span><a href="jr-west.html">JR西日本</a><span class="sep">&gt;</span><strong>323系</strong></nav>
+
+<h2 class="page-title">323系</h2>
+
+
+<div class="aff-tabs">
+    <button type="button" class="aff-tab-btn active" data-target="aff-morinomiya">森ノ宮</button>
+  </div>
+<div class="affiliation-block tab-panel" id="aff-morinomiya">
+  <h3>森ノ宮</h3>
+  <div class="train-group">
+    <span class="tag-label">8両LS編成</span>
+    <div class="train-buttons">
+      <span class="train-btn unshot" title="未撮影">LS1</span>
+      <span class="train-btn unshot" title="未撮影">LS2</span>
+      <span class="train-btn unshot" title="未撮影">LS3</span>
+      <span class="train-btn unshot" title="未撮影">LS4</span>
+      <span class="train-btn unshot" title="未撮影">LS5</span>
+      <span class="train-btn unshot" title="未撮影">LS6</span>
+      <span class="train-btn unshot" title="未撮影">LS7</span>
+      <span class="train-btn unshot" title="未撮影">LS8</span>
+      <span class="train-btn unshot" title="未撮影">LS9</span>
+      <span class="train-btn unshot" title="未撮影">LS10</span>
+      <span class="train-btn unshot" title="未撮影">LS11</span>
+      <span class="train-btn unshot" title="未撮影">LS12</span>
+      <span class="train-btn unshot" title="未撮影">LS13</span>
+      <span class="train-btn unshot" title="未撮影">LS14</span>
+      <span class="train-btn unshot" title="未撮影">LS15</span>
+      <span class="train-btn unshot" title="未撮影">LS16</span>
+      <span class="train-btn unshot" title="未撮影">LS17</span>
+      <span class="train-btn unshot" title="未撮影">LS18</span>
+      <span class="train-btn unshot" title="未撮影">LS19</span>
+      <span class="train-btn unshot" title="未撮影">LS20</span>
+      <span class="train-btn unshot" title="未撮影">LS21</span>
+      <span class="train-btn unshot" title="未撮影">LS22</span>
+    </div>
+  </div>
+</div>
+
+<div class="legend">
+  <span><span class="swatch" style="background:#e6f0ff;border-color:#b7d3f7"></span>撮影済み</span>
+  <span><span class="swatch" style="background:#fff"></span>未撮影</span>
+  <span><span class="swatch" style="background:#e5e5e5"></span>非現存</span>
+</div>
+<script>
+document.querySelectorAll(".aff-tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".aff-tab-btn").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".tab-panel").forEach(p => p.hidden = true);
+    btn.classList.add("active");
+    document.getElementById(btn.dataset.target).hidden = false;
+  });
+});
+</script>
+
+<nav class="breadcrumb bottom-breadcrumb"><a href="index.html">ホーム</a><span class="sep">&gt;</span><a href="jr-west.html">JR西日本</a><span class="sep">&gt;</span><strong>323系</strong></nav>
+</div>
+<footer class="site-footer">© くまP撮影記録</footer>
+</body>
+</html>
