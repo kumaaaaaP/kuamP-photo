@@ -1,0 +1,29 @@
+{
+  "type": "EF65",
+  "typeName": "EF65",
+  "company": "jr-freight",
+  "companyName": "JR貨物",
+  "affiliation": "shintsurumi",
+  "affiliationName": "新鶴見",
+  "number": "2096",
+  "formation": null,
+  "history": [
+    {
+      "event": "東京新製配置",
+      "date": "1978年5月18日",
+      "note": ""
+    },
+    {
+      "event": "新鶴見転属",
+      "date": "1985年3月14日",
+      "note": ""
+    },
+    {
+      "event": "2000番台化",
+      "date": "2012年5月",
+      "note": ""
+    }
+  ],
+  "photos": [],
+  "title": "EF65 2096（新鶴見）"
+}
