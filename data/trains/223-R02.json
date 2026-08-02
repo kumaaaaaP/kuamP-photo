@@ -44,5 +44,14 @@
       "note": ""
     }
   ],
-  "photos": []
+  "photos": [
+    {
+      "src": "image/223/R02/1.webp",
+      "date": "2024年7月15日",
+      "trainNumber": "5364M",
+      "destination": "普通 京都行き",
+      "location": "京都",
+      "note": "森の京都QRトレイン"
+    }
+  ]
 }
