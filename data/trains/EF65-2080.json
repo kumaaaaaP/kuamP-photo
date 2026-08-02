@@ -1,0 +1,24 @@
+{
+  "type": "EF65",
+  "typeName": "EF65",
+  "company": "jr-freight",
+  "companyName": "JR貨物",
+  "affiliation": "shintsurumi",
+  "affiliationName": "新鶴見",
+  "number": "2080",
+  "formation": null,
+  "history": [
+    {
+      "event": "新鶴見新製配置",
+      "date": "1977年5月25日",
+      "note": "（川重・富士）"
+    },
+    {
+      "event": "2000番台化",
+      "date": "2012年5月",
+      "note": ""
+    }
+  ],
+  "photos": [],
+  "title": "EF65 2080（新鶴見）"
+}
