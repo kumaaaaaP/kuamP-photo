@@ -1,5 +1,21 @@
 [
   {
+    "src": "image/EF65/2080/2.webp",
+    "caption": "EF65 2080（新鶴見）",
+    "type": "EF65",
+    "number": "2080",
+    "company": "jr-freight",
+    "date": "2026-08-02"
+  },
+  {
+    "src": "image/EF65/2080/1.webp",
+    "caption": "EF65 2080（新鶴見）",
+    "type": "EF65",
+    "number": "2080",
+    "company": "jr-freight",
+    "date": "2026-08-02"
+  },
+  {
     "src": "image/521/E05/1.webp",
     "caption": "521系E05編成",
     "type": "521",
