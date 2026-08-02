@@ -1,0 +1,26 @@
+{
+  "id": "shinkeisei8800",
+  "name": "新京成電鉄8800形",
+  "companies": [
+    "shinkeisei"
+  ],
+  "description": "",
+  "affiliations": [
+    {
+      "id": "kunugiyama",
+      "name": "くぬぎ山",
+      "company": "shinkeisei",
+      "groups": [
+        {
+          "label": "6両編成",
+          "trains": [
+            {
+              "number": "8801F~8816F",
+              "active": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
