@@ -34,5 +34,14 @@
       "note": "（近車）"
     }
   ],
-  "photos": []
+  "photos": [
+    {
+      "src": "image/223/V63/1.webp",
+      "date": "2024年9月7日",
+      "trainNumber": "793T",
+      "destination": "普通 網干行き",
+      "location": "南草津",
+      "note": ""
+    }
+  ]
 }
