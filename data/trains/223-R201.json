@@ -44,5 +44,14 @@
       "note": "（R201）"
     }
   ],
-  "photos": []
+  "photos": [
+    {
+      "src": "image/223/R201/1.webp",
+      "date": "2024年7月15日",
+      "trainNumber": "5366M",
+      "destination": "普通 柘植行き",
+      "location": "京都",
+      "note": "湖西線50周年HM"
+    }
+  ]
 }
