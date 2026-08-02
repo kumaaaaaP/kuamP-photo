@@ -52,6 +52,14 @@
       "destination": "普通 京都行き",
       "location": "京都",
       "note": "森の京都QRトレイン"
+    },
+    {
+      "src": "image/223/R02/2.webp",
+      "date": "2024年7月5日",
+      "trainNumber": "5373M",
+      "destination": "普通 京都行き",
+      "location": "南草津",
+      "note": "森の京都QRトレイン"
     }
   ]
 }
