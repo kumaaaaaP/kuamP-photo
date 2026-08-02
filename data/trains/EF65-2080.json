@@ -19,6 +19,23 @@
       "note": ""
     }
   ],
-  "photos": [],
+  "photos": [
+    {
+      "src": "image/EF65/2080/1.webp",
+      "date": "2025年1月25日",
+      "trainNumber": "5087レ",
+      "destination": "",
+      "location": "京都",
+      "note": ""
+    },
+    {
+      "src": "image/EF65/2080/2.webp",
+      "date": "2025年1月25日",
+      "trainNumber": "5087レ",
+      "destination": "",
+      "location": "京都",
+      "note": ""
+    }
+  ],
   "title": "EF65 2080（新鶴見）"
 }
