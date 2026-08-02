@@ -60,7 +60,7 @@
       ]
     },
     {
-      "id": "shin-tsurumi",
+      "id": "shintsurumi",
       "name": "新鶴見",
       "company": "jr-freight",
       "groups": [
@@ -129,22 +129,6 @@
             },
             {
               "number": "2101",
-              "active": true
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "shintsurumi",
-      "name": "新鶴見",
-      "company": "jr-freight",
-      "groups": [
-        {
-          "label": "編成",
-          "trains": [
-            {
-              "number": "2080",
               "active": true
             }
           ]
