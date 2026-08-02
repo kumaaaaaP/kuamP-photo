@@ -1,0 +1,42 @@
+{
+  "id": "521",
+  "name": "521系",
+  "companies": [
+    "jr-west"
+  ],
+  "description": "",
+  "affiliations": [
+    {
+      "id": "tsuruga",
+      "name": "敦賀",
+      "company": "jr-west",
+      "groups": [
+        {
+          "label": "0番台E編成",
+          "trains": [
+            {
+              "number": "E01",
+              "active": true
+            },
+            {
+              "number": "E02",
+              "active": true
+            },
+            {
+              "number": "E03",
+              "active": true
+            },
+            {
+              "number": "E04",
+              "active": true
+            },
+            {
+              "number": "E05",
+              "active": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
