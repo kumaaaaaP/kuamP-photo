@@ -1,0 +1,48 @@
+{
+  "type": "223",
+  "typeName": "223系",
+  "company": "jr-west",
+  "companyName": "JR西日本",
+  "affiliation": "kyoto",
+  "affiliationName": "京都",
+  "number": "R02",
+  "formation": {
+    "direction": "←向日町（操），園部　　　永原，柘植→",
+    "cars": [
+      {
+        "type": "クハ222",
+        "number": "6094"
+      },
+      {
+        "type": "モハ223",
+        "number": "6183"
+      },
+      {
+        "type": "サハ223",
+        "number": "6208"
+      },
+      {
+        "type": "クモハ223",
+        "number": "6094"
+      }
+    ]
+  },
+  "history": [
+    {
+      "event": "網干新製配置",
+      "date": "2007年2月14日",
+      "note": "（川重）"
+    },
+    {
+      "event": "京都転属",
+      "date": "2021年2月4日",
+      "note": ""
+    },
+    {
+      "event": "6000番台化",
+      "date": "2021年2月18日",
+      "note": ""
+    }
+  ],
+  "photos": []
+}
