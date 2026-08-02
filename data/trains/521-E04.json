@@ -1,0 +1,40 @@
+{
+  "type": "521",
+  "typeName": "521系",
+  "company": "jr-west",
+  "companyName": "JR西日本",
+  "affiliation": "tsuruga",
+  "affiliationName": "敦賀",
+  "number": "E04",
+  "formation": {
+    "direction": "←米原，近江今津　　　福井→",
+    "cars": [
+      {
+        "type": "クハ520",
+        "number": "4"
+      },
+      {
+        "type": "クモハ521",
+        "number": "4"
+      }
+    ]
+  },
+  "history": [
+    {
+      "event": "敦賀新製配置",
+      "date": "2006年10月12日",
+      "note": "（川重）"
+    },
+    {
+      "event": "金沢転属",
+      "date": "2017年3月4日",
+      "note": ""
+    },
+    {
+      "event": "敦賀転属",
+      "date": "2020年3月14日",
+      "note": ""
+    }
+  ],
+  "photos": []
+}
