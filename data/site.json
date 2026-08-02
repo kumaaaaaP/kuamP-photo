@@ -1,12 +1,37 @@
 {
   "siteName": "くまP撮影記録",
   "genres": [
-    { "id": "jr", "name": "JR" },
-    { "id": "kansai-private", "name": "関西私鉄" },
-    { "id": "subway", "name": "地下鉄" }
+    {
+      "id": "jr",
+      "name": "JR"
+    },
+    {
+      "id": "kansai-private",
+      "name": "関西私鉄"
+    },
+    {
+      "id": "subway",
+      "name": "地下鉄"
+    }
   ],
   "companies": [
-    { "id": "jr-west", "name": "JR西日本", "genre": "jr", "affiliationOrder": ["kyoto", "aboshi"] },
-    { "id": "jr-freight", "name": "JR貨物", "genre": "jr" }
+    {
+      "id": "jr-west",
+      "name": "JR西日本",
+      "genre": "jr",
+      "affiliationOrder": [
+        "kyoto",
+        "aboshi"
+      ]
+    },
+    {
+      "id": "jr-freight",
+      "name": "JR貨物",
+      "genre": "jr"
+    },
+    {
+      "id": "shinkeisei",
+      "name": "新京成電鉄"
+    }
   ]
 }
