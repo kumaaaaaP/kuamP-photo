@@ -497,17 +497,20 @@ function expandTrainRange(input) {
   const parts = input.split(/[,、，\n]/).map(s => s.trim()).filter(Boolean);
   const result = [];
   for (const part of parts) {
-    const m = part.match(/^([^\d]*)(\d+)\s*[〜~～\-ー]\s*[^\d]*(\d+)$/);
+    // 例: "8801F〜8816F" → prefix="", startStr="8801", suffix="F", endStr="8816"
+    // 例: "J01〜J20"     → prefix="J",  startStr="01",   suffix="",  endStr="20"
+    const m = part.match(/^([^\d]*)(\d+)([^\d]*)[〜~～\-ー]\s*[^\d]*(\d+)([^\d]*)$/);
     if (m) {
       const prefix = m[1];
-      const startStr = m[2]; // 開始番号の元の文字列（"01"など桁数の情報を保持するため）
+      const startStr = m[2];
+      const suffix = m[3] || m[5] || ""; // 開始側・終了側どちらかに付いていれば採用（例: "F"）
       const start = parseInt(startStr, 10);
-      const end = parseInt(m[3], 10);
+      const end = parseInt(m[4], 10);
       // 開始番号が "0" から始まる場合はゼロ埋め桁数として扱う（例: "01"→2桁, "007"→3桁）
       const padLen = /^0/.test(startStr) ? startStr.length : 0;
       for (let n = start; n <= end; n++) {
         const numStr = padLen ? String(n).padStart(padLen, "0") : String(n);
-        result.push(prefix + numStr);
+        result.push(prefix + numStr + suffix);
       }
     } else if (part) {
       result.push(part);
@@ -515,6 +518,7 @@ function expandTrainRange(input) {
   }
   return result;
 }
+
 
 // ---------- 設定画面 ----------
 function initConfig() {
