@@ -134,6 +134,22 @@
           ]
         }
       ]
+    },
+    {
+      "id": "shinkeisei",
+      "name": "下関",
+      "company": "jr-west",
+      "groups": [
+        {
+          "label": "編成",
+          "trains": [
+            {
+              "number": "1135",
+              "active": true
+            }
+          ]
+        }
+      ]
     }
   ]
 }
