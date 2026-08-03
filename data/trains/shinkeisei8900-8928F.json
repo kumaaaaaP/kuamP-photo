@@ -1,0 +1,57 @@
+{
+  "type": "shinkeisei8900",
+  "typeName": "新京成電鉄8900形",
+  "company": "shinkeisei",
+  "companyName": "新京成電鉄",
+  "affiliation": "kunugiyama",
+  "affiliationName": "くぬぎ山",
+  "number": "8928F",
+  "formation": {
+    "direction": "←京成津田沼　　　松戸→",
+    "cars": [
+      {
+        "type": "クハ8900形",
+        "number": "8921"
+      },
+      {
+        "type": "モハ8900形",
+        "number": "8922"
+      },
+      {
+        "type": "モハ8900形",
+        "number": "8923"
+      },
+      {
+        "type": "モハ8900形",
+        "number": "8926"
+      },
+      {
+        "type": "モハ8900形",
+        "number": "8927"
+      },
+      {
+        "type": "クハ8900形",
+        "number": "8928"
+      }
+    ]
+  },
+  "history": [
+    {
+      "event": "新製",
+      "date": "1996年2月25日",
+      "note": "（日車）"
+    },
+    {
+      "event": "6両編成化",
+      "date": "2014年9月30日",
+      "note": ""
+    },
+    {
+      "event": "京成合併",
+      "date": "2025年4月1日",
+      "note": ""
+    }
+  ],
+  "photos": [],
+  "title": "新京成電鉄8900形8928F"
+}
