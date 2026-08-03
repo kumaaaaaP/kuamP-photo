@@ -12,6 +12,10 @@
     {
       "id": "subway",
       "name": "地下鉄"
+    },
+    {
+      "id": "kanto-private",
+      "name": "関東私鉄"
     }
   ],
   "companies": [
@@ -31,7 +35,8 @@
     },
     {
       "id": "shinkeisei",
-      "name": "新京成電鉄"
+      "name": "新京成電鉄",
+      "genre": "kanto-private"
     }
   ]
 }
