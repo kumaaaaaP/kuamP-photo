@@ -1,0 +1,29 @@
+{
+  "type": "EF65",
+  "typeName": "EF65",
+  "company": "jr-west",
+  "companyName": "JR西日本",
+  "affiliation": "shinkeisei",
+  "affiliationName": "下関",
+  "number": "1135",
+  "formation": null,
+  "history": [
+    {
+      "event": "宮原新製配置",
+      "date": "1979年7月4日",
+      "note": "（川重・富士）"
+    },
+    {
+      "event": "吹田転属",
+      "date": "1985年3月14日",
+      "note": ""
+    },
+    {
+      "event": "下関転属",
+      "date": "1986年10月31日",
+      "note": ""
+    }
+  ],
+  "photos": [],
+  "title": "EF65 1135（下関）"
+}
