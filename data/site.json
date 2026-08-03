@@ -10,12 +10,12 @@
       "name": "関西私鉄"
     },
     {
-      "id": "subway",
-      "name": "地下鉄"
-    },
-    {
       "id": "kanto-private",
       "name": "関東私鉄"
+    },
+    {
+      "id": "subway",
+      "name": "地下鉄"
     }
   ],
   "companies": [
