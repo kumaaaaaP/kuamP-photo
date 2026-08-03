@@ -1,0 +1,63 @@
+{
+  "type": "225",
+  "typeName": "225系",
+  "company": "jr-west",
+  "companyName": "JR西日本",
+  "affiliation": "aboshi",
+  "affiliationName": "網干",
+  "number": "I3",
+  "formation": {
+    "direction": "←上郡，播州赤穂　　　長浜，永原，柘植→",
+    "cars": [
+      {
+        "type": "クモハ224",
+        "number": "3"
+      },
+      {
+        "type": "モハ225",
+        "number": "306"
+      },
+      {
+        "type": "モハ224",
+        "number": "12"
+      },
+      {
+        "type": "モハ224",
+        "number": "11"
+      },
+      {
+        "type": "モハ225",
+        "number": "505"
+      },
+      {
+        "type": "モハ224",
+        "number": "10"
+      },
+      {
+        "type": "モハ224",
+        "number": "9"
+      },
+      {
+        "type": "クモハ225",
+        "number": "3"
+      }
+    ]
+  },
+  "history": [
+    {
+      "event": "網干新製配置",
+      "date": "2010年7月1日",
+      "note": "（近車）"
+    }
+  ],
+  "photos": [
+    {
+      "src": "image/225/I3/1.webp",
+      "date": "2026年8月3日",
+      "trainNumber": "811T",
+      "destination": "普通 網干行き",
+      "location": "南草津〜瀬田",
+      "note": ""
+    }
+  ]
+}
