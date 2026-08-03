@@ -15,7 +15,67 @@
           "label": "6両編成",
           "trains": [
             {
-              "number": "8801F~8816F",
+              "number": "8801F",
+              "active": false
+            },
+            {
+              "number": "8802F",
+              "active": true
+            },
+            {
+              "number": "8803F",
+              "active": true
+            },
+            {
+              "number": "8804F",
+              "active": false
+            },
+            {
+              "number": "8805F",
+              "active": false
+            },
+            {
+              "number": "8806F",
+              "active": true
+            },
+            {
+              "number": "8807F",
+              "active": true
+            },
+            {
+              "number": "8808F",
+              "active": true
+            },
+            {
+              "number": "8809F",
+              "active": true
+            },
+            {
+              "number": "8810F",
+              "active": true
+            },
+            {
+              "number": "8811F",
+              "active": true
+            },
+            {
+              "number": "8812F",
+              "active": true
+            },
+            {
+              "number": "8813F",
+              "active": true
+            },
+            {
+              "number": "8814F",
+              "active": true
+            },
+            {
+              "number": "8815F",
+              "active": true
+            },
+            {
+              "number": "8816F",
               "active": true
             }
           ]
