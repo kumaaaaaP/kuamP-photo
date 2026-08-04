@@ -1,0 +1,53 @@
+{
+  "type": "223",
+  "typeName": "223系",
+  "company": "jr-west",
+  "companyName": "JR西日本",
+  "affiliation": "kyoto",
+  "affiliationName": "京都",
+  "number": "RS56",
+  "formation": {
+    "direction": "←向日町（操），園部　　　永原，柘植→",
+    "cars": [
+      {
+        "type": "クハ222",
+        "number": "2517"
+      },
+      {
+        "type": "モハ223",
+        "number": "2520"
+      },
+      {
+        "type": "サハ223",
+        "number": "2502"
+      },
+      {
+        "type": "クモハ223",
+        "number": "2517"
+      }
+    ]
+  },
+  "history": [
+    {
+      "event": "日根野新製配置（E810）",
+      "date": "2006年12月7日",
+      "note": "（川重）（〜2008/3/14，サハ223-2502を脱車して新製されたE433編成に組み込み）"
+    },
+    {
+      "event": "日根野新製配置（E433）",
+      "date": "2008年2月20日",
+      "note": "（近車）（E433→HE433）"
+    },
+    {
+      "event": "京都転属",
+      "date": "2023年1月16日",
+      "note": ""
+    },
+    {
+      "event": "編成番号改番",
+      "date": "2025年4月",
+      "note": ""
+    }
+  ],
+  "photos": []
+}
