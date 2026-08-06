@@ -62,6 +62,15 @@
       "note": ""
     }
   ],
-  "photos": [],
+  "photos": [
+    {
+      "src": "image/shinkeisei8800/8816F/1.webp",
+      "date": "2024年7月31日",
+      "trainNumber": "339",
+      "destination": "普通 千葉中央行き",
+      "location": "北習志野〜習志野",
+      "note": ""
+    }
+  ],
   "title": "新京成電鉄8800形8816F"
 }
