@@ -1,5 +1,13 @@
 [
   {
+    "src": "image/shinkeisei8800/8816F/1.webp",
+    "caption": "新京成電鉄8800形8816F",
+    "type": "shinkeisei8800",
+    "number": "8816F",
+    "company": "shinkeisei",
+    "date": "2026-08-06"
+  },
+  {
     "src": "image/shinkeisei8800/8807F/1.webp",
     "caption": "新京成電鉄8800形8807F",
     "type": "shinkeisei8800",
