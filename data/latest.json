@@ -1,5 +1,13 @@
 [
   {
+    "src": "image/223/RS56/1.webp",
+    "caption": "223系RS56編成",
+    "type": "223",
+    "number": "RS56",
+    "company": "jr-west",
+    "date": "2026-08-06"
+  },
+  {
     "src": "image/EF65/1135/1.webp",
     "caption": "EF65 1135（下関）",
     "type": "EF65",
