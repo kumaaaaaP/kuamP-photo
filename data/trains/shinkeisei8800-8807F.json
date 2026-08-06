@@ -52,6 +52,15 @@
       "note": ""
     }
   ],
-  "photos": [],
+  "photos": [
+    {
+      "src": "image/shinkeisei8800/8807F/1.webp",
+      "date": "2024年7月31日",
+      "trainNumber": "341",
+      "destination": "普通 千葉中央行き",
+      "location": "北習志野〜習志野",
+      "note": "2024夏の高校野球千葉大会応援トレイン"
+    }
+  ],
   "title": "新京成電鉄8800形8807F"
 }
