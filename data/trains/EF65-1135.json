@@ -24,6 +24,15 @@
       "note": ""
     }
   ],
-  "photos": [],
+  "photos": [
+    {
+      "src": "image/EF65/1135/1.webp",
+      "date": "2026年8月3日",
+      "trainNumber": "試9395レ",
+      "destination": "",
+      "location": "南草津〜瀬田",
+      "note": "C57梅小路出場試運転返却回送"
+    }
+  ],
   "title": "EF65 1135（下関）"
 }
