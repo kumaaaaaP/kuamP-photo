@@ -1,5 +1,13 @@
 [
   {
+    "src": "image/shinkeisei8900/8928F/1.webp",
+    "caption": "新京成電鉄8900形8928F",
+    "type": "shinkeisei8900",
+    "number": "8928F",
+    "company": "shinkeisei",
+    "date": "2026-08-06"
+  },
+  {
     "src": "image/223/RS56/1.webp",
     "caption": "223系RS56編成",
     "type": "223",
