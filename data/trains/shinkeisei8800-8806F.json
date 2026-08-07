@@ -52,6 +52,15 @@
       "note": ""
     }
   ],
-  "photos": [],
+  "photos": [
+    {
+      "src": "image/shinkeisei8800/8806F/1.webp",
+      "date": "2024年7月31日",
+      "trainNumber": "73",
+      "destination": "普通 京成津田沼行き",
+      "location": "北習志野〜習志野",
+      "note": "京葉ガスラッピング"
+    }
+  ],
   "title": "新京成電鉄8800形8806F"
 }
