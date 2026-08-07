@@ -44,5 +44,14 @@
       "note": "（R203）"
     }
   ],
-  "photos": []
+  "photos": [
+    {
+      "src": "image/223/R203/1.webp",
+      "date": "2024年8月8日",
+      "trainNumber": "9387M",
+      "destination": "普通 京都行き",
+      "location": "大津",
+      "note": "びわ湖大花火大会に伴う臨時列車／所定網干車4連の5387Mを運休として京都車8両で運転"
+    }
+  ]
 }
