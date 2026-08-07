@@ -1,0 +1,19 @@
+{
+  "type": "EF210",
+  "typeName": "EF210",
+  "company": "jr-freight",
+  "companyName": "JR貨物",
+  "affiliation": "suita",
+  "affiliationName": "吹田",
+  "number": "319",
+  "formation": null,
+  "history": [
+    {
+      "event": "吹田新製配置",
+      "date": "2020年7月10日",
+      "note": "（川重）"
+    }
+  ],
+  "photos": [],
+  "title": "EF210-319（吹田）"
+}
