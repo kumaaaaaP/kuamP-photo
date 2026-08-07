@@ -1,0 +1,43 @@
+{
+  "type": "223",
+  "typeName": "223系",
+  "company": "jr-west",
+  "companyName": "JR西日本",
+  "affiliation": "aboshi",
+  "affiliationName": "網干",
+  "number": "V8",
+  "formation": {
+    "direction": "←上郡，播州赤穂　　　敦賀，柘植→",
+    "cars": [
+      {
+        "type": "クハ222",
+        "number": "2006"
+      },
+      {
+        "type": "モハ222",
+        "number": "3021"
+      },
+      {
+        "type": "サハ223",
+        "number": "2015"
+      },
+      {
+        "type": "クモハ223",
+        "number": "3006"
+      }
+    ]
+  },
+  "history": [
+    {
+      "event": "網干新製配置",
+      "date": "1999年4月6日",
+      "note": "（川重）"
+    },
+    {
+      "event": "リニューアル",
+      "date": "2025年3月6日",
+      "note": "（網干）"
+    }
+  ],
+  "photos": []
+}
