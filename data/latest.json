@@ -1,5 +1,13 @@
 [
   {
+    "src": "image/223/R203/1.webp",
+    "caption": "223系R203編成",
+    "type": "223",
+    "number": "R203",
+    "company": "jr-west",
+    "date": "2026-08-07"
+  },
+  {
     "src": "image/shinkeisei8800/8806F/1.webp",
     "caption": "新京成電鉄8800形8806F",
     "type": "shinkeisei8800",
