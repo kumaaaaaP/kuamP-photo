@@ -1,5 +1,13 @@
 [
   {
+    "src": "image/223/V8/1.webp",
+    "caption": "223系V8編成",
+    "type": "223",
+    "number": "V8",
+    "company": "jr-west",
+    "date": "2026-08-07"
+  },
+  {
     "src": "image/EF210/319/1.webp",
     "caption": "EF210-319（吹田）",
     "type": "EF210",
@@ -388,14 +396,6 @@
     "caption": "DD511192編成",
     "type": "DD51",
     "number": "1192",
-    "company": "jr-west",
-    "date": "2026-07-25"
-  },
-  {
-    "src": "image/223/V28/1.webp",
-    "caption": "223系V28編成",
-    "type": "223",
-    "number": "V28",
     "company": "jr-west",
     "date": "2026-07-25"
   }
