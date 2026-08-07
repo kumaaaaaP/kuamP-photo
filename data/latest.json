@@ -1,5 +1,13 @@
 [
   {
+    "src": "image/EF210/319/1.webp",
+    "caption": "EF210-319（吹田）",
+    "type": "EF210",
+    "number": "319",
+    "company": "jr-freight",
+    "date": "2026-08-07"
+  },
+  {
     "src": "image/223/R203/1.webp",
     "caption": "223系R203編成",
     "type": "223",
@@ -388,14 +396,6 @@
     "caption": "223系V28編成",
     "type": "223",
     "number": "V28",
-    "company": "jr-west",
-    "date": "2026-07-25"
-  },
-  {
-    "src": "image/223/J4/2.webp",
-    "caption": "223系J4編成",
-    "type": "223",
-    "number": "J4",
     "company": "jr-west",
     "date": "2026-07-25"
   }
