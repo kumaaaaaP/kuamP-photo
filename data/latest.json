@@ -1,5 +1,13 @@
 [
   {
+    "src": "image/EF65/1135/2.webp",
+    "caption": "EF65 1135（下関）",
+    "type": "EF65",
+    "number": "1135",
+    "company": "jr-west",
+    "date": "2026-08-08"
+  },
+  {
     "src": "image/223/V8/1.webp",
     "caption": "223系V8編成",
     "type": "223",
@@ -390,13 +398,5 @@
     "number": "1109",
     "company": "jr-west",
     "date": "2026-07-26"
-  },
-  {
-    "src": "image/DD51/1192/1.webp",
-    "caption": "DD511192編成",
-    "type": "DD51",
-    "number": "1192",
-    "company": "jr-west",
-    "date": "2026-07-25"
   }
 ]
