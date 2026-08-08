@@ -1,0 +1,178 @@
+{
+  "id": "321",
+  "name": "321系",
+  "companies": [
+    "jr-west"
+  ],
+  "description": "",
+  "affiliations": [
+    {
+      "id": "akashi",
+      "name": "明石",
+      "company": "jr-west",
+      "groups": [
+        {
+          "label": "7両編成",
+          "trains": [
+            {
+              "number": "D1",
+              "active": true
+            },
+            {
+              "number": "D2",
+              "active": true
+            },
+            {
+              "number": "D3",
+              "active": true
+            },
+            {
+              "number": "D4",
+              "active": true
+            },
+            {
+              "number": "D5",
+              "active": true
+            },
+            {
+              "number": "D6",
+              "active": true
+            },
+            {
+              "number": "D7",
+              "active": true
+            },
+            {
+              "number": "D8",
+              "active": true
+            },
+            {
+              "number": "D9",
+              "active": true
+            },
+            {
+              "number": "D10",
+              "active": true
+            },
+            {
+              "number": "D11",
+              "active": true
+            },
+            {
+              "number": "D12",
+              "active": true
+            },
+            {
+              "number": "D13",
+              "active": true
+            },
+            {
+              "number": "D14",
+              "active": true
+            },
+            {
+              "number": "D15",
+              "active": true
+            },
+            {
+              "number": "D16",
+              "active": true
+            },
+            {
+              "number": "D17",
+              "active": true
+            },
+            {
+              "number": "D18",
+              "active": true
+            },
+            {
+              "number": "D19",
+              "active": true
+            },
+            {
+              "number": "D20",
+              "active": true
+            },
+            {
+              "number": "D21",
+              "active": true
+            },
+            {
+              "number": "D22",
+              "active": true
+            },
+            {
+              "number": "D23",
+              "active": true
+            },
+            {
+              "number": "D24",
+              "active": true
+            },
+            {
+              "number": "D25",
+              "active": true
+            },
+            {
+              "number": "D26",
+              "active": true
+            },
+            {
+              "number": "D27",
+              "active": true
+            },
+            {
+              "number": "D28",
+              "active": true
+            },
+            {
+              "number": "D29",
+              "active": true
+            },
+            {
+              "number": "D30",
+              "active": true
+            },
+            {
+              "number": "D31",
+              "active": true
+            },
+            {
+              "number": "D32",
+              "active": true
+            },
+            {
+              "number": "D33",
+              "active": true
+            },
+            {
+              "number": "D34",
+              "active": true
+            },
+            {
+              "number": "D35",
+              "active": true
+            },
+            {
+              "number": "D36",
+              "active": true
+            },
+            {
+              "number": "D37",
+              "active": true
+            },
+            {
+              "number": "D38",
+              "active": true
+            },
+            {
+              "number": "D39",
+              "active": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
