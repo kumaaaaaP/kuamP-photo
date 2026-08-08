@@ -1,5 +1,13 @@
 [
   {
+    "src": "image/EF65/1135/3.webp",
+    "caption": "EF65 1135（下関）",
+    "type": "EF65",
+    "number": "1135",
+    "company": "jr-west",
+    "date": "2026-08-08"
+  },
+  {
     "src": "image/EF65/1135/2.webp",
     "caption": "EF65 1135（下関）",
     "type": "EF65",
@@ -385,14 +393,6 @@
   },
   {
     "src": "image/DD51/1109/2.webp",
-    "caption": "DD51 1109（宮原）",
-    "type": "DD51",
-    "number": "1109",
-    "company": "jr-west",
-    "date": "2026-07-26"
-  },
-  {
-    "src": "image/DD51/1109/1.webp",
     "caption": "DD51 1109（宮原）",
     "type": "DD51",
     "number": "1109",
